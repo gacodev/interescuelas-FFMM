@@ -13,3 +13,8 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/dbdata
+
+/public/*
+!/public/index.php
+!/public/robots.txt
+!/public/.htaccess
