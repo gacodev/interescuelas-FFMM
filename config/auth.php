@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -58,11 +62,6 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
-    'api' => [
-        'driver' => 'passport',
-        'provider' => 'users',
-    ],
 
 
     'providers' => [
