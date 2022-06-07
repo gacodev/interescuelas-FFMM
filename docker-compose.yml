@@ -36,11 +36,10 @@ services:
 
     node:
         image: node:16-alpine
-        working_dir: /var/www
+        working_dir: /root
         volumes:
-            - ./:/var/www
-            - /var/www/node_modules
-        command: sh /var/www/node_start.sh
+            - ./:/root
+        command: sh /root/node_start.sh
         depends_on:
             - app
 
