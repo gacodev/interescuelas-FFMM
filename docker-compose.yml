@@ -33,6 +33,8 @@ services:
             - app-network
         volumes:
             - ./:/var/www
+        working_dir: /var/www
+        # command: sh /var/www/laravel.sh
 
     node:
         image: node:16-alpine
