@@ -1,0 +1,12 @@
+import './admin-user';
+import './profile-edit-profile';
+import './profile-edit-password';
+import './sport';
+import './award';
+import './doc';
+import './competence';
+import './score';
+import './participant';
+import './nationality';
+import './category';
+import './force';
