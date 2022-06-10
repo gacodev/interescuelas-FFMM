@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->date('birthday');
             $table->foreignId('type_doc_id')->constrained();
-            $table->integer('genero_id')->unsigned();            
-            $table->foreign('genero_id')->references('id')->on('genders');
+            $table->bigIncrements('gender_id')->unsigned();            
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->foreignId('force_id')->constrained();
             $table->foreignId('nationality_id')->constrained();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('genders', function (Blueprint $table) {
             $table->id();
-            $table->string('genero');
+            $table->string('sexo');
             $table->timestamps();
         });
     }

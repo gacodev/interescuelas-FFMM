@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('categorie')->unique();
             $table->string('description');
             $table->string('image')->unique();
-            $table->integer('genero_id')->unsigned();            
-            $table->foreign('genero_id')->references('id')->on('genders');
+            $table->bigIncrements('gender_id')->unsigned();            
+            $table->foreign('gender_id')->references('id')->on('genders');
         });
     }
 
