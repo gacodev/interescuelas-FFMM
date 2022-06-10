@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('forces', function (Blueprint $table) {
             $table->id();
             $table->string('force')->unique();
-            $table->string('description');
+            $table->string('slogan');
             $table->string('image')->unique();
         });
     }
