@@ -14,7 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\User::factory()->create(
+            ['name' => 'test','email' => 'test@test.com','password' => 12345678],
+            //['name' => 'admin','email' => 'admin@admin.com','password' => 12345678],
+        );
         \App\Models\User::factory(10)->create();
+
 
         $this->call([
             sportsSeeder::class,
@@ -24,12 +29,11 @@ class DatabaseSeeder extends Seeder
             docsSeeder::class,
             GenderSeeder::class,
             categoriesSeeder::class,
+            participantSeeder::class,
+            CompetenceSeeder::class,
+            ScoreSeeder::class,
         ]);
 
-        \App\Models\User::factory()->create([
-             'name' => 'gabriel',
-             'email' => 'test@test.com',
-             'password' => 12345678
-         ]);
+
     }
 }

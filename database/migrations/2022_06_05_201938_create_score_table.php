@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('score', function (Blueprint $table) {
+        Schema::create('scores', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('competence_id')->constrained();
             $table->foreignId('participant_id')->constrained();
