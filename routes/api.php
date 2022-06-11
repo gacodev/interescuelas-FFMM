@@ -1,21 +1,22 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\UserController;
-/*
-|--------------------------------------------------------------------------| API Routes|--------------------------------------------------------------------------|
+use App\Http\Controllers\ApiAuthController;
 
 
-*/
-//Route::post('/login', [UserController::class ,'login']);
+Route::group([
+    'prefix' => 'v1'
+], function () {
+    Route::post('login', [ApiAuthController::class, "login"]);
 
-/* Route::group(['middleware' => ['auth:api']], function () {
-    Route::post('login', [UserController::class],'login')->name('login');
-    Route::get('/test', function (Request $request) {
-         return response()->json(['name' => 'test']);
+
+    Route::post('signup', [ApiAuthController::class, "signUp"]);
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('logout', [ApiAuthController::class, "logout"]);
+        Route::get('user', [ApiAuthController::class, "user"]);
     });
 });
-*/
-
-Auth::routes();
-Route::post('/login2', [UserController::class],'login')->name('login2');
