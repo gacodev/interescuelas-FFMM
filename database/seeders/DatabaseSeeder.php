@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'gabriel',
             'email' => 'test@test.com',
-            'password' => 12345678
+            'password' => bcrypt(12345678)
         ]);
 
         Artisan::call('passport:install');
