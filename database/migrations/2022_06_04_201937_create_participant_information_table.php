@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('number_id')->unique();
+            $table->Integer('#identification')->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->date('birthday');
-            $table->foreignId('doc_id')->constrained();
+            $table->foreignId('type_doc_id')->constrained();
+            $table->unsignedBigInteger('gender_id');
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->foreignId('force_id')->constrained();
             $table->foreignId('nationality_id')->constrained();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('docs', function (Blueprint $table) {
+        Schema::create('type_docs', function (Blueprint $table) {
             $table->id();
             $table->string('doc_type')->unique();
         });
