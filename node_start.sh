@@ -7,6 +7,7 @@ cd public
 rm -rf assets
 rm -f index.html
 cd ../interescuelas
+rm -r node_modules/
 npm install
 
 echo 'Watching changes'
