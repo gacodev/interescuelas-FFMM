@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('categorie')->unique();
             $table->string('description');
             $table->string('image')->unique();
-            $table->unsignedBigInteger('gender_id');
-            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->foreignId('gender_id')->constrained();
         });
     }
 
