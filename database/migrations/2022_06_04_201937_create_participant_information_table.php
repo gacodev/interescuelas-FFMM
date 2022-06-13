@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id()->unique();
             $table->Integer('#identification')->unique();
+            $table->Integer('gold')->default(0);
+            $table->Integer('silver')->default(0);
+            $table->Integer('bronze')->default(0);
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();

@@ -21,9 +21,9 @@
                             <p class="card-text"><strong>Nombre: </strong>{{$participant->name}}</p>
                             <p class="card-text"><strong>Edad:  </strong>{{$participant->birthday}}</p>
                             <p class="card-text"><strong> Genero:  </strong>{{$participant->sexo}}</p>
-                            <p class="card-text"><strong> Medallas de Oro  </strong>{{$participant->award_id}}</p>
-                            <p class="card-text"><strong> Medallas de Plata  </strong>{{$participant->award_id}}</p>
-                            <p class="card-text"><strong> Medallas de Bronce  </strong>{{$participant->award_id}}</p>
+                            <p class="card-text"><strong> Medallas de Oro  </strong>{{$participant->gold}}</p>
+                            <p class="card-text"><strong> Medallas de Plata  </strong>{{$participant->silver}}</p>
+                            <p class="card-text"><strong> Medallas de Bronce  </strong>{{$participant->bronze}}</p>
                             <div class="text-center">
                                 <a href="{{route('participants.show')}}" class="btn btn-primary">Ver</a>
                                 <a href="" class="btn btn-warning">Agregar Medallas</a>
