@@ -20,6 +20,6 @@ Route::group([
         Route::get('logout', [ApiAuthController::class, "logout"]);
         Route::get('user', [ApiAuthController::class, "user"]);
         Route::get('info', [ParticipantController::class, "index"]);
-        Route::get('/data', [ParticipantController::class, 'index'])->name('data');
+        Route::get('data', [ParticipantController::class, 'index'])->name('data');
     });
 });
