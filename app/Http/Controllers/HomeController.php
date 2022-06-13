@@ -39,6 +39,7 @@ class HomeController extends Controller
         //dd($participants);
         //dd($participants);
         //die();
+
         return view('data',compact('participants'));
     }
 }
