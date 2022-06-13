@@ -4,6 +4,8 @@ set -e
 
 echo 'Installing deps'
 
+rm -R vendor
+
 composer install
 
 php artisan key:generate

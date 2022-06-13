@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+    server:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - 82:80
+        networks:
+            - app-network
+        volumes:
+            - ./:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+
+    db:
+        image: mysql:8.0
+        restart: unless-stopped
+        env_file:
+            - .env
+        environment:
+            MYSQL_DATABASE: $DB_DATABASE
+            MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+            MYSQL_PASSWORD: $DB_PASSWORD
+            MYSQL_USER: $DB_USERNAME
+        networks:
+            - app-network
+        volumes:
+            - ./storage/dbdata:/var/lib/mysql
+    app:
+        build: .
+        restart: unless-stopped
+        networks:
+            - app-network
+        volumes:
+            - ./:/var/www
+        working_dir: /var/www
+        # command: sh /var/www/laravel.sh
+
+    node:
+        image: node:16-alpine
+        working_dir: /root
+        volumes:
+            - ./:/root
+        command: sh /root/node_start.sh
+        depends_on:
+            - app
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    dbdata:

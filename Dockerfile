@@ -20,22 +20,25 @@ RUN apt-get update && apt-get install -y \
     jpegoptim optipng pngquant gifsicle \
     vim \
     git \
-    curl
+    curl \
+    postgresql \
+    php*-pgsql \
+    libpq-dev
 
 # Instalamos extensiones de PHP
-RUN docker-php-ext-install pdo_mysql zip exif pcntl
+RUN docker-php-ext-install pdo_mysql pdo_pgsql zip exif pcntl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 
 RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin --filename=composer
 
-# Instalamos dependendencias de composer
-RUN composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
-
 # Copiamos todos los archivos de la carpeta actual de nuestra
 # computadora (los archivos de laravel) a /var/www/
 COPY . /var/www/
+
+# Instalamos dependendencias de composer
+RUN composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
 
 # Exponemos el puerto 9000 a la network
 EXPOSE 9000
