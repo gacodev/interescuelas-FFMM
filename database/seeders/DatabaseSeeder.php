@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-
 
         $this->call([
             sportsSeeder::class,
@@ -35,7 +33,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'gabriel',
             'email' => 'test@test.com',
-            'password' => bcrypt(12345678)
+            'password' => bcrypt(12345678),
+            'force_id' => 1,
         ]);
 
         Artisan::call('passport:install');
