@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Force;
+use App\Models\Grade;
+use App\Models\Sport;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -13,7 +17,18 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff');
+        $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
+
+        return view('staff', compact('forceValues', 'sportValues'));
+    }
+
+    public function grade_show(Request $request)
+    {
+        $gradeValues = Grade::where("force_id", "=", $request->force_id)->get([
+            "id", "grade"
+        ]);
+        return $gradeValues;
     }
 
     /**
@@ -21,9 +36,23 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'force_id' => 'required|exists:forces,id',
+            'sport_id' => 'required|exists:sports,id',
+            'grade_id' => 'required|exists:grades,id',
+            'name' => 'required',
+            'identification' => 'required',
+        ]);
+
+        $data = new Staff($request->all());
+        $data->save();
+
+        $success = "success";
+
+        return redirect()->route('staff.index', ["success" => $success]);
     }
 
     /**
