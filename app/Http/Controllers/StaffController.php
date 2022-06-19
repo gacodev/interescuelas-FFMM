@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Force;
+use App\Models\Grade;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,14 @@ class StaffController extends Controller
         $sportValues = Sport::all()->pluck('sport', 'id');
 
         return view('staff', compact('forceValues', 'sportValues'));
+    }
+
+    public function grade_show(Request $request)
+    {
+        $gradeValues = Grade::where("force_id", "=", $request->force_id)->get([
+            "id", "grade"
+        ]);
+        return $gradeValues;
     }
 
     /**

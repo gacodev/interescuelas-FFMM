@@ -16,16 +16,13 @@
                     <div required class="form-group mt-2">
 
                         {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
-                        {{ Form::select('fuerza', $forceValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        {{ Form::select('force', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
 
                     </div>
 
                     <div required class="form-group mt-2">
-                        <label>Grado</label>
-                        <select required class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
+                        {{ Form::label('Grado', null, ['class' => 'control-label']) }}
+                        {{ Form::select('grades', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'grades'], [])) }}
                     </div>
 
                     <div required class="form-group mt-3">
@@ -52,4 +49,30 @@
             </form>
         </div>
     </div>
+
+    <script>
+        let grades = document.getElementById("grades");
+
+        function insertGrades(data) {
+            let options = `<option value="0"></option>`;
+
+            data.map(element => {
+                options += `<option value="${element.id}">${element.grade}</option>`;
+            })
+
+            grades.innerHTML = options;
+        }
+
+        function getForce(e) {
+            let value = e.target.value;
+            axios.get(`/forces/${value}/grade`)
+                .then(res => {
+                    console.log(res.data)
+                    insertGrades(res.data)
+                })
+        }
+
+        let force = document.getElementById("force");
+        force.addEventListener("change", getForce)
+    </script>
 @endsection

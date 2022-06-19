@@ -15,4 +15,9 @@ class Force extends Model
         "force",
         "image"
     ];
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }
