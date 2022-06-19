@@ -27,6 +27,7 @@ class ParticipantController extends Controller
         //dd($participants);
         //dd($participants);
         //die();
+        
         return response()->json([
             'data' => $participants,
         ]);
@@ -41,6 +42,12 @@ class ParticipantController extends Controller
     {
         //
     }
+
+    public function participantsregister()
+    {
+        return view('registerparticipantsform');
+    }
+
 
     /**
      * Store a newly created resource in storage.

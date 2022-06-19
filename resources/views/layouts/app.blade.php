@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'INTERESCUELAS') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,17 +24,25 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    Home
+                <div>
+                <a class="navbar-brand mr-2" href="{{ url('/home') }}">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Escudo_Fuerza_Aerea_Colombiana.svg/800px-Escudo_Fuerza_Aerea_Colombiana.svg.png" alt="" width="50px" height="50px">
                 </a>
+                </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto ml-3 mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
+                        <a class="nav-link active" aria-current="page" href="/home">Participantes</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/staff">Staff</a>
+                        <a class="nav-link active" aria-current="page" href="/staff">Registrar equipos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar Participantes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Resultados</a>
                       </li>
                     </ul>
                 </div>

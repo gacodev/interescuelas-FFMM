@@ -9,10 +9,7 @@
                 {!! Form::open(['url' => 'staff/create', 'method' => 'post']) !!}
 
                 <div>
-                    <div required class="d-flex flex-row-reverse mb-2">
-                        <a required class="btn btn-primary d-flex-inline"href="{{ route('participants.show') }}"> Ver
-                            Participantes</a>
-                    </div>
+                    
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
                     </h2>
                     <h2 required class="text-center"><strong>Registrar Staff</strong></h2>

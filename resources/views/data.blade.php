@@ -7,6 +7,13 @@
             <div class="card">
                 <div class="card-header text-center"><h1> <strong>{{ __('Listado de Participantes') }}</strong></h1></div>
                 <div class="card-body">
+
+                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2">
+                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+                    aria-label="Search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                </form>
+
                     @foreach($participants as $participant)
 
                         <div class="card border-dark m-3 d-inline-block" style="max-width: 20rem;">
@@ -17,6 +24,7 @@
                             <div>
                             <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">
                             </div>
+                            <div >
                             <p class="card-text"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
                             <p class="card-text"><strong>Nombre: </strong>{{$participant->name}}</p>
                             <p class="card-text"><strong>Edad:  </strong>{{$participant->birthday}}</p>
@@ -27,6 +35,7 @@
                             <div class="text-center">
                                 <a href="{{route('participants.show')}}" class="btn btn-primary">Ver</a>
                                 <a href="" class="btn btn-warning">Agregar Medallas</a>
+                            </div>
                             </div>
                         </div>
                         </div>
