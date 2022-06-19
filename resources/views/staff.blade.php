@@ -2,7 +2,11 @@
 @section('content')
     <div required class="container">
         <div required class="row justify-content-center">
-            <form required class="col-sm-9 justify-content-center">
+
+
+            <div class="col-sm-9 justify-content-center">
+
+                {!! Form::open(['url' => 'staff/create', 'method' => 'post']) !!}
 
                 <div>
                     <div required class="d-flex flex-row-reverse mb-2">
@@ -27,17 +31,17 @@
 
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
-                        <input type="text" required class="form-control">
+                        <input type="text" name="name" required class="form-control">
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Numero de documento</label>
-                        <input type="number" required class="form-control">
+                        <input type="number" name="identification" required class="form-control">
                     </div>
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
-                        {{ Form::select('sport', $sportValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        {{ Form::select('sport', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
                     </div>
 
                     <div required class="form-group mt-2 text-center">
@@ -46,7 +50,11 @@
                         </button>
                     </div>
                 </div>
-            </form>
+
+                {!! Form::close() !!}
+            </div>
+
+
         </div>
     </div>
 
