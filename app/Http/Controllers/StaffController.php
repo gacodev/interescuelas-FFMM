@@ -50,9 +50,9 @@ class StaffController extends Controller
         $data = new Staff($request->all());
         $data->save();
 
-        $success = "success";
+        $request->session()->flash('status', 'Se creo satisfactoriamente!');
 
-        return redirect()->route('staff.index', ["success" => $success]);
+        return redirect()->route('staff.index', []);
     }
 
     /**

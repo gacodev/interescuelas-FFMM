@@ -23,50 +23,74 @@
                         {{ Form::select('force_id', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
 
                         @if ($errors->has('force_id'))
-                            {{ $errors->first('force_id') }}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('force_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                     </div>
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Grado', null, ['class' => 'control-label']) }}
                         {{ Form::select('grade_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'grades'], [])) }}
+
                         @if ($errors->has('grade_id'))
-                            {{ $errors->first('grade_id') }}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('grade_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
                         <input type="text" name="name" required class="form-control">
+
                         @if ($errors->has('name'))
-                            {{ $errors->first('name') }}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('name') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Numero de documento</label>
                         <input type="number" name="identification" required class="form-control">
+
                         @if ($errors->has('identification'))
-                            {{ $errors->first('identification') }}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('identification') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                     </div>
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
                         {{ Form::select('sport_id', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+
+
                         @if ($errors->has('sport_id'))
-                            {{ $errors->first('sport_id') }}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('sport_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                     </div>
 
-                    @if (request()->get('success'))
+                    @if (Session::has('status'))
                         <br>
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            Se Creo el integrante satisfactoriamente!
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ Session::get('status') }}!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
-
 
                     <div required class="form-group mt-2 text-center">
                         <button type="submit" required class="btn btn-success col-sm-2 col-md-3 col-xs-2">
