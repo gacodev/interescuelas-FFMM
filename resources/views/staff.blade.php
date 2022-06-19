@@ -16,7 +16,7 @@
                     <div required class="form-group mt-2">
 
                         {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
-                        {{ Form::select('size', $forceValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        {{ Form::select('fuerza', $forceValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
 
                     </div>
 
@@ -44,6 +44,9 @@
                             <option>1</option>
                             <option>2</option>
                         </select>
+
+                        {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
+                        {{ Form::select('sport', $sportValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
                     </div>
 
 

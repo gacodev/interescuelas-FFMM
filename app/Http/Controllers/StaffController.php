@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Force;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -15,8 +16,9 @@ class StaffController extends Controller
     public function index()
     {
         $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
 
-        return view('staff', compact('forceValues'));
+        return view('staff', compact('forceValues', 'sportValues'));
     }
 
     /**
