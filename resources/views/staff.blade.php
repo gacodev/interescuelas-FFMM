@@ -59,6 +59,15 @@
                         @endif
                     </div>
 
+                    @if (request()->get('success'))
+                        <br>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            Se Creo el integrante satisfactoriamente!
+                        </div>
+                    @endif
+
+
+
                     <div required class="form-group mt-2 text-center">
                         <button type="submit" required class="btn btn-success col-sm-2 col-md-3 col-xs-2">
                             Registrar

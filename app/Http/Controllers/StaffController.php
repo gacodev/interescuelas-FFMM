@@ -50,10 +50,9 @@ class StaffController extends Controller
         $data = new Staff($request->all());
         $data->save();
 
-        $forceValues = Force::all()->pluck('force', 'id');
-        $sportValues = Sport::all()->pluck('sport', 'id');
+        $success = "success";
 
-        return view('staff', compact('forceValues', 'sportValues'));
+        return redirect()->route('staff.index', ["success" => $success]);
     }
 
     /**
