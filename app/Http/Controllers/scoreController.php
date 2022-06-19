@@ -38,9 +38,18 @@ class scoreController extends Controller
     {
         
 
-        $scores = Score::get()->groupBy('award_id')->toarray();
-        dd($scores);
-        return view('resultados',compact('scores'));
+        $ForcesScores = Score::
+        join('participants', 'scores.participant_id', '=', 'participants.id')
+        //->whereBetween('force_id', [1, 4])
+        //->groupBy('award_id')
+        ->get()
+        ->toarray();
+        $ejcScores = Score::get();
+        $FacScores = Score::get()->groupBy('award_id')->toarray();
+        $ArcScores = Score::get()->groupBy('award_id')->toarray();
+        $Ponalscores = Score::get()->groupBy('award_id')->toarray();
+        dd($ForcesScores);
+        return view('resultados',compact('ForcesScores','ejeScores','FacScores','ArcScores','PonalScores'));
     }
 
     /**

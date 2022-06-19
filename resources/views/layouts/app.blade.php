@@ -42,7 +42,7 @@
                         <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar Participantes</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Resultados</a>
+                        <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
                       </li>
                     </ul>
                 </div>
