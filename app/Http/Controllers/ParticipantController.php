@@ -14,6 +14,8 @@ class ParticipantController extends Controller
      */
     public function index()
     {
+
+        #dd("hola mundo");
         return view('participants');
     }
 

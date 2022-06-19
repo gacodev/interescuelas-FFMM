@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Force;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -13,7 +14,9 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff');
+        $forceValues = Force::all()->pluck('force', 'id');
+
+        return view('staff', compact('forceValues'));
     }
 
     /**
