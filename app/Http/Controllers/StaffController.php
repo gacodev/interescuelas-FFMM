@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Force;
 use App\Models\Grade;
 use App\Models\Sport;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -37,7 +38,22 @@ class StaffController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request->all());
+
+        $validated = $request->validate([
+            'force_id' => 'required|exists:forces,id',
+            'sport_id' => 'required|exists:sports,id',
+            'grade_id' => 'required|exists:grades,id',
+            'name' => 'required',
+            'identification' => 'required',
+        ]);
+
+        $data = new Staff($request->all());
+        $data->save();
+
+        $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
+
+        return view('staff', compact('forceValues', 'sportValues'));
     }
 
     /**

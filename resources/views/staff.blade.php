@@ -20,28 +20,43 @@
                     <div required class="form-group mt-2">
 
                         {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
-                        {{ Form::select('force', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
+                        {{ Form::select('force_id', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
 
+                        @if ($errors->has('force_id'))
+                            {{ $errors->first('force_id') }}
+                        @endif
                     </div>
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Grado', null, ['class' => 'control-label']) }}
-                        {{ Form::select('grades', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'grades'], [])) }}
+                        {{ Form::select('grade_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'grades'], [])) }}
+                        @if ($errors->has('grade_id'))
+                            {{ $errors->first('grade_id') }}
+                        @endif
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
                         <input type="text" name="name" required class="form-control">
+                        @if ($errors->has('name'))
+                            {{ $errors->first('name') }}
+                        @endif
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Numero de documento</label>
                         <input type="number" name="identification" required class="form-control">
+                        @if ($errors->has('identification'))
+                            {{ $errors->first('identification') }}
+                        @endif
                     </div>
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
-                        {{ Form::select('sport', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        {{ Form::select('sport_id', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        @if ($errors->has('sport_id'))
+                            {{ $errors->first('sport_id') }}
+                        @endif
                     </div>
 
                     <div required class="form-group mt-2 text-center">
