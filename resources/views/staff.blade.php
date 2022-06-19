@@ -39,18 +39,9 @@
                     </div>
 
                     <div required class="form-group mt-2">
-                        <label>Equipo al que pertenece</label>
-                        <select required class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-
                         {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
                         {{ Form::select('sport', $sportValues, null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
                     </div>
-
-
-
 
                     <div required class="form-group mt-2 text-center">
                         <button type="submit" required class="btn btn-success col-sm-2 col-md-3 col-xs-2">

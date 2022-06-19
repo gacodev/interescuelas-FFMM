@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             participantSeeder::class,
             CompetenceSeeder::class,
             ScoreSeeder::class,
+            GradeSeeder::class
         ]);
 
         \App\Models\User::factory()->create([
