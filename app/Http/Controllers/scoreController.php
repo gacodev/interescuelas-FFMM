@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\score;
+use App\Models\Score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class scoreController extends Controller
 {
@@ -36,19 +37,12 @@ class scoreController extends Controller
      */
     public function show(score $score)
     {
-        
+        $ForcesScores = DB::select('SELECT * FROM view_awars');
+        $ejeScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Ejercito Nacional'");
+        $FacScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Fuerza Aerea Colombiana'");
+        $ArcScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Armada Nacional'");
+        $PonalScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Policia Nacional'");
 
-        $ForcesScores = Score::
-        join('participants', 'scores.participant_id', '=', 'participants.id')
-        //->whereBetween('force_id', [1, 4])
-        //->groupBy('award_id')
-        ->get()
-        ->toarray();
-        $ejcScores = Score::get();
-        $FacScores = Score::get()->groupBy('award_id')->toarray();
-        $ArcScores = Score::get()->groupBy('award_id')->toarray();
-        $Ponalscores = Score::get()->groupBy('award_id')->toarray();
-        dd($ForcesScores);
         return view('resultados',compact('ForcesScores','ejeScores','FacScores','ArcScores','PonalScores'));
     }
 
