@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,23 +15,18 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+
 Route::get('/', function () {
-
-    return view('auth/login');
-
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/participantes', [App\Http\Controllers\ParticipantController::class, 'index'])->name('participants');
-Route::get('/participantes/crear', [App\Http\Controllers\ParticipantController::class, 'create'])->name('participants.create');
-Route::get('/participantes/registro', [App\Http\Controllers\ParticipantController::class, 'participantsregister'])->name('participants.create');
-Route::get('/participantes/mostrar',  [App\Http\Controllers\ParticipantController::class, 'show'])->name('participants.show');
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])->name('resultados');
-Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
-Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
-
-Route::get('/forces/{force_id}/grade', [App\Http\Controllers\StaffController::class, 'grade_show'])->name('staff.grade_show');
+require __DIR__.'/auth.php';
