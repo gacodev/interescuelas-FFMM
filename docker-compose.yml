@@ -38,14 +38,14 @@ services:
         working_dir: /var/www
         # command: sh /var/www/laravel.sh
 
-    node:
-        image: node:16-alpine
-        working_dir: /root
-        volumes:
-            - ./:/root
-        command: sh /root/node_start.sh
-        depends_on:
-            - app
+    #node:
+    #    image: node:16-alpine
+    #    working_dir: /root
+    #    volumes:
+    #        - ./:/root
+    #    command: sh /root/node_start.sh
+    #    depends_on:
+    #        - app
 
 networks:
     app-network:
