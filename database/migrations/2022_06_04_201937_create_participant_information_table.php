@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('silver')->default('0');
             $table->string('bronze')->default('0');
             $table->string('blood_type');
+            $table->integer('weight')->default('0');
+            $table->integer('height')->default('0');
             $table->date('birthday');
             $table->foreignId('type_doc_id')->constrained();
             $table->foreignId('gender_id')->constrained();

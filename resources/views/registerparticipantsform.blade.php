@@ -115,17 +115,6 @@
                     </div>
 
 
-                    <div required class="form-group mt-2">
-                        <label>Sexo</label>
-                        <select required class="form-control">
-                            <option value="1">Seleccione su genero</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Femenino</option>
-                            <option value="2">No Binario</option>
-                        </select>
-                    </div>
-
-
 
 
                     <div required class="form-group mt-2">
@@ -144,11 +133,26 @@
 
 
                     <div required class="form-group mt-2">
-                        <label>Modalidades</label>
-                        <select required class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
+                        <label>Sexo</label>
+                        <select required class="form-control">
+                            <option value="0">Seleccione su genero</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                            <option value="3">No Binario</option>
                         </select>
+                    </div>
+
+                    <div required class="form-group mt-2">
+                        {{ Form::label('Categories', null, ['class' => 'control-label']) }}
+                        {{ Form::select('categories_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'categories'], [])) }}
+
+                        @if ($errors->has('grade_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('grade_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
 
 
@@ -169,6 +173,7 @@
 
     <script>
         let grades = document.getElementById("grades");
+        let categories = document.getElementById("categories");
 
         function insertGrades(data) {
             let options = `<option value="0"></option>`;
@@ -191,5 +196,30 @@
 
         let force = document.getElementById("force");
         force.addEventListener("change", getForce)
+
+
+
+
+        function insertCategories(data) {
+            let options = `<option value="0"></option>`;
+
+            data.map(element => {
+                options += `<option value="${element.id}">${element.categorie}</option>`;
+            })
+
+            categories.innerHTML = options;
+        }
+
+        function getSport(e) {
+            let value = e.target.value;
+            axios.get(`/sports/${value}/categories`)
+                .then(res => {
+                    console.log(res.data)
+                    insertCategories(res.data)
+                })
+        }
+
+        let sport = document.getElementById("sport");
+        sport.addEventListener("change", getSport)
     </script>
 @endsection

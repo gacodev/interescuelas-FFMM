@@ -34,5 +34,6 @@ Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])
 Route::get('/equipos', [App\Http\Controllers\StaffController::class, 'teams'])->name('staff.teams');
 Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
+Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
 
 Route::get('/forces/{force_id}/grade', [App\Http\Controllers\StaffController::class, 'grade_show'])->name('staff.grade_show');

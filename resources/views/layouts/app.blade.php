@@ -47,6 +47,10 @@
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
                       </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/roles">Roles de Usuario</a>
+                      </li>
                     </ul>
                 </div>
 

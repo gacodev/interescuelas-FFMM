@@ -33,19 +33,19 @@ class GradeSeeder extends Seeder
                 "force_id" => 1,
             ],
             [
-                "grade" => "CT1",
+                "grade" => "cadete 1",
                 "force_id" => 2,
             ],
             [
-                "grade" => "CT2",
+                "grade" => "Cadete 2",
                 "force_id" => 2,
             ],
             [
-                "grade" => "CT3",
+                "grade" => "Cadete 3",
                 "force_id" => 2,
             ],
             [
-                "grade" => "ALF",
+                "grade" => "Alferez",
                 "force_id" => 2,
             ],
             [
