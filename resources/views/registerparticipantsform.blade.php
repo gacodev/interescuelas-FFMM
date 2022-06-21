@@ -23,9 +23,46 @@
                         <input type="number" required class="form-control">
                     </div>
 
-                    <div required class="form-group mt-3">
-                        <label>Tipo de documento</label>
-                        <input type="text" required class="form-control">
+                    <div required class="form-group mt-2">
+
+                        {{ Form::label('Tipo de documento', null, ['class' => 'control-label']) }}
+                        {{ Form::select('type_doc', array_merge(['0' => 'Seleccione su tipo de documento'], $typeDocValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'type_doc'], [])) }}
+
+                        @if ($errors->has('type_doc'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('type_doc') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
+
+
+                    <div required class="form-group mt-2">
+
+                        {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
+                        {{ Form::select('force_id', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
+
+                        @if ($errors->has('force_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('force_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div required class="form-group mt-2">
+                        {{ Form::label('Grado', null, ['class' => 'control-label']) }}
+                        {{ Form::select('grade_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'grades'], [])) }}
+
+                        @if ($errors->has('grade_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('grade_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
 
                     <div required class="form-group mt-3">
@@ -37,8 +74,16 @@
                     <div required class="form-group mt-2">
                         <label>Grupo Sanguineo</label>
                         <select required class="form-control">
-                            <option>1</option>
-                            <option>2</option>
+                            <option> seleccione un grupo sanguineo</option>
+                            <option> A+</option>
+                            <option> A-</option>
+                            <option> B+</option>
+                            <option> B-</option>
+                            <option> AB+</option>
+                            <option> AB-</option>
+                            <option> O+</option>
+                            <option> O-</option>
+
                         </select>
                     </div>
 
@@ -53,10 +98,9 @@
                     </div>
 
                     <div required class="form-group mt-3">
-                        <p>Fotografía Uniforme No.3 sin gorra fondo blanco (guardar archivo con nombre completo del
-                            deportista y sigla de la Escuela)</p>
-                        <label>Fotografia</label>
-                        <input type="number" required class="form-control">
+                        <label><strong>Fotografía en Uniforme No.3 sin gorra fondo blanco</strong></label>
+                            deportista y sigla de la Escuela)</label>
+                        <input type="file" required class="form-control">
                     </div>
 
 
@@ -71,45 +115,111 @@
                     </div>
 
 
+
+
+                    <div required class="form-group mt-2">
+                        {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
+                        {{ Form::select('sport_id', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+
+
+                        @if ($errors->has('sport_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('sport_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
+
+
                     <div required class="form-group mt-2">
                         <label>Sexo</label>
                         <select required class="form-control">
+                            <option value="0">Seleccione su genero</option>
                             <option value="1">Masculino</option>
                             <option value="2">Femenino</option>
-                        </select>
-                    </div>
-
-
-
-
-                    <div required class="form-group mt-2">
-                        <label>Disciplina Deportiva</label>
-                        <select required class="form-control">
-                            <option>1</option>
-                            <option>2</option>
+                            <option value="3">No Binario</option>
                         </select>
                     </div>
 
                     <div required class="form-group mt-2">
-                        <label>Modalidades</label>
-                        <select required class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
+                        {{ Form::label('Categories', null, ['class' => 'control-label']) }}
+                        {{ Form::select('categories_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'categories'], [])) }}
+
+                        @if ($errors->has('grade_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('grade_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
 
 
 
 
-                    <div required class="form-group mt-2 text-center">
+                    <div required class="form-group mb-5 mt-2 text-center">
                         <button type="submit" required class="btn btn-primary col-sm-2 col-md-3 col-xs-2">
                             Registrar
                         </button>
-                        <button type="submit" required class="btn btn-succes col-sm-2 col-md-3 col-xs-2">Descargar
-                            Formato</button>
+                        <button type="submit" required class="btn btn-succes col-sm-2 col-md-3 col-xs-2">
+                            Descargar Formato
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        let grades = document.getElementById("grades");
+        let categories = document.getElementById("categories");
+
+        function insertGrades(data) {
+            let options = `<option value="0"></option>`;
+
+            data.map(element => {
+                options += `<option value="${element.id}">${element.grade}</option>`;
+            })
+
+            grades.innerHTML = options;
+        }
+
+        function getForce(e) {
+            let value = e.target.value;
+            axios.get(`/forces/${value}/grade`)
+                .then(res => {
+                    console.log(res.data)
+                    insertGrades(res.data)
+                })
+        }
+
+        let force = document.getElementById("force");
+        force.addEventListener("change", getForce)
+
+
+
+
+        function insertCategories(data) {
+            let options = `<option value="0"></option>`;
+
+            data.map(element => {
+                options += `<option value="${element.id}">${element.categorie}</option>`;
+            })
+
+            categories.innerHTML = options;
+        }
+
+        function getSport(e) {
+            let value = e.target.value;
+            axios.get(`/sports/${value}/categories`)
+                .then(res => {
+                    console.log(res.data)
+                    insertCategories(res.data)
+                })
+        }
+
+        let sport = document.getElementById("sport");
+        sport.addEventListener("change", getSport)
+    </script>
 @endsection
