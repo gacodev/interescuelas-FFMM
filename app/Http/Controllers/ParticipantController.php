@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Force;
+use App\Models\Grade;
+use App\Models\Sport;
+use App\Models\Staff;
+use App\Models\Type_doc;
 
 class ParticipantController extends Controller
 {
@@ -27,7 +32,7 @@ class ParticipantController extends Controller
         //dd($participants);
         //dd($participants);
         //die();
-        
+
         return response()->json([
             'data' => $participants,
         ]);
@@ -40,12 +45,30 @@ class ParticipantController extends Controller
      */
     public function create()
     {
-        //
+        $validated = $request->validate([
+            'force_id' => 'required|exists:forces,id',
+            'sport_id' => 'required|exists:sports,id',
+            'grade_id' => 'required|exists:grades,id',
+            'name' => 'required',
+            'identification' => 'required',
+            'tipo de sangre' => 'required',
+        ]);
+
+        $data = new Participant($request->all());
+        $data->save();
+
+        $request->session()->flash('status', 'Se creo satisfactoriamente!');
+
+        return redirect()->route('staff.index', []);
     }
 
     public function participantsregister()
     {
-        return view('registerparticipantsform');
+
+        $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
+        $typeDocValues = Type_doc::all()->pluck('doc_type', 'id');
+        return view('registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues'));
     }
 
 
@@ -71,6 +94,8 @@ class ParticipantController extends Controller
         $data = Participant::all(); //->where($force_id= $fuerza);
         return $data;
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

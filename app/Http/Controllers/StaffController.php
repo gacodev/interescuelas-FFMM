@@ -6,6 +6,7 @@ use App\Models\Force;
 use App\Models\Grade;
 use App\Models\Sport;
 use App\Models\Staff;
+
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -21,6 +22,11 @@ class StaffController extends Controller
         $sportValues = Sport::all()->pluck('sport', 'id');
 
         return view('staff', compact('forceValues', 'sportValues'));
+    }
+
+    public function teams()
+    {
+        return view('teams');
     }
 
     public function grade_show(Request $request)
@@ -74,7 +80,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

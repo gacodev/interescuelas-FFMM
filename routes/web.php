@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    
+
     return view('auth/login');
    /*
     return Storage::disk('public_site')->get('index.html');
@@ -31,6 +31,7 @@ Route::get('/participantes/mostrar',  [App\Http\Controllers\ParticipantControlle
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])->name('resultados');
+Route::get('/equipos', [App\Http\Controllers\StaffController::class, 'teams'])->name('staff.teams');
 Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
 
