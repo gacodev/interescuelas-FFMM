@@ -37,13 +37,24 @@ class scoreController extends Controller
      */
     public function show(score $score)
     {
+        return view('resultados');
+    }
+
+    public function show_data(score $score)
+    {
         $ForcesScores = DB::select('SELECT * FROM view_awars');
         $ejeScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Ejercito Nacional'");
         $FacScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Fuerza Aerea Colombiana'");
         $ArcScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Armada Nacional'");
         $PonalScores = DB::select("SELECT * FROM view_awars WHERE `force` = 'Policia Nacional'");
 
-        return view('resultados',compact('ForcesScores','ejeScores','FacScores','ArcScores','PonalScores'));
+        return [
+            "forces" => $ForcesScores,
+            "eje" => $ejeScores,
+            "fac" => $FacScores,
+            "arc" => $ArcScores,
+            "ponal" => $PonalScores,
+        ];
     }
 
     /**
