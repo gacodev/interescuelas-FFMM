@@ -36,3 +36,4 @@ Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'crea
 Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
 
 Route::get('/forces/{force_id}/grade', [App\Http\Controllers\StaffController::class, 'grade_show'])->name('staff.grade_show');
+Route::get('/sports/{sport_id}/gender/{gender_id}/categories', [App\Http\Controllers\CategoriesController::class, 'show'])->name('cagories.show');

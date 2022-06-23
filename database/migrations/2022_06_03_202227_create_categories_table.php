@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image')->unique();
             $table->foreignId('gender_id')->constrained();
+            $table->foreignId('sport_id')->constrained();
         });
     }
 

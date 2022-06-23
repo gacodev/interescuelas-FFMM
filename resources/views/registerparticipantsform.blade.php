@@ -99,7 +99,7 @@
 
                     <div required class="form-group mt-3">
                         <label><strong>Fotografía en Uniforme No.3 sin gorra fondo blanco</strong></label>
-                            deportista y sigla de la Escuela)</label>
+                        deportista y sigla de la Escuela)</label>
                         <input type="file" required class="form-control">
                     </div>
 
@@ -119,7 +119,7 @@
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Deporte al que pertenece', null, ['class' => 'control-label']) }}
-                        {{ Form::select('sport_id', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                        {{ Form::select('sport_id', array_merge(['0' => 'Seleccione el deporte'], $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'sport_id'], [])) }}
 
 
                         @if ($errors->has('sport_id'))
@@ -134,7 +134,7 @@
 
                     <div required class="form-group mt-2">
                         <label>Sexo</label>
-                        <select required class="form-control">
+                        <select name="gender_id" required class="form-control" id="gender_id">
                             <option value="0">Seleccione su genero</option>
                             <option value="1">Masculino</option>
                             <option value="2">Femenino</option>
@@ -210,16 +210,26 @@
             categories.innerHTML = options;
         }
 
-        function getSport(e) {
-            let value = e.target.value;
-            axios.get(`/sports/${value}/categories`)
-                .then(res => {
-                    console.log(res.data)
-                    insertCategories(res.data)
-                })
+        function getCategories(e) {
+            let sport_id = sport.value;
+            let gender_id = gender.value;
+
+            console.log(gender_id)
+            console.log(sport_id)
+            if (sport_id > 0 && gender_id > 0) {
+                axios.get(`/sports/${sport_id}/gender/${gender_id}/categories`)
+                    .then(res => {
+                        console.log(res.data)
+                        insertCategories(res.data)
+                    })
+            }
+
         }
 
-        let sport = document.getElementById("sport");
-        sport.addEventListener("change", getSport)
+        let sport = document.getElementById("sport_id");
+        let gender = document.getElementById("gender_id");
+
+        sport.addEventListener("change", getCategories)
+        gender.addEventListener("change", getCategories)
     </script>
 @endsection
