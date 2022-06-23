@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Gender;
 use App\Models\Force;
 use App\Models\Grade;
+use App\Models\Nationality;
 use App\Models\Sport;
 use App\Models\Staff;
 use App\Models\Type_doc;
@@ -44,11 +45,13 @@ class ParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        //dd($request->all());
+
         $validated = $request->validate([
-            '#identification' => 'required',
-            'doc_type_id' => 'required|exists:type_docs,id',
+            '#identification' => 'required|unique:participants',
+            'type_doc_id' => 'required|exists:type_docs,id',
             'force_id' => 'required|exists:forces,id',
             'grade_id' => 'required|exists:grades,id',
             'name' => 'required',
@@ -56,11 +59,11 @@ class ParticipantController extends Controller
             'height' => 'required',
             'weight' => 'required',
             'photo' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:participants',
             'birthday' => 'required',
-            'gender_id'=> 'required|exists:genders,id',
+            'gender_id' => 'required|exists:genders,id',
             'sport_id' => 'required|exists:sports,id',
-            'categoria' => 'required'
+            'category_id' => 'required|exists:categories,id'
         ]);
 
         $data = new Participant($request->all());
@@ -68,7 +71,7 @@ class ParticipantController extends Controller
 
         $request->session()->flash('status', 'Se creo satisfactoriamente!');
 
-        return redirect()->route('participant.registro', []);
+        return redirect()->route('participants.registro', []);
     }
 
     public function participantsregister()
@@ -77,7 +80,8 @@ class ParticipantController extends Controller
         $forceValues = Force::all()->pluck('force', 'id');
         $sportValues = Sport::all()->pluck('sport', 'id');
         $typeDocValues = Type_doc::all()->pluck('doc_type', 'id');
-        return view('registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues'));
+        $nationalityValues = Nationality::all()->pluck('nationality', 'id');
+        return view('registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues', 'nationalityValues'));
     }
 
 

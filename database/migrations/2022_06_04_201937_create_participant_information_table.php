@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id()->unique();
-            $table->Integer('#identification')->unique();
+            $table->string('#identification')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->nullable();
             $table->string('photo');
             $table->string('gold')->default('0');
             $table->string('silver')->default('0');
@@ -32,6 +32,9 @@ return new class extends Migration
             $table->foreignId('force_id')->constrained();
             $table->foreignId('sport_id')->constrained();
             $table->foreignId('nationality_id')->constrained();
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('grade_id')->constrained();
+            $table->timestamps();
         });
     }
 

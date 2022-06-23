@@ -2,7 +2,17 @@
 @section('content')
     <div required class="container">
         <div required class="row justify-content-center">
-            <form required class="col-sm-9 justify-content-center">
+            <div class="col-sm-9 justify-content-center">
+
+                {!! Form::open(['url' => 'participantes/crear', 'method' => 'post']) !!}
+
+                @if (Session::has('status'))
+                    <br>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ Session::get('status') }}!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
 
                 <div>
                     <div required class="d-flex flex-row-reverse justify-content-center mb-2">
@@ -10,7 +20,8 @@
                             Staff</a>
                         <a required class="btn btn-primary m-1 d-flex-inline"href="{{ route('participants.show') }}"> Ver
                             Participantes</a>
-                        <a required class="btn btn-success m-1 d-flex-inline"href="{{ route('participants.show') }}"> Cargar
+                        <a required class="btn btn-success m-1 d-flex-inline"href="{{ route('participants.show') }}">
+                            Cargar
                             en Excel</a>
                     </div>
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
@@ -20,17 +31,31 @@
 
                     <div required class="form-group mt-4">
                         <label>Documento de identidad</label>
-                        <input type="number" required class="form-control">
+                        <input type="number" name="#identification" required class="form-control">
+                    </div>
+
+                    <div required class="form-group mt-2">
+
+                        {{ Form::label('Nacionalidad', null, ['class' => 'control-label']) }}
+                        {{ Form::select('nationality_id', array_merge(['0' => 'Seleccione su nacionalidad'], $nationalityValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'nationality_id'], [])) }}
+
+                        @if ($errors->has('nationality_id'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('nationality_id') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
 
                     <div required class="form-group mt-2">
 
                         {{ Form::label('Tipo de documento', null, ['class' => 'control-label']) }}
-                        {{ Form::select('type_doc', array_merge(['0' => 'Seleccione su tipo de documento'], $typeDocValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'type_doc'], [])) }}
+                        {{ Form::select('type_doc_id', array_merge(['0' => 'Seleccione su tipo de documento'], $typeDocValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'type_doc_id'], [])) }}
 
-                        @if ($errors->has('type_doc'))
+                        @if ($errors->has('type_doc_id'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ $errors->first('type_doc') }}
+                                {{ $errors->first('type_doc_id') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
@@ -67,51 +92,61 @@
 
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
-                        <input type="text" required class="form-control">
+                        <input type="text" name="name" required class="form-control">
                     </div>
 
 
                     <div required class="form-group mt-2">
                         <label>Grupo Sanguineo</label>
-                        <select required class="form-control">
+                        <select required class="form-control" name="blood_type">
                             <option> seleccione un grupo sanguineo</option>
-                            <option> A+</option>
-                            <option> A-</option>
-                            <option> B+</option>
-                            <option> B-</option>
-                            <option> AB+</option>
-                            <option> AB-</option>
-                            <option> O+</option>
-                            <option> O-</option>
+                            <option value="A+"> A+</option>
+                            <option value="A-"> A-</option>
+                            <option value="B+"> B+</option>
+                            <option value="B-"> B-</option>
+                            <option value="AB+"> AB+</option>
+                            <option value="AB-"> AB-</option>
+                            <option value="O+"> O+</option>
+                            <option value="O-"> O-</option>
 
                         </select>
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Estatura</label>
-                        <input type="number" required class="form-control">
+                        <input type="number" name="height" required class="form-control">
                     </div>
 
                     <div required class="form-group mt-3">
                         <label>Peso</label>
-                        <input type="number" required class="form-control">
+                        <input type="number" name="weight" required class="form-control">
                     </div>
 
                     <div required class="form-group mt-3">
                         <label><strong>Fotografía en Uniforme No.3 sin gorra fondo blanco</strong></label>
                         deportista y sigla de la Escuela)</label>
-                        <input type="file" required class="form-control">
+                        <input type="file" name="photo" required class="form-control">
                     </div>
 
 
                     <div required class="form-group mt-2">
                         <label>Email</label>
-                        <input type="email" required class="form-control">
+                        <input type="email" name="email" required class="form-control">
+
+                        @if ($errors->has('email'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $errors->first('email') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
+
+
 
                     <div required class="form-group mt-3">
                         <label>Fecha de nacimiento</label>
-                        <input type="date" required class="form-control">
+                        <input type="date" name="birthday" required class="form-control">
                     </div>
 
 
@@ -144,7 +179,7 @@
 
                     <div required class="form-group mt-2">
                         {{ Form::label('Categories', null, ['class' => 'control-label']) }}
-                        {{ Form::select('categories_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'categories'], [])) }}
+                        {{ Form::select('category_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'categories'], [])) }}
 
                         @if ($errors->has('grade_id'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -167,7 +202,8 @@
                         </button>
                     </div>
                 </div>
-            </form>
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 
