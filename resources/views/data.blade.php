@@ -4,14 +4,16 @@
 <div class="container d-flex">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <div class="card">
+            <div class="card col-12">
                 <div class="card-header text-center"><h1> <strong>{{ __('Listado de Participantes') }}</strong></h1></div>
                 <div class="card-body">
                     @foreach($participants as $participant)
 
-                        <div class="card border-dark m-3 d-inline-block" style="max-width: 20rem;">
-                        <div class="card-header text-center text-white" style="background-color:{{$participant->color}}"><strong>{{$participant->force}}</strong>  <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>
-                        <img class="img-card" src={{$participant->photo}} alt="" width="300" height="250">
+                        <div class="card border-dark mx-1 my-1 d-inline-block col-3">
+                        <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
+                        <strong>{{$participant->force}}</strong> 
+                        <img src="{{$participant->image}}" width="40" height="40" alt="" class="d-inline"></div>
+                        <img class="img-card" src={{$participant->photo}} alt="" width="150" height="100">
                         <div class="card-body text-dark">
                             <h5 class="card-title text-center text-uppercase"><strong>{{$participant->sport}} </strong></h5>
                             <div>
