@@ -49,7 +49,11 @@
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/roles">Roles de Usuario</a>
+                        <a class="nav-link active" aria-current="page" href="/roles">Roles</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link active b" aria-current="page" href="/medalleria">Medalleria</a>
                       </li>
                     </ul>
                 </div>

@@ -4,17 +4,15 @@
         <div required class="row justify-content-center">
 
 
-            <div class="col-sm-9 justify-content-center">
+            <div class="col-sm-9 justify-content-center mb-4 ">
 
                 {!! Form::open(['url' => 'staff/create', 'method' => 'post']) !!}
-
-                <div>
 
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
                     </h2>
                     <h2 required class="text-center"><strong>Registrar Staff</strong></h2>
 
-                    <div required class="form-group mt-2">
+                    <div required class="form-group mt-1">
 
                         {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
                         {{ Form::select('force_id', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
@@ -94,7 +92,7 @@
                             Registrar
                         </button>
                     </div>
-                </div>
+                
 
                 {!! Form::close() !!}
             </div>

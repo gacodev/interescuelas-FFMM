@@ -8,23 +8,26 @@
                 <div class="card-header text-center"><h1> <strong>{{ __('Listado de Participantes') }}</strong></h1></div>
                 <div class="card-body">
 
-                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2">
-                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
+                <input class="col-4 mr-2" type="text" placeholder="Buscar"
                     aria-label="Search">
                 <i class="fas fa-search" aria-hidden="true"></i>
+                <button class="btn btn-primary ml-2">Buscar</button>
                 </form>
 
                     @foreach($participants as $participant)
 
-                        <div class="card border-dark m-3 d-inline-block" style="max-width: 20rem;">
-                        <div class="card-header text-center text-white" style="background-color:{{$participant->color}}"><strong>{{$participant->force}}</strong>  <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>
-                        <img class="img-card" src={{$participant->photo}} alt="" width="300" height="250">
+                        <div class="card border-dark my-1 d-inline-block w-25">
+                        <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
+                        <strong>{{$participant->force}}</strong>  
+                        <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>
+                        <img class="img-card" src={{$participant->photo}} alt="" width="150" height="100">
                         <div class="card-body text-dark">
                             <h5 class="card-title text-center text-uppercase"><strong>{{$participant->sport}} </strong></h5>
                             <div>
                             <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">
                             </div>
-                            <div >
+                            <div class="">
                             <p class="card-text"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
                             <p class="card-text"><strong>Nombre: </strong>{{$participant->name}}</p>
                             <p class="card-text"><strong>Edad:  </strong>{{$participant->birthday}}</p>
