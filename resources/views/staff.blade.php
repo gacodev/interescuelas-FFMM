@@ -4,20 +4,15 @@
         <div required class="row justify-content-center">
 
 
-            <div class="col-sm-9 justify-content-center">
+            <div class="col-sm-9 justify-content-center mb-4 ">
 
                 {!! Form::open(['url' => 'staff/create', 'method' => 'post']) !!}
 
-                <div>
-                    <div required class="d-flex flex-row-reverse mb-2">
-                        <a required class="btn btn-primary d-flex-inline"href="{{ route('participants.show') }}"> Ver
-                            Participantes</a>
-                    </div>
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
                     </h2>
                     <h2 required class="text-center"><strong>Registrar Staff</strong></h2>
 
-                    <div required class="form-group mt-2">
+                    <div required class="form-group mt-1">
 
                         {{ Form::label('Fuerza', null, ['class' => 'control-label']) }}
                         {{ Form::select('force_id', array_merge(['0' => 'Seleccione la fuerza a la que pertenece'], $forceValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'force'], [])) }}
@@ -25,8 +20,7 @@
                         @if ($errors->has('force_id'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ $errors->first('force_id') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
                     </div>
@@ -46,7 +40,7 @@
 
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
-                        <input type="text" name="name" required class="form-control">
+                        <input type="text" name="name" required class="form-control" value="{{ old('name') }}">
 
                         @if ($errors->has('name'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -59,7 +53,8 @@
 
                     <div required class="form-group mt-3">
                         <label>Numero de documento</label>
-                        <input type="number" name="identification" required class="form-control">
+                        <input type="number" name="identification" required class="form-control"
+                            value="{{ old('identification') }}">
 
                         @if ($errors->has('identification'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -97,7 +92,7 @@
                             Registrar
                         </button>
                     </div>
-                </div>
+                
 
                 {!! Form::close() !!}
             </div>
@@ -123,12 +118,21 @@
             let value = e.target.value;
             axios.get(`/forces/${value}/grade`)
                 .then(res => {
-                    console.log(res.data)
                     insertGrades(res.data)
                 })
         }
 
         let force = document.getElementById("force");
         force.addEventListener("change", getForce)
+
+        function initialForce() {
+            let value = force.value;
+            axios.get(`/forces/${value}/grade`)
+                .then(res => {
+                    insertGrades(res.data)
+                })
+        }
+
+        window.onload = initialForce;
     </script>
 @endsection

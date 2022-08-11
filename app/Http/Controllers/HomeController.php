@@ -34,7 +34,7 @@ class HomeController extends Controller
         ->join('genders', 'genders.id', '=', 'gender_id')
         ->join('forces', 'forces.id', '=', 'force_id')
         ->join('sports', 'sports.id', '=', 'sport_id')
-        ->join('scores', 'scores.participant_id', '=', 'participants.id')
+        ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
         ->get();
         //dd($participants);
         //dd($participants);

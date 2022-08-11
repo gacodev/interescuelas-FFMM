@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Gender;
+use App\Models\Force;
+use App\Models\Grade;
+use App\Models\Nationality;
+use App\Models\Sport;
+use App\Models\Staff;
+use App\Models\Type_doc;
 
 class ParticipantController extends Controller
 {
@@ -27,6 +34,7 @@ class ParticipantController extends Controller
         //dd($participants);
         //dd($participants);
         //die();
+
         return response()->json([
             'data' => $participants,
         ]);
@@ -37,10 +45,45 @@ class ParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $validated = $request->validate([
+            '#identification' => 'required|unique:participants',
+            'type_doc_id' => 'required|exists:type_docs,id',
+            'force_id' => 'required|exists:forces,id',
+            'grade_id' => 'required|exists:grades,id',
+            'name' => 'required',
+            'blood_type' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+            'photo' => 'required',
+            'email' => 'required|unique:participants',
+            'birthday' => 'required',
+            'gender_id' => 'required|exists:genders,id',
+            'sport_id' => 'required|exists:sports,id',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        $data = new Participant($request->all());
+        $data->save();
+
+        $request->session()->flash('status', 'Se creo satisfactoriamente!');
+
+        return redirect()->route('participants.registro', []);
     }
+
+    public function participantsregister()
+    {
+
+        $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
+        $typeDocValues = Type_doc::all()->pluck('doc_type', 'id');
+        $nationalityValues = Nationality::all()->pluck('nationality', 'id');
+        return view('registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues', 'nationalityValues'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -64,6 +107,8 @@ class ParticipantController extends Controller
         $data = Participant::all(); //->where($force_id= $fuerza);
         return $data;
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

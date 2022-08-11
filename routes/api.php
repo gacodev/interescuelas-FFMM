@@ -10,8 +10,6 @@ Route::group([
     'prefix' => 'v1'
 ], function () {
     Route::post('login', [ApiAuthController::class, "login"]);
-
-
     Route::post('signup', [ApiAuthController::class, "signUp"]);
 
     Route::group([
