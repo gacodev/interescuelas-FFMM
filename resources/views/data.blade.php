@@ -15,7 +15,7 @@
                 <button class="btn btn-primary ml-2">Buscar</button>
                 </form>
 
-                    @foreach($participants as $participant)
+                @foreach($participants as $participant)
 
                         <div class="card border-dark my-1 d-inline-block w-25">
                         <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
@@ -28,13 +28,15 @@
                             <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">
                             </div>
                             <div class="">
-                            <p class="card-text"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
-                            <p class="card-text"><strong>Nombre: </strong>{{$participant->name}}</p>
-                            <p class="card-text"><strong>Edad:  </strong>{{$participant->birthday}}</p>
-                            <p class="card-text"><strong> Genero:  </strong>{{$participant->sexo}}</p>
-                            <p class="card-text"><strong> Medallas de Oro  </strong>{{$participant->gold}}</p>
-                            <p class="card-text"><strong> Medallas de Plata  </strong>{{$participant->silver}}</p>
-                            <p class="card-text"><strong> Medallas de Bronce  </strong>{{$participant->bronze}}</p>
+                            <div class="mb-2 text-left">
+                            <p class="card-text lh-1 mt-2"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
+                            <p class="card-text lh-1"><strong>Nombre: </strong>{{$participant->name}}</p>
+                            <p class="card-text lh-1"><strong>Edad:  </strong>{{$participant->birthday}}</p>
+                            <p class="card-text lh-1"><strong> Genero:  </strong>{{$participant->sexo}}</p>
+                            <p class="card-text lh-1"><strong> Medallas de Oro  </strong>{{$participant->gold}}</p>
+                            <p class="card-text lh-1"><strong> Medallas de Plata  </strong>{{$participant->silver}}</p>
+                            <p class="card-text lh-1"><strong> Medallas de Bronce  </strong>{{$participant->bronze}}</p>
+                            </div>                 
                             <div class="text-center">
                                 <a href="{{route('participants.show')}}" class="btn btn-primary">Ver</a>
                                 <a href="" class="btn btn-warning">Agregar Medallas</a>
@@ -42,7 +44,7 @@
                             </div>
                         </div>
                         </div>
-                    @endforeach
+                @endforeach
 
                 </div>
             </div>

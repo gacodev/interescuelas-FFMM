@@ -5,7 +5,7 @@
     <div required class="container">
         <div required class="row justify-content-center">
             <div class="col-sm-9 justify-content-center">
-                <h1>Resultados</h1>
+                <h1 class="text-center">Resultados</h1>
                 <style>
                     canvas {
                         margin-bottom: 4rem;
