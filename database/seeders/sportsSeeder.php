@@ -18,16 +18,15 @@ class sportsSeeder extends Seeder
         DB::table('sports')->insert([
             ['sport' => 'futbol','description' => 'depende de un balon','image' => 'localhost/deportes/futbol.png'],
             ['sport' => 'baloncesto','description' => 'depende de un balon','image' => 'localhost/deportes/baloncesto.png'],
-            ['sport' => 'natancion','description' => 'depende de un balon','image' => 'localhost/deportes/natacion.png'],
+            ['sport' => 'natacion','description' => 'depende de un balon','image' => 'localhost/deportes/natacion.png'],
             ['sport' => 'pentatlon militar','description' => 'depende de un balon','image' => 'localhost/deportes/pentatlon.png'],
             ['sport' => 'taekwondo','description' => 'depende de un balon','image' => 'localhost/deportes/taekwondo.png'],
             ['sport' => 'esgrima','description' => 'depende de un balon','image' => 'localhost/deportes/esgrima.png'],
             ['sport' => 'voleibol','description' => 'depende de un balon','image' => 'localhost/deportes/voleibol.png'],
             ['sport' => 'atletismo','description' => 'depende de un balon','image' => 'localhost/deportes/atletismo.png'],
-            ['sport' => 'orientacion','description' => 'depende de un balon','image' => 'localhost/deportes/orientacion.png'],
+            ['sport' => 'orientacion militar','description' => 'depende de un balon','image' => 'localhost/deportes/orientacion.png'],
             ['sport' => 'tiro deportivo','description' => 'depende de un balon','image' => 'localhost/deportes/tiro.png'],
             ['sport' => 'tennis de campo','description' => 'depende de un balon','image' => 'localhost/deportes/tennis.png'],
-            
         ]);
     }
 }

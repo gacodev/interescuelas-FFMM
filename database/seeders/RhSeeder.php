@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class StaffSeeder extends Seeder
+class RhSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,9 @@ class StaffSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('rhs')->insert([
+            ['rh'=>'positivo'],
+            ['rh'=>'negativo'],
+        ]);
     }
 }

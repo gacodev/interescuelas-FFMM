@@ -19,8 +19,7 @@ class docsSeeder extends Seeder
             ['doc_type'=>'Cedula de Ciudadania'],
             ['doc_type'=>'Tarjeta de identidad'],
             ['doc_type'=>'pasaporte'],
-            ['doc_type'=>'Id'],
-
+            ['doc_type'=>'Cédula de extranjería'],
         ]);
     }
 }

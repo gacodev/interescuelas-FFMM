@@ -13,23 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-
-            $table->string("name");
-            $table->string("identification");
-
+            $table->string('name');
             $table->unsignedBigInteger("sport_id");
-            $table->foreign("sport_id")->references("id")->on("sports");
-
-            $table->unsignedBigInteger("grade_id");
-            $table->foreign("grade_id")->references("id")->on("grades");
-
+            $table->foreign("sport_id")->references("id")->on("sports")->nullable();
             $table->unsignedBigInteger("force_id");
-            $table->foreign("force_id")->references("id")->on("forces");
-
-
-            $table->timestamps();
+            $table->foreign("force_id")->references("id")->on("forces")->nullable();
         });
     }
 
@@ -40,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('teams');
     }
 };
