@@ -20,7 +20,7 @@
                             Staff</a>
                         <a required class="btn btn-primary m-1 d-flex-inline"href="{{ route('participants.show') }}"> Ver
                             Participantes</a>
-                        <a required class="btn btn-success m-1 d-flex-inline"href="{{ route('import') }}">
+                        <a required class="btn btn-success m-1 d-flex-inline" href="{{ route('excel.imports') }}">
                             importar desde excel</a>
                     </div>
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>

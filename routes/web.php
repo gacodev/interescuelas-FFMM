@@ -40,5 +40,5 @@ Route::get('/forces/{force_id}/grade', [App\Http\Controllers\StaffController::cl
 Route::get('/sports/{sport_id}/gender/{gender_id}/categories', [App\Http\Controllers\CategoriesController::class, 'show'])->name('cagories.show');
 
 Route::post('/importparticipants',[App\Http\Controllers\ParticipantController::class, 'importExcel'])->name('participants.import.excel');
-Route::post('/import',[App\Http\Controllers\ParticipantController::class, 'import'])->name('participants.imports');
+Route::get('/importeExcel',[App\Http\Controllers\ParticipantController::class, 'import'])->name('excel.imports');
 

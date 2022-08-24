@@ -155,8 +155,8 @@ class ParticipantController extends Controller
         return back()->with('Message','se registraron los participantes correctamente');
     }
 
-    public function import(Request $request){
+    public function import(){
        
-        return view('importparticipants');
+        return view('importParticipants');
     }
 }
