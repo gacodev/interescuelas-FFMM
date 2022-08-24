@@ -23,7 +23,7 @@
                         <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>
                         <img class="img-card" src={{$participant->photo}} alt="" width="150" height="100">
                         <div class="card-body text-dark">
-                            <h5 class="card-title text-center text-uppercase"><strong>{{$participant->sport}} </strong></h5>
+                            
                             <div>
                             <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">
                             </div>
@@ -33,9 +33,6 @@
                             <p class="card-text lh-1"><strong>Nombre: </strong>{{$participant->name}}</p>
                             <p class="card-text lh-1"><strong>Edad:  </strong>{{$participant->birthday}}</p>
                             <p class="card-text lh-1"><strong> Genero:  </strong>{{$participant->sexo}}</p>
-                            <p class="card-text lh-1"><strong> Medallas de Oro  </strong>{{$participant->gold}}</p>
-                            <p class="card-text lh-1"><strong> Medallas de Plata  </strong>{{$participant->silver}}</p>
-                            <p class="card-text lh-1"><strong> Medallas de Bronce  </strong>{{$participant->bronze}}</p>
                             </div>                 
                             <div class="text-center">
                                 <a href="{{route('participants.show')}}" class="btn btn-primary">Ver</a>

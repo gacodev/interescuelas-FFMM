@@ -12,7 +12,7 @@ class Participant extends Model
     protected $table = "participants";
 
     protected $fillable = [
-        '#identification',
+        'identification',
         'type_doc_id',
         'force_id',
         'grade_id',
@@ -24,7 +24,6 @@ class Participant extends Model
         'email',
         'birthday',
         'gender_id',
-        'sport_id',
         'category_id',
         'nationality_id',
         'phone'

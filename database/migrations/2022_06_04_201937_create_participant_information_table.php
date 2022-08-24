@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('identification')->unique();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('phone')->nullable()->nullable();
             $table->string('photo');
             $table->foreignId('blood_id')->constrained();
             $table->integer('weight')->default('0');
