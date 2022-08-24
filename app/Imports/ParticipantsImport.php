@@ -1,32 +1,30 @@
 <?php
 
 namespace App\Imports;
-
 use App\Models\Participant;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class ParticipantsImport implements ToModel
+class ParticipantsImport implements ToCollection
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new Participant([
-            'type_doc_id'=>$row['Tipo de documento'],
-            'identification'=>$row['Número de identificación '],
-            'force_id'=>$row['escuela'],
-            'name'=>$row['name'],
-            'blood_type'=>$row['Grupo Sanguíneo'],
-            'height'=>$row['Estatura'],
-            'weight'=>$row['peso'],
-            'photo'=>$row['foto'],
-            'birthday'=>$row['Fecha de nacimiento'],
-            'gender_id'=>$row['sexo'],
-            'category_id'=>$row['Disciplina deportiva'],
-            'nationality_id'=>$row['Nacionalidad'],
-        ]);
+        foreach ($rows as $row) 
+        {
+            Participant::create([
+            'force_id'=>$row[0],
+            'name'=>$row[1],
+            'type_doc_id'=>$row[2],
+            'identification'=>$row[3],
+            'nationality_id'=>$row[4],
+            'birthday'=>$row[5],
+            'gender_id'=>$row[6],
+            'blood_type'=>$row[7],
+            'height'=>$row[8],
+            'weight'=>$row[9],
+            'photo'=>$row[10],
+            'category_id'=>$row[11]
+            ]);
+        }
     }
 }

@@ -7,12 +7,8 @@
 <h2 required class="text-center mt-2"><strong>Registro de Participantes</strong></h2>
 <div class="card-body">  
 
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Delegado</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Recuerde utilizar el formato establecido</div>
-  </div>
+<form  method="post" action="{{route('import.excel')}}" enctype="multipart/form-data">
+  @csrf
   <div class="mb-3">
     <label for="file" class="form-label">Carga de Archivo</label>
     <input type="file" name="file" class="form-control" id="exampleInputPassword1">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Maatwebsite\Excel\Facade\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +14,7 @@ use App\Models\Nationality;
 use App\Models\Sport;
 use App\Models\Staff;
 use App\Models\Type_doc;
-use App\Imports\ParticipantaImport;
+use App\Imports\ParticipantsImport;
 
 
 class ParticipantController extends Controller
@@ -151,7 +151,8 @@ class ParticipantController extends Controller
 
     public function importExcel(Request $request){
         $file = $request->file('file');
-        Excel::import(new PaticipantsImport,$file);
+        Excel::import(new ParticipantsImport,$file);
+        
         return back()->with('Message','se registraron los participantes correctamente');
     }
 
