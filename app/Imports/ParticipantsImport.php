@@ -19,7 +19,7 @@ class ParticipantsImport implements ToCollection
             'nationality_id'=>$row[4],
             'birthday'=>$row[5],
             'gender_id'=>$row[6],
-            'blood_type'=>$row[7],
+            'blood_id'=>$row[7],
             'height'=>$row[8],
             'weight'=>$row[9],
             'photo'=>$row[10],
