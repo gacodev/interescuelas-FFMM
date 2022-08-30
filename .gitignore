@@ -5,6 +5,7 @@
 /vendor
 key.pem
 .gitignore
+data.xlsx
 .env
 .env.backup
 .phpunit.result.cache

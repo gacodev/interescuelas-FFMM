@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Participant;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
+use App\Models\Participant;
 use App\Models\Gender;
 use App\Models\Force;
 use App\Models\Grade;
@@ -12,6 +14,8 @@ use App\Models\Nationality;
 use App\Models\Sport;
 use App\Models\Staff;
 use App\Models\Type_doc;
+use App\Imports\ParticipantsImport;
+
 
 class ParticipantController extends Controller
 {
@@ -23,14 +27,13 @@ class ParticipantController extends Controller
     public function index()
     {
         $participants = DB::table('participants')
-            ->select('name', '#identification', 'nationality', 'doc_type', 'sexo', 'force', 'color', 'sport', 'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
+            ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
             ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
             ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
             ->join('genders', 'genders.id', '=', 'gender_id')
             ->join('forces', 'forces.id', '=', 'force_id')
-            ->join('sports', 'sports.id', '=', 'sport_id')
             ->join('scores', 'scores.participant_id', '=', 'participants.id')
-            ->get();
+            ->get()->paginate(10);
         //dd($participants);
         //dd($participants);
         //die();
@@ -143,5 +146,18 @@ class ParticipantController extends Controller
     public function destroy(Participant $participant)
     {
         //
+    }
+
+
+    public function importExcel(Request $request){
+        $file = $request->file('file');
+        Excel::import(new ParticipantsImport,$file);
+        
+        return back()->with('Message','se registraron los participantes correctamente');
+    }
+
+    public function import(){
+       
+        return view('importParticipants');
     }
 }

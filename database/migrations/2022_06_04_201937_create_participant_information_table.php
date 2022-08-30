@@ -17,19 +17,21 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('identification')->unique();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable();
-            $table->string('photo');
-            $table->foreignId('blood_id')->constrained();
-            $table->integer('weight')->default('0');
-            $table->integer('height')->default('0');
-            $table->date('birthday');
-            $table->foreignId('type_doc_id')->constrained();
-            $table->foreignId('gender_id')->constrained();
-            $table->foreignId('force_id')->constrained();
-            $table->foreignId('nationality_id')->constrained();
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('grade_id')->constrained();
+            $table->string('photo')->nullable();
+            $table->string('blood_id')->nullable();
+            $table->string('weight')->default('0');
+            $table->string('height')->default('0');
+            $table->string('birthday')->nullable();
+            $table->string('type_doc_id');
+            $table->string('gender_id');
+            $table->string('force_id');
+            $table->string('nationality_id');
+            $table->string('category_id');
+            $table->string('grade_id')->nullable();
+            $table->timestamps();
+
         });
     }
 
