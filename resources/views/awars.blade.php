@@ -79,12 +79,7 @@
                 <div class="card-body">
 
                 <div>
-                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
-                <input class="col-4 mr-2" type="text" placeholder="Buscar"
-                    aria-label="Search">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <button class="btn btn-primary ml-2">Buscar</button>
-                </form>  
+                 
                 </div>
                 
                 @foreach($participants as $participant)

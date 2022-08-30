@@ -28,10 +28,10 @@
                 <canvas id="forces" width="400" height="400"></canvas>
 
                 <div class="container__pie col-sm-12 justify-content-center">
-                    <canvas id="ejercito" width="400" height="400"></canvas>
-                    <canvas id="armada" width="400" height="400"></canvas>
-                    <canvas id="aerea" width="400" height="400"></canvas>
-                    <canvas id="policia" width="400" height="400"></canvas>
+                    <canvas id="Ejc" width="400" height="400"></canvas>
+                    <canvas id="Arc" width="400" height="400"></canvas>
+                    <canvas id="Fac" width="400" height="400"></canvas>
+                    <canvas id="Ponal" width="400" height="400"></canvas>
                 </div>
 
 
@@ -141,24 +141,24 @@
                         setForcesChart(data)
 
                         let pieCharts = [{
-                                idElement: 'ejercito',
+                                idElement: 'Ejc',
                                 title: 'Ejercito Nacional',
-                                data: "eje"
+                                data: "EJC"
                             },
                             {
-                                idElement: 'armada',
+                                idElement: 'Arc',
                                 title: 'Armada Nacional',
-                                data: "arc"
+                                data: "ARC"
                             },
                             {
-                                idElement: 'aerea',
+                                idElement: 'Fac',
                                 title: 'Fuerza Aerea Colombiana',
-                                data: "fac"
+                                data: "FAC"
                             },
                             {
-                                idElement: 'policia',
+                                idElement: 'Ponal',
                                 title: 'Policia Nacional',
-                                data: "ponal"
+                                data: "PONAL"
                             },
                         ]
 

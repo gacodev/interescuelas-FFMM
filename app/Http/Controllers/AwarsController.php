@@ -17,7 +17,7 @@ class AwarsController extends Controller
         ->join('genders', 'genders.id', '=', 'gender_id')
         ->join('forces', 'forces.id', '=', 'force_id')
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-        ->get();
+        ->paginate(5);
 
       return view('awars' ,compact('participants'));
     }
