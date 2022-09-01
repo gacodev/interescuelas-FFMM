@@ -118,4 +118,5 @@
         </div>
       </footer>
 </body>
+</script>
 </html>

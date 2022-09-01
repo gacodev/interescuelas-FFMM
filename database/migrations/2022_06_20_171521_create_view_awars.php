@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE VIEW view_awards AS
+        DB::statement('CREATE OR REPLACE VIEW view_awards AS
         select a.award, f.force,  count(s.award_id) as total from scores s
         join participants p on s.participant_id = p.id
         join forces f on f.id = p.force_id
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::statement('DROP VIEW view_awards');
+        DB::statement('DROP VIEW IF EXISTS view_awards');
     }
 };
