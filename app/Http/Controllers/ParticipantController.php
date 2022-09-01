@@ -33,7 +33,7 @@ class ParticipantController extends Controller
             ->join('genders', 'genders.id', '=', 'gender_id')
             ->join('forces', 'forces.id', '=', 'force_id')
             ->join('scores', 'scores.participant_id', '=', 'participants.id')
-            ->get()->paginate(10);
+            ->get()->Paginate(9);
         //dd($participants);
         //dd($participants);
         //die();

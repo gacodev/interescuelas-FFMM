@@ -4,20 +4,24 @@
 <div class="container d-flex">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <div class="card">
+            <div class="card mb-5 row">
                 <div class="card-header text-center"><h1> <strong>{{ __('Listado de Participantes') }}</strong></h1></div>
                 <div class="card-body">
-
+               
+               
+                <div class="col-12">
                 <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
                 <input class="col-4 mr-2" type="text" placeholder="Buscar"
                     aria-label="Search">
                 <i class="fas fa-search" aria-hidden="true"></i>
                 <button class="btn btn-primary ml-2">Buscar</button>
                 </form>
+                </div>
+
 
                 @foreach($participants as $participant)
-
-                        <div class="card border-dark my-1 d-inline-block w-25">
+                        
+                        <div class="card border-dark  mx-1 d-inline-block col-3">
                         <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
                         <strong>{{$participant->force}}</strong>  
                         <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>
@@ -40,12 +44,17 @@
                             </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 @endforeach
-
+                <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
+                            <span class="p-2">{!! $participants->links('pagination::bootstrap-4') !!}</span>
+               </div>
                 </div>
             </div>
+
+           
         </div>
+                
     </div>
 </div>
 @endsection

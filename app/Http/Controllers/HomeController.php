@@ -34,7 +34,7 @@ class HomeController extends Controller
         ->join('genders', 'genders.id', '=', 'gender_id')
         ->join('forces', 'forces.id', '=', 'force_id')
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-        ->paginate(12);
+        ->paginate(9);
         //dd($participants);
         //dd($participants);
         //die();
