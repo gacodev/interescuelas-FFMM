@@ -17,11 +17,9 @@
                 <div>
                     <div required class="d-flex flex-row-reverse justify-content-center mb-2">
                         <a required class="btn btn-primary m-1 d-flex-inline"href="{{ route('staff.index') }}"> Registrar
-                            Staff</a>
-                        <a required class="btn btn-primary m-1 d-flex-inline"href="{{ route('participants.show') }}"> Ver
-                            Participantes</a>
+                            Registrar Equipos</a>
                         <a required class="btn btn-success m-1 d-flex-inline" href="{{ route('excel.imports') }}">
-                            importar desde excel</a>
+                            Importar desde excel</a>
                     </div>
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
                     </h2>
@@ -196,7 +194,7 @@
                         <button type="submit" required class="btn btn-primary col-sm-2 col-md-3 col-xs-2">
                             Registrar
                         </button>
-                        <button type="submit" required class="btn btn-succes col-sm-2 col-md-3 col-xs-2">
+                        <button type="submit" required class="btn btn-success col-sm-2 col-md-3 col-xs-2">
                             Descargar Formato
                         </button>
                     </div>

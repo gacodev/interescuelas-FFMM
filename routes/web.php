@@ -21,12 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/participantes', [App\Http\Controllers\ParticipantController::class, 'index'])->name('participants');
 Route::post('/participantes/crear', [App\Http\Controllers\ParticipantController::class, 'create'])->name('participants.create');
 Route::get('/participantes/registro', [App\Http\Controllers\ParticipantController::class, 'participantsregister'])->name('participants.registro');
 Route::get('/participantes/mostrar',  [App\Http\Controllers\ParticipantController::class, 'show'])->name('participants.show');
-Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/medalleria', [App\Http\Controllers\AwarsController::class, 'show'])->name('medalleria');
 Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])->name('resultados');
@@ -35,10 +33,8 @@ Route::get('/equipos', [App\Http\Controllers\StaffController::class, 'teams'])->
 Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
 Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
-
 Route::get('/forces/{force_id}/grade', [App\Http\Controllers\StaffController::class, 'grade_show'])->name('staff.grade_show');
 Route::get('/sports/{sport_id}/gender/{gender_id}/categories', [App\Http\Controllers\CategoriesController::class, 'show'])->name('cagories.show');
-
 Route::post('/importparticipants',[App\Http\Controllers\ParticipantController::class, 'importExcel'])->name('import.excel');
 Route::get('/importeExcel',[App\Http\Controllers\ParticipantController::class, 'import'])->name('excel.imports');
 
