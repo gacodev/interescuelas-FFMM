@@ -8,15 +8,6 @@
                 <div class="card-header text-center"><h1> <strong> {{__('Tabla de medalleria General')}} </strong></h1></div>
                 <div class="card-body">
 
-                <div>
-                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
-                <input class="col-4 mr-2" type="text" placeholder="Buscar"
-                    aria-label="Search">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <button class="btn btn-primary ml-2">Buscar</button>
-                </form>  
-                </div>
-
 
                 <div>
                 <table class="table align-middle mb-0 bg-white">
@@ -84,7 +75,7 @@
                 
                 @foreach($participants as $participant)
 
-                  <div class="card border-dark my-1 d-inline-block w-25">
+                  <div class="card border-dark my-1 d-inline-block ">
                   <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
                   <strong>{{$participant->force}}</strong>  
                   <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline"></div>

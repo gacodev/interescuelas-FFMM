@@ -13,7 +13,7 @@ class ParticipantsImport implements ToCollection
         {
             Participant::create([
             'force_id'=>$row[0],
-            'name'=>$row[1],
+            'name'=>strtolower($row[1]),
             'type_doc_id'=>$row[2],
             'identification'=>$row[3],
             'nationality_id'=>$row[4],

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Force;
-use App\Models\Grade;
+use App\Models\Range;
 use App\Models\Sport;
 use App\Models\Staff;
 
@@ -29,12 +29,12 @@ class StaffController extends Controller
         return view('teams');
     }
 
-    public function grade_show(Request $request)
+    public function Range_show(Request $request)
     {
-        $gradeValues = Grade::where("force_id", "=", $request->force_id)->get([
-            "id", "grade"
+        $rangeValues = Range::where("force_id", "=", $request->force_id)->get([
+            "id", "range"
         ]);
-        return $gradeValues;
+        return $RangeValues;
     }
 
     /**
@@ -48,7 +48,7 @@ class StaffController extends Controller
         $validated = $request->validate([
             'force_id' => 'required|exists:forces,id',
             'sport_id' => 'required|exists:sports,id',
-            'grade_id' => 'required|exists:grades,id',
+            'Range_id' => 'required|exists:Ranges,id',
             'name' => 'required',
             'identification' => 'required',
         ]);
