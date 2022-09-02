@@ -4,7 +4,7 @@
         integrity="sha256-cHVO4dqZfamRhWD7s4iXyaXWVK10odD+qp4xidFzqTI=" crossorigin="anonymous"></script>
     <div required class="container">
         <div required class="row justify-content-center">
-            <div class="col-sm-9 justify-content-center">
+            <div class="col-12 justify-content-center">
                 <h1 class="text-center">Resultados</h1>
                 <style>
                     canvas {
@@ -25,32 +25,32 @@
                         max-width: 15vw;
                     }
                 </style>
-                <canvas id="forces" width="400" height="400"></canvas>
+                <canvas id="forces" class="col-12"></canvas>
 
-                <div class="container__pie col-sm-12 justify-content-center">
-                    <canvas id="Ejc" width="400" height="400"></canvas>
-                    <canvas id="Arc" width="400" height="400"></canvas>
-                    <canvas id="Fac" width="400" height="400"></canvas>
-                    <canvas id="Ponal" width="400" height="400"></canvas>
+                <div class="container__pie d-flex flex-wrap col-12 justify-content-center">
+                    <canvas id="Ejc" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="Arc" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="Fac" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="Ponal" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
                 </div>
 
 
                 <script>
                     function setForcesChart(data) {
 
-                        let gold = data.forces.filter(element => element.award == "gold");
+                        let gold = data.forces.filter(element => element.award == "oro");
                         goldData = gold.map(element => ({
                             x: element.force,
                             y: element.total
                         }))
 
-                        let silver = data.forces.filter(element => element.award == "silver");
+                        let silver = data.forces.filter(element => element.award == "plata");
                         silverData = silver.map(element => ({
                             x: element.force,
                             y: element.total
                         }))
 
-                        let bronze = data.forces.filter(element => element.award == "bronze");
+                        let bronze = data.forces.filter(element => element.award == "bronce");
                         bronzeData = bronze.map(element => ({
                             x: element.force,
                             y: element.total
@@ -61,20 +61,20 @@
                             type: 'bar',
                             data: {
                                 datasets: [{
-                                        label: 'Gold',
+                                        label: 'Oro',
                                         data: goldData,
                                         backgroundColor: [
                                             'rgba(255, 206, 86, 1)',
                                         ],
                                     }, {
-                                        label: 'Silver',
+                                        label: 'Plata',
                                         data: silverData,
                                         backgroundColor: [
                                             'rgba(54, 162, 235, 1)',
                                         ]
                                     },
                                     {
-                                        label: 'Bronze',
+                                        label: 'Bronce',
                                         data: bronzeData,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 1)',
@@ -99,9 +99,9 @@
 
                         let inputData = data;
                         let chartData = inputData.map(element => {
-                            if (element.award == "gold") chartBackground.push('rgba(255, 206, 86, 1)')
-                            if (element.award == "silver") chartBackground.push('rgba(54, 162, 235, 1)')
-                            if (element.award == "bronze") chartBackground.push('rgba(255, 99, 132, 1)')
+                            if (element.award == "oro") chartBackground.push('rgba(255, 206, 86, 1)')
+                            if (element.award == "plata") chartBackground.push('rgba(54, 162, 235, 1)')
+                            if (element.award == "bronce") chartBackground.push('rgba(255, 99, 132, 1)')
                             return element.total
                         })
 

@@ -19,6 +19,10 @@ use App\Imports\ParticipantsImport;
 
 class ParticipantController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,21 +30,15 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        $participants = DB::table('participants')
-            ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->join('scores', 'scores.participant_id', '=', 'participants.id')
-            ->get()->Paginate(9);
-        //dd($participants);
-        //dd($participants);
-        //die();
-
-        return response()->json([
-            'data' => $participants,
-        ]);
+        $participants= DB::table('participants')
+        ->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image')
+        ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+        ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+        ->join('genders', 'genders.id', '=', 'gender_id')
+        ->join('forces', 'forces.id', '=', 'force_id')
+        ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
+        ->paginate(9);
+        return view('participants',compact('participants'));
     }
 
     /**
@@ -53,7 +51,7 @@ class ParticipantController extends Controller
         //dd($request->all());
 
         $validated = $request->validate([
-            '#identification' => 'required|unique:participants',
+            'identification' => 'required|unique:participants',
             'type_doc_id' => 'required|exists:type_docs,id',
             'force_id' => 'required|exists:forces,id',
             'grade_id' => 'required|exists:grades,id',
@@ -135,6 +133,26 @@ class ParticipantController extends Controller
     public function update(Request $request, Participant $participant)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $busqueda = trim($request->get('busqueda'));
+        
+        $participants = DB::table('participants')
+        ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
+        ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+        ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+        ->join('genders', 'genders.id', '=', 'gender_id')
+        ->join('forces', 'forces.id', '=', 'force_id')
+        ->join('scores', 'scores.participant_id', '=', 'participants.id')
+        ->where('name','LIKE','%'.$busqueda.'%')
+        ->orWhere('identification','LIKE','%'.$busqueda.'%')
+        ->orWhere('nationality','LIKE','%'.$busqueda.'%')
+        ->orderBy('name','asc')
+        ->paginate(9);
+        //dd($participants);
+        return view('participants', compact('participants','busqueda'));
     }
 
     /**

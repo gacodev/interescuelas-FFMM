@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('force_id');
             $table->string('nationality_id');
             $table->string('category_id');
-            $table->string('grade_id')->nullable();
+            $table->string('range_id')->nullable();
             $table->timestamps();
 
         });

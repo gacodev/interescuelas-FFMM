@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grades', function (Blueprint $table) {
+        Schema::create('ranges', function (Blueprint $table) {
             $table->id();
-            $table->string("grade");
+            $table->string("range");
             $table->unsignedBigInteger("force_id");
             $table->foreign("force_id")->references("id")->on("forces");
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grades');
+        Schema::dropIfExists('ranges');
     }
 };

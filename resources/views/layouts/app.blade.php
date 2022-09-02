@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div>
-                <a class="navbar-brand mr-4" href="{{ url('/home') }}">
+                <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Escudo_Fuerza_Aerea_Colombiana.svg/800px-Escudo_Fuerza_Aerea_Colombiana.svg.png" alt="" width="50px" height="50px">
                 </a>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto ml-4 mb-2 mb-lg-0 mx-auto">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Participantes</a>
+                        <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
