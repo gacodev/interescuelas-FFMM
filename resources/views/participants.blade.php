@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@inject('carbon', 'Carbon\Carbon')
 <div class="container d-flex">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
@@ -28,21 +29,25 @@
                             </div>
                         
                         
-                        <div class="card-body text-dark">   
-                            <img class="img-card" src={{$participant->photo}} alt="" width="150" height="100">
+                        <div class="card-body text-dark d-flex">  
+                         <div class="text-center">
                             <div>
-                                <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">
+                                <img class="img-card d-inline-block" src="{{$participant->photo}}" alt="" width="120" height="80">
+                                <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="mt-2 d-inline-block">
                             </div>
                             
-                            <div class="mb-2">
-                                <p class="card-text mt-1"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
-                                <p class="card-text mt-1"><strong>Nombre: </strong>{{$participant->name}}</p>
-                                <p class="card-text mt-1"><strong>Edad:  </strong>{{$participant->birthday}}</p>
-                                <p class="card-text mt-1"><strong> Genero:  </strong>{{$participant->sexo}}</p>            
-                                <div class="text-center">
-                                    <button href="{{route('participants.show')}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver">Ver</button>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-warning">Agregar Medallas</button>
+                            <div class="d-flex mb-2 d-block justify-content-center container">
+                                <div class="row d-flex">
+                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong>Nacionalidad: </strong> {{$participant->nationality}}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong>Nombre: </strong>{{$participant->name}}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong>Edad:  </strong> {{$carbon::parse($participant->birthday)->age}} años</p>
                                 </div>
+                            </div>
+
+                            <div class="d-flex mb-2 justify-content-center">
+                                    <button href="{{route('participants.show')}}" class="m-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver">Ver</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="m-1 btn btn-warning">Agregar Medallas</button>
+                            </div>
                             </div>
 
                        </div>

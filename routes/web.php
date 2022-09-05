@@ -25,6 +25,7 @@ Route::get('/participantes', [App\Http\Controllers\ParticipantController::class,
 Route::post('/participantes/crear', [App\Http\Controllers\ParticipantController::class, 'create'])->name('participants.create');
 Route::get('/participantes/registro', [App\Http\Controllers\ParticipantController::class, 'participantsregister'])->name('participants.registro');
 Route::get('/participantes/mostrar',  [App\Http\Controllers\ParticipantController::class, 'show'])->name('participants.show');
+Route::get('/participantes/editar',  [App\Http\Controllers\ParticipantController::class, 'edit'])->name('components.editar');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/medalleria', [App\Http\Controllers\AwarsController::class, 'show'])->name('medalleria');
 Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])->name('resultados');

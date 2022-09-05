@@ -39,6 +39,9 @@
                         <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
                       </li>
                       <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar Participantes</a>
+                      </li>
+                      <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/staff">Registrar equipos</a>
                       </li>
                       <li class="nav-item">

@@ -121,8 +121,10 @@ class ParticipantController extends Controller
      */
     public function edit(Participant $participant)
     {
-        $participant = Participant::find($number_id)->where($force_id = $force_id); //->where($force_id= $fuerza);
-        return $data;
+        //$participant = Participant::find($number_id)->where($force_id = $force_id); //->where($force_id= $fuerza);}
+        $participants = Participant::paginate(8);
+        
+        return view('components.editar',compact('participants'));
     }
 
     /**
