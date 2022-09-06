@@ -19,6 +19,6 @@ class AwarsController extends Controller
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
         ->paginate(5);
 
-      return view('awars' ,compact('participants'));
+      return view('awards' ,compact('participants'));
     }
 }

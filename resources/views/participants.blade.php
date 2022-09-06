@@ -11,18 +11,20 @@
                
                
                 <div class="col-12">
-                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
-                <input class="col-4 mr-2" type="text" placeholder="Buscar"
-                    aria-label="Search">
+                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3" action="{{route('participants.search')}}" method="get">
+                <input class="col-4 mr-2" type="text" name="busqueda">
                 <i class="fas fa-search" aria-hidden="true"></i>
-                <button class="btn btn-primary ml-2">Buscar</button>
+                <button type="submit" class="btn btn-primary  d-inline mx-2">Buscar</button>
+                <a href="/participantes" class="btn btn-success d-inline mx-1">Recargar</a>
                 </form>
+                
                 </div>
 
+                
                 <div class="d-flex flex-wrap justify-content-center">
                 @foreach($participants as $participant)
                         
-                   <div class="card border-dark my-2 mx-2 col-lg-3 col-md-4 col-xs-12 col-sm-4 col-xl-3">
+                   <div class="card border-dark my-2 mx-2 col-lg-3 col-md-4 col-xs-12 col-sm-4 col-xl-3 mw-100">
                             <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
                                 <strong>{{$participant->force}}</strong>  
                                 <img src="{{$participant->image}}" width="50" height="50" alt="" class="d-inline">

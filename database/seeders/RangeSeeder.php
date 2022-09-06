@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Grade;
+use App\Models\Range;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class GradeSeeder extends Seeder
+class RangeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,73 +17,73 @@ class GradeSeeder extends Seeder
     {
         $datas = [
             [
-                "grade" => "CT1",
+                "range" => "CT1",
                 "force_id" => 1,
             ],
             [
-                "grade" => "CT2",
+                "range" => "CT2",
                 "force_id" => 1,
             ],
             [
-                "grade" => "CT3",
+                "range" => "CT3",
                 "force_id" => 1,
             ],
             [
-                "grade" => "ALF",
+                "range" => "ALF",
                 "force_id" => 1,
             ],
             [
-                "grade" => "cadete 1",
+                "range" => "cadete 1",
                 "force_id" => 2,
             ],
             [
-                "grade" => "Cadete 2",
+                "range" => "Cadete 2",
                 "force_id" => 2,
             ],
             [
-                "grade" => "Cadete 3",
+                "range" => "Cadete 3",
                 "force_id" => 2,
             ],
             [
-                "grade" => "Alferez",
+                "range" => "Alferez",
                 "force_id" => 2,
             ],
             [
-                "grade" => "CT1",
+                "range" => "CT1",
                 "force_id" => 3,
             ],
             [
-                "grade" => "CT2",
+                "range" => "CT2",
                 "force_id" => 3,
             ],
             [
-                "grade" => "CT3",
+                "range" => "CT3",
                 "force_id" => 3,
             ],
             [
-                "grade" => "ALF",
+                "range" => "ALF",
                 "force_id" => 3,
             ],
             [
-                "grade" => "CT1",
+                "range" => "CT1",
                 "force_id" => 4,
             ],
             [
-                "grade" => "CT2",
+                "range" => "CT2",
                 "force_id" => 4,
             ],
             [
-                "grade" => "CT3",
+                "range" => "CT3",
                 "force_id" => 4,
             ],
             [
-                "grade" => "ALF",
+                "range" => "ALF",
                 "force_id" => 4,
             ],
         ];
 
         foreach ($datas as $data) {
-            Grade::create($data);
+            Range::create($data);
         }
     }
 }

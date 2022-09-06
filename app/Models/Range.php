@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Grade extends Model
+class Range extends Model
 {
     use HasFactory;
 
-    protected $table= "grades";
+    protected $table= "ranges";
 
     protected $fillable = [
         "id",
-        "grade",
+        "range",
         "force_id"
     ];
 }
