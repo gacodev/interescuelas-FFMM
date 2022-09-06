@@ -5,7 +5,8 @@
             <div class="col-sm-12 justify-content-center mb-2 table-responsive">
                <h1 class="text-center b">Editar Participantes</h1> 
                <div class="col-12 mt-3">
-                <form class="form-inline d-flex form-group justify-content-center md-form form-sm active-pink-2 mt-2 mb-3">
+                <form class="form-inline d-flex form-group justify-content-center md-form form-sm active-pink-2 mt-2 mb-3" 
+                action="{{route('participants.searchToEdit')}}" method="get">
                 <input class="col-6 mr-2 text-center" type="text" placeholder="Encuentre el participante"
                     aria-label="Search">
                 <i class="fas fa-search" aria-hidden="true"></i>
@@ -31,7 +32,7 @@
             <tbody>
             @foreach($participants as $participant)
                 <tr class="text-center">
-                <th>{{$participant->name}}</th>
+                <th>{{$participant->identification}}</th>
                 <td>{{$participant->name}}</td>
                 <td>{{$participant->phone}}</td>
                 <td>{{$participant->photo}}</td>

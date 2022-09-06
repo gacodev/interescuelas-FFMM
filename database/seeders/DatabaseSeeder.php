@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             docsSeeder::class,
             GenderSeeder::class,
             categoriesSeeder::class,
-            participantSeeder::class,
+            //participantSeeder::class,
             RangeSeeder::class,
             participantSeeder::class,
             CompetenceSeeder::class,

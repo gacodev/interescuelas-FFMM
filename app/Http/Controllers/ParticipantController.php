@@ -117,13 +117,6 @@ class ParticipantController extends Controller
      * @param  \App\Models\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Participant $participant)
-    {
-        //$participant = Participant::find($number_id)->where($force_id = $force_id); //->where($force_id= $fuerza);}
-        $participants = Participant::paginate(8);
-        
-        return view('components.editar',compact('participants'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -156,7 +149,18 @@ class ParticipantController extends Controller
         //dd($participants);
         return view('participants', compact('participants','busqueda'));
     }
-
+    public function searchToEdit(Request $request)
+    {
+        $busqueda = trim($request->get('busqueda'));
+        
+        $participants = DB::table('participants')
+        ->where('name','LIKE','%'.$busqueda.'%')
+        ->orWhere('identification','LIKE','%'.$busqueda.'%')
+        ->orderBy('name','asc')
+        ->paginate(3);
+        //dd($participants);
+        return view('components.editar', compact('participants','busqueda'));
+    }
     /**
      * Remove the specified resource from storage.
      *
