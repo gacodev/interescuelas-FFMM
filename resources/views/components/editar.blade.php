@@ -44,14 +44,11 @@
                 <td>{{$participant->category_id}}</td>
 
                 <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" 
-                data-bs-target="#editar">Editar</button></td>
+                data-bs-target="#editar{{$participant->id}}">Editar</button></td>
                 </tr>
-            @endforeach    
-            </tbody>
-            </table>
 
 
-            <div class="modal" tabindex="-1" id="editar" role="dialog">
+                <div class="modal" tabindex="-1" id="editar{{$participant->id}}" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -61,27 +58,29 @@
                                 </button>
                             </div>
                     <div class="modal-body">
-                    <form action="">
+                    <form action="/participantes/{{$participant->id}}" method = "POST">
+                        @csrf
+                        @method('PATCH')
                             <strong class="d-inline-block">Documento</strong> 
-                            <input type="text" class="form-control" value="{{$participant->name}}">
+                            <input type="text" name ="identification" class="form-control" disabled value="{{$participant->identification}}">
                             <strong class="d-inline-block">Nombre</strong>  
-                            <input type="text" class="form-control" value="{{$participant->name}}">
+                            <input type="text" name ="name" class="form-control" value="{{$participant->name}}">
                             <strong class="d-inline-block">Telefono</strong>  
-                            <input type="text" class="form-control" value="{{$participant->phone}}">
+                            <input type="text" name ="phone" class="form-control" value="{{$participant->phone}}">
                             <strong class="d-inline-block">Foto</strong>  
-                            <input type="text" class="form-control" value="{{$participant->photo}}">
+                            <input type="file" name ="photo" class="form-control" value="{{$participant->photo}}">
                             <strong class="d-inline-block">Tipo de sangre</strong>  
-                            <input type="text" class="form-control" value="{{$participant->blood_id}}">
+                            <input type="text" name ="blood_id" class="form-control" value="{{$participant->blood_id}}">
                             <strong class="d-inline-block">Peso</strong>  
-                            <input type="text" class="form-control" value="{{$participant->weight}}">
+                            <input type="text" name="weight" class="form-control" value="{{$participant->weight}}">
                             <strong class="d-inline-block">Estatura</strong>  
-                            <input type="text" class="form-control" value="{{$participant->height}}">
+                            <input type="text" name ="height" class="form-control" value="{{$participant->height}}">
                             <strong class="d-inline-block">Genero</strong>  
-                            <input type="text" class="form-control" value="{{$participant->gender_id}}">
+                            <input type="text" name ="gender_id" class="form-control" value="{{$participant->gender_id}}">
                             <strong class="d-inline-block">Fecha de Nacimiento</strong>  
-                            <input type="text" class="form-control" value="{{$participant->birthday}}">
+                            <input type="date" name ="birthday" class="form-control" value="{{$participant->birthday}}">
                             <strong class="d-inline-block">Disciplina</strong>  
-                            <input type="text" class="form-control" value="{{$participant->category_id}}">
+                            <input type="text" name ="category_id" class="form-control" value="{{$participant->category_id}}">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
@@ -92,10 +91,23 @@
                         </div>
                     </div>
             </div>
+            @endforeach    
+            </tbody>
+            </table>
+
+
+            
 
 
 
         </div>
+
+        
+            @if(Session::has('success'))
+                <div class="alert alert-success text-center">
+                    {{Session::get('success')}}
+                </div>
+            @endif
         <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
                             <span class="p-2">{!! $participants->links('pagination::bootstrap-4') !!}</span>
                </div>

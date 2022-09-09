@@ -31,11 +31,12 @@ class ParticipantController extends Controller
     public function index()
     {
         $participants= DB::table('participants')
-        ->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image')
+        ->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','categorie', 'sport_id')
         ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
         ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
         ->join('genders', 'genders.id', '=', 'gender_id')
         ->join('forces', 'forces.id', '=', 'force_id')
+        ->join('categories', 'categories.id', '=', 'category_id')
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
         ->paginate(9);
         return view('participants',compact('participants'));
@@ -127,7 +128,18 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, Participant $participant)
     {
-        //
+         $participant->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'photo' => $request->input('photo'),
+            'blood_id' => $request->input('blood_id'),
+            'weight' => $request->input('weight'),
+            'height' => $request->input('height'),
+            'gender_id' => $request->input('gender_id'),
+            'birthday' => $request->input('birthday'),
+            'category_id' => $request->input('category_id')
+        ]);
+        return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
 
     public function search(Request $request)
@@ -157,7 +169,7 @@ class ParticipantController extends Controller
         ->where('name','LIKE','%'.$busqueda.'%')
         ->orWhere('identification','LIKE','%'.$busqueda.'%')
         ->orderBy('name','asc')
-        ->paginate(3);
+        ->paginate(5);
         //dd($participants);
         return view('components.editar', compact('participants','busqueda'));
     }
@@ -177,7 +189,8 @@ class ParticipantController extends Controller
         $file = $request->file('file');
         Excel::import(new ParticipantsImport,$file);
         
-        return back()->with('Message','se registraron los participantes correctamente');
+        return redirect("/importeExcel")->withSuccess('Se cargaron los participantes correctamente');
+        
     }
 
     public function import(){

@@ -72,7 +72,7 @@
                 <div>
                  
                 </div>
-                
+                <div style="">
                 @foreach($participants as $participant)
 
                   <div class="card border-dark my-1 d-inline-block ">
@@ -99,7 +99,7 @@
                   </div>
                   </div>
                   @endforeach
-              
+                  </div>
                 </div>
 
             </div>

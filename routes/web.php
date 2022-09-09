@@ -27,6 +27,8 @@ Route::get('/participantes/mostrar',  [App\Http\Controllers\ParticipantControlle
 Route::get('/participantes/editar',  [App\Http\Controllers\ParticipantController::class, 'searchToEdit'])->name('components.editar');
 Route::get('/busqueda', [App\Http\Controllers\ParticipantController::class, 'search'])->name('participants.search');
 Route::get('/participantes/editar', [App\Http\Controllers\ParticipantController::class, 'searchToEdit'])->name('participants.searchToEdit');
+Route::patch('/participantes/{participant}', [App\Http\Controllers\ParticipantController::class, 'update'])->name('participants.update');
+
 Route::get('/medalleria', [App\Http\Controllers\AwarsController::class, 'show'])->name('medalleria');
 Route::get('/resultados', [App\Http\Controllers\scoreController::class, 'show'])->name('resultados');
 Route::get('/resultados_data', [App\Http\Controllers\scoreController::class, 'show_data'])->name('resultados.data');
