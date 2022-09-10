@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id()->unique();
-            $table->foreignId('competence_id')->constrained();
+            $table->foreignId('discipline_id')->constrained();
             $table->foreignId('participant_id')->constrained();
             $table->foreignId('award_id')->constrained();
             $table->timestamps();

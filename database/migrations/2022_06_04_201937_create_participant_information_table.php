@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('gender_id');
             $table->string('force_id');
             $table->string('nationality_id');
-            $table->string('category_id');
+            $table->string('discipline_id');
             $table->string('range_id')->nullable();
             $table->timestamps();
 

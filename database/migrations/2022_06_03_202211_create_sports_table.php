@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('sport');
             $table->string('description');
-            $table->string('image')->unique();
+            $table->string('sport_image')->unique();
         });
     }
 

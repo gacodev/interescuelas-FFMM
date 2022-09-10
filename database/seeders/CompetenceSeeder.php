@@ -16,14 +16,14 @@ class CompetenceSeeder extends Seeder
     public function run()
     {
         DB::table('competences')->insert([
-            ['sport_id' =>1,'categorie_id' =>1,'quantity_of_participants' =>10],
-            ['sport_id' =>1,'categorie_id' =>2,'quantity_of_participants' =>10],
-            ['sport_id' =>1,'categorie_id' =>3,'quantity_of_participants' =>10],
-            ['sport_id' =>1,'categorie_id' =>4,'quantity_of_participants' =>10],
-            ['sport_id' =>2,'categorie_id' =>5,'quantity_of_participants' =>10],
-            ['sport_id' =>2,'categorie_id' =>6,'quantity_of_participants' =>10],
-            ['sport_id' =>2,'categorie_id' =>7,'quantity_of_participants' =>10],
-            ['sport_id' =>2,'categorie_id' =>8,'quantity_of_participants' =>10],
+            ['sport_id' =>1,'discipline_id' =>1,'quantity_of_participants' =>10],
+            ['sport_id' =>1,'discipline_id' =>2,'quantity_of_participants' =>10],
+            ['sport_id' =>1,'discipline_id' =>3,'quantity_of_participants' =>10],
+            ['sport_id' =>1,'discipline_id' =>4,'quantity_of_participants' =>10],
+            ['sport_id' =>2,'discipline_id' =>5,'quantity_of_participants' =>10],
+            ['sport_id' =>2,'discipline_id' =>6,'quantity_of_participants' =>10],
+            ['sport_id' =>2,'discipline_id' =>7,'quantity_of_participants' =>10],
+            ['sport_id' =>2,'discipline_id' =>8,'quantity_of_participants' =>10],
         ]);
     }
 }

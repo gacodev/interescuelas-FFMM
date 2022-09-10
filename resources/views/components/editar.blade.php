@@ -41,7 +41,7 @@
                 <td>{{$participant->height}}</td>
                 <td>{{$participant->gender_id}}</td>
                 <td>{{$participant->birthday}}</td>
-                <td>{{$participant->category_id}}</td>
+                <td>{{$participant->discipline_id}}</td>
 
                 <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" 
                 data-bs-target="#editar{{$participant->id}}">Editar</button></td>
@@ -80,7 +80,7 @@
                             <strong class="d-inline-block">Fecha de Nacimiento</strong>  
                             <input type="date" name ="birthday" class="form-control" value="{{$participant->birthday}}">
                             <strong class="d-inline-block">Disciplina</strong>  
-                            <input type="text" name ="category_id" class="form-control" value="{{$participant->category_id}}">
+                            <input type="text" name ="discipline_id" class="form-control" value="{{$participant->discipline_id}}">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
+use App\Models\Discipline;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class DisciplinesController extends Controller
 {
     public function show(Request $request)
     {
-        $categories = Categorie::where("sport_id", "=", $request->sport_id)
+        $discipline = Discipline::where("sport_id", "=", $request->sport_id)
             ->where("gender_id", "=", $request->gender_id)
             ->get([
-                "id", "categorie"
+                "id", "discipline"
             ]);
 
-        return $categories;
+        return $discipline;
     }
 }

@@ -14,7 +14,7 @@ class Staff extends Model
     protected $fillable = [
         "sport_id",
         "force_id",
-        "grade_id",
+        "range_id",
         "name",
         "identification",
     ];

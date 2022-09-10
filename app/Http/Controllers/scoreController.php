@@ -6,7 +6,7 @@ use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class scoreController extends Controller
+class ScoreController extends Controller
 {
     public function __construct()
     {
@@ -30,7 +30,19 @@ class scoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'participant_id' => $request->input('id'),
+            'discipline_id' => $request->input('discipline'),
+            'award_id' => $request->input('award')
+        ]);
+
+        Score::create(['participant_id' => $request->input('id'),
+        'discipline_id' => $request->input('discipline'),
+        'award_id' => $request->input('award')
+        ]);
+
+        return redirect('/participantes')->withSuccess('medalla agregada correctamente');
+        
     }
 
     /**
@@ -39,6 +51,12 @@ class scoreController extends Controller
      * @param  \App\Models\score  $score
      * @return \Illuminate\Http\Response
      */
+
+    public function findBySport(score $score, Sport $sport)
+    {
+        $scores = Score::findOrFail($sport);
+    }
+
     public function show(score $score)
     {
         return view('resultados');

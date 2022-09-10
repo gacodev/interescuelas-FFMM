@@ -175,8 +175,8 @@
                     </div>
 
                     <div required class="form-group mt-2">
-                        {{ Form::label('Categories', null, ['class' => 'control-label']) }}
-                        {{ Form::select('category_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'categories'], [])) }}
+                        {{ Form::label('disciplines', null, ['class' => 'control-label']) }}
+                        {{ Form::select('discipline_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'disciplines'], [])) }}
 
                         @if ($errors->has('grade_id'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -206,7 +206,7 @@
 
     <script>
         let grades = document.getElementById("grades");
-        let categories = document.getElementById("categories");
+        let disciplines = document.getElementById("disciplines");
 
         function insertGrades(data) {
             let options = `<option value="0"></option>`;
@@ -233,27 +233,27 @@
 
 
 
-        function insertCategories(data) {
+        function insertdisciplines(data) {
             let options = `<option value="0"></option>`;
 
             data.map(element => {
-                options += `<option value="${element.id}">${element.categorie}</option>`;
+                options += `<option value="${element.id}">${element.discipline}</option>`;
             })
 
-            categories.innerHTML = options;
+            disciplines.innerHTML = options;
         }
 
-        function getCategories(e) {
+        function getdisciplines(e) {
             let sport_id = sport.value;
             let gender_id = gender.value;
 
             console.log(gender_id)
             console.log(sport_id)
             if (sport_id > 0 && gender_id > 0) {
-                axios.get(`/sports/${sport_id}/gender/${gender_id}/categories`)
+                axios.get(`/sports/${sport_id}/gender/${gender_id}/disciplines`)
                     .then(res => {
                         console.log(res.data)
-                        insertCategories(res.data)
+                        insertdisciplines(res.data)
                     })
             }
 
@@ -262,7 +262,7 @@
         let sport = document.getElementById("sport_id");
         let gender = document.getElementById("gender_id");
 
-        sport.addEventListener("change", getCategories)
-        gender.addEventListener("change", getCategories)
+        sport.addEventListener("change", getdisciplines)
+        gender.addEventListener("change", getdisciplines)
     </script>
 @endsection

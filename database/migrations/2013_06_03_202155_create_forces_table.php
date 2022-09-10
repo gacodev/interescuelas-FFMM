@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('force')->unique();
             $table->string('slogan');
             $table->string('color')->nullable();
-            $table->string('image')->unique();
+            $table->string('force_image')->unique();
         });
     }
 

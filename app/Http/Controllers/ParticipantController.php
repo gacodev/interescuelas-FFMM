@@ -31,14 +31,16 @@ class ParticipantController extends Controller
     public function index()
     {
         $participants= DB::table('participants')
-        ->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','categorie', 'sport_id')
+        //->select('id','name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','discipline', 'sport_id')
         ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
         ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
         ->join('genders', 'genders.id', '=', 'gender_id')
         ->join('forces', 'forces.id', '=', 'force_id')
-        ->join('categories', 'categories.id', '=', 'category_id')
+        ->join('disciplines', 'disciplines.id', '=', 'discipline_id')
+        ->join('sports', 'sports.id', '=', 'sport_id')
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
         ->paginate(9);
+        //dd($participants);
         return view('participants',compact('participants'));
     }
 
@@ -65,7 +67,7 @@ class ParticipantController extends Controller
             'birthday' => 'required',
             'gender_id' => 'required|exists:genders,id',
             'sport_id' => 'required|exists:sports,id',
-            'category_id' => 'required|exists:categories,id'
+            'Discipline_id' => 'required|exists:disciplines,id'
         ]);
 
         $data = new Participant($request->all());
@@ -137,7 +139,7 @@ class ParticipantController extends Controller
             'height' => $request->input('height'),
             'gender_id' => $request->input('gender_id'),
             'birthday' => $request->input('birthday'),
-            'category_id' => $request->input('category_id')
+            'discipline_id' => $request->input('discipline_id')
         ]);
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
@@ -170,7 +172,7 @@ class ParticipantController extends Controller
         ->orWhere('identification','LIKE','%'.$busqueda.'%')
         ->orderBy('name','asc')
         ->paginate(5);
-        //dd($participants);
+        dd($participants);
         return view('components.editar', compact('participants','busqueda'));
     }
     /**

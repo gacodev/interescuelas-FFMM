@@ -11,7 +11,7 @@ class AwarsController extends Controller
     {
 
       $participants= DB::table('participants')
-        ->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image')
+        //->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.force_image')
         ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
         ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
         ->join('genders', 'genders.id', '=', 'gender_id')

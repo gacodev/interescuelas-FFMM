@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('competences', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('sport_id')->constrained();
-            $table->foreignId('categorie_id')->constrained();
+            $table->foreignId('discipline_id')->constrained();
             $table->integer('quantity_of_participants');
         });
     }

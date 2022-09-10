@@ -23,7 +23,7 @@ class ParticipantsImport implements ToCollection
             'height'=>$row[8],
             'weight'=>$row[9],
             'photo'=>$row[10],
-            'category_id'=>$row[11]
+            'discipline_id'=>$row[11]
             ]);
         }
     }
