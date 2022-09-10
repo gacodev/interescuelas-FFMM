@@ -172,7 +172,7 @@ class ParticipantController extends Controller
         ->orWhere('identification','LIKE','%'.$busqueda.'%')
         ->orderBy('name','asc')
         ->paginate(5);
-        dd($participants);
+        //dd($participants);
         return view('components.editar', compact('participants','busqueda'));
     }
     /**
