@@ -15,14 +15,14 @@ class TeamSeeder extends Seeder
     public function run()
     {
         DB::table('teams')->insert([
-            ['name'=>'emavi','sport_id' => 1,'force_id' => 1],
-            ['name'=>'esmic','sport_id' => 1,'force_id' => 2],
-            ['name'=>'ponal','sport_id' => 1,'force_id' => 3],
-            ['name'=>'esnav','sport_id' => 1,'force_id' => 4],
-            ['name'=>'emavi','sport_id' => 2,'force_id' => 1],
-            ['name'=>'esmic','sport_id' => 2,'force_id' => 2],
-            ['name'=>'ponal','sport_id' => 2,'force_id' => 3],
-            ['name'=>'esnav','sport_id' => 2,'force_id' => 4],
+            ['discipline_id' => 1,'force_id' => 1],
+            ['discipline_id' => 1,'force_id' => 2],
+            ['discipline_id' => 1,'force_id' => 3],
+            /*['discipline_id' => 1,'force_id' => 4],
+            ['discipline_id' => 2,'force_id' => 1],
+            ['discipline_id' => 2,'force_id' => 2],
+            ['discipline_id' => 2,'force_id' => 3],
+            ['discipline_id' => 2,'force_id' => 4],*/
         ]);
     }
 }

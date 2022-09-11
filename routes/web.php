@@ -8,6 +8,7 @@ use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\AwarsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DisciplinesController;
+use App\Http\Controllers\TeamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +44,7 @@ Route::controller(ParticipantController::class)
 
 Route::controller(StaffController::class)
     ->group(function () {   
-        Route::get('/equipos', 'teams')->name('staff.teams');
+        
         Route::get('/staff', 'index')->name('staff.index');
         Route::post('/staff/create', 'create')->name('staff.create');
         Route::get('/forces/{force_id}/grade', 'grade_show')->name('staff.grade_show');
@@ -62,5 +63,11 @@ Route::controller(ScoreController::class)
 Route::get('/medalleria', [AwarsController::class, 'show'])->name('medalleria');
 Route::get('roles', [RoleController::class, 'index'])->name('roles');
 Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines', [DisciplinesController::class, 'show'])->name('cagories.show');
+
+Route::controller(TeamController::class)
+    ->group(function () {
+        
+        Route::get('/equipos', 'index')->name('teams');
+});
 
 

@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             CompetenceSeeder::class,
             ScoreSeeder::class,
             TeamSeeder::class,
+            TeamScoresSeeder::class,
+            TeamParticipantSeeder::class,
             
         ]);
 

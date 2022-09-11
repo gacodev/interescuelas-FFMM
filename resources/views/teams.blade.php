@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center mb-4">
-            <div class="card">
+            <div class="card mb-4">
                         <div class="card-header text-center"><h1> <strong>{{ __('Listado de Equipos') }}</strong></h1></div>
 
                         <div class="card-body">
@@ -17,7 +17,9 @@
                         </form>  
                         </div>
                 
-                        <div class="card border-dark mt-4 col-6 mx-2 d-inline-block" >
+
+                        @foreach($TeamParticipants as $participant)
+                        <div class="card border-dark mt-4 col-5 mx-2 d-inline-block" >
                             <div class="card-header text-center text-white" style="background-color:red">Fuerza</div>
                                 <div class="card-body text-dark">
                             <h5 class="card-title text-center text-uppercase"><strong>futbol </strong></h5>
@@ -29,15 +31,17 @@
                                             <th>identificacion</th>
                                             <th>Nombre</th>
                                             <th>Telefono</th>
-                                            <th>participante</th>
+                                            <th>Fuerza</th>
                                         </tr>
+                                        
                                         <tr>
-                                        <td>SP</td>
-                                        <td>123456879</td>
-                                        <td>Alfreds Futterkiste</td>
-                                        <td>12345644879</td>
-                                        <td><button href="{{route('participants.show')}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver">Ver</button></td>
+                                        <td>{{ $participant->range_id }}</td>
+                                        <td>{{ $participant->name }}</td>
+                                        <td>{{ $participant->identification }}</td>
+                                        <td>{{ $participant->phone }}</td>
+                                        <td>{{ $participant->team_id}}</td>
                                         </tr>
+                                        
                                     </table>
                                 </div>
                                 <div class="text-center">
@@ -46,6 +50,7 @@
                                   </div>
                             </div>
                         </div>
+                        @endforeach
 
 
 
@@ -79,6 +84,10 @@
                     </div>
             </div>
 
+
+            <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
+                <span class="p-2">{!! $TeamParticipants->links('pagination::bootstrap-4') !!}</span>
+            </div>
 
 
             <div class="modal" tabindex="-1" id="ver" role="dialog">

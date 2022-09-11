@@ -5,6 +5,7 @@ use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Team;
 
 class Participant extends Model
 {
@@ -29,4 +30,8 @@ class Participant extends Model
         'nationality_id',
         'phone'
     ];
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

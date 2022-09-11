@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teams_scores', function (Blueprint $table) {
-            $table->id()->unique();
+        Schema::create('team_participants', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("participant_id");
+            $table->foreign("participant_id")->references("id")->on("participants");
             $table->unsignedBigInteger("team_id");
-            $table->foreign("team_id")->references("id")->on("teams")->nullable();
-            $table->unsignedBigInteger("award_id");
-            $table->foreign("award_id")->references("id")->on("awards")->nullable();           
+            $table->foreign("team_id")->references("id")->on("teams");
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('score');
+        Schema::dropIfExists('team_participants');
     }
 };
