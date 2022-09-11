@@ -14,9 +14,14 @@
     <input type="file" name="file" class="form-control" id="exampleInputPassword1">
   </div>
   <div class="d-flex justify-content-center mb-2">
-    
   <button type="submit" class="btn btn-primary ">Importar</button>
+              
   </div>
+              @if(Session::has('success'))
+                      <div class="alert alert-success text-center">
+                          {{Session::get('success')}}
+                      </div>
+              @endif
 </form>  
 </div>
 </div>
