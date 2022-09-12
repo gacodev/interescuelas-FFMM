@@ -116,8 +116,11 @@
     </div>
     <footer class="mt-4 fixed-bottom bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2022 Copyright:
-          <a class="text-dark" href="https://fac.mil.co">Fuerza Aerea Colombiana</a>
+          
+          hecho con <span><i class="bi bi-suit-heart-fill"></i></span> 
+          Fuerza Aerea Colombiana 
+          © 2022 Copyright
+          
         </div>
       </footer>
 </body>

@@ -34,4 +34,13 @@ class Participant extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function discipline()
+    {
+        return $this->belongsTo(Discipline::class);
+    }
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

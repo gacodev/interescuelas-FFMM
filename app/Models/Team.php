@@ -15,4 +15,9 @@ class Team extends Model
     {
         return $this->hasMany(Participant::class);
     }
+
+    public function team_scores()
+    {
+        return $this->hasMany(Team_scores::class);
+    }
 }

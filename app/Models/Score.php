@@ -10,4 +10,9 @@ class score extends Model
     use HasFactory;
     protected $table= "scores";
     protected $fillable = ['participant_id','discipline_id','award_id'];
+
+    public function participants()
+    {
+        return $this->belongsTo(Participant::class);
+    }
 }

@@ -22,7 +22,7 @@ use App\Http\Controllers\TeamController;
 
 Route::get('/', function () {
 
-    return view('auth/login');
+    return view('welcome');
 
 });
 
@@ -56,11 +56,12 @@ Route::controller(ScoreController::class)
         Route::get('/resultados', 'show')->name('resultados');
         Route::get('/resultados_data', 'show_data')->name('resultados.data');
         Route::post('scores', 'store')->name('scores');
+        Route::get('/medalleria', 'index')->name('medalleria');
     });
 
 
 
-Route::get('/medalleria', [AwarsController::class, 'show'])->name('medalleria');
+
 Route::get('roles', [RoleController::class, 'index'])->name('roles');
 Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines', [DisciplinesController::class, 'show'])->name('cagories.show');
 

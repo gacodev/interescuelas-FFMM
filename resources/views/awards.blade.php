@@ -12,8 +12,9 @@
                 <div>
                 <table class="table align-middle mb-0 bg-white">
                   <thead class="bg-light">
+                  
                     <tr>
-                      <th>Competencia</th>
+                      <th>Deporte</th>
                       <th>Masculina</th>
                       <th>Femenina</th>
                       <th>Equipos</th>
@@ -25,6 +26,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                  @foreach ($sports as $sport)
                     <tr>
                       <td>
                         <div class="d-flex align-items-center justify-content-center">
@@ -35,22 +37,18 @@
                               class="rounded-circle"
                               />
                           <div class="ms-3">
-                            <form action="scores/{sport}">
-                              <input type="hidden" value="sport_id">
-                            <p class="fw-bold mb-1 text-center"><a type="submit">Futbol</a></p>
-                            </form>
-                          </div>
-                        </div>
-                      </td>
-                  
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                          
+                      
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                         
                     </tr>
+                    @endforeach
                   </tbody>
                 </table> 
                 

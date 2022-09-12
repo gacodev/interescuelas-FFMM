@@ -18,4 +18,14 @@ class Discipline extends Model
         "sport_id",
         "gender_id",
     ];
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
+    }
 }

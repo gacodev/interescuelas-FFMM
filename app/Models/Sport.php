@@ -16,4 +16,9 @@ class Sport extends Model
         "image",
         "description"
     ];
+
+    public function discipine()
+    {
+        return $this->hasMany(Discipine::class);
+    }
 }

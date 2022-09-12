@@ -21,4 +21,5 @@ class AwarsController extends Controller
 
       return view('awards' ,compact('participants'));
     }
+    
 }
