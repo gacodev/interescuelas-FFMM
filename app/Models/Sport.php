@@ -17,8 +17,8 @@ class Sport extends Model
         "description"
     ];
 
-    public function discipine()
+    public function discipline()
     {
-        return $this->hasMany(Discipine::class);
+        return $this->hasMany(Discipline::class);
     }
 }

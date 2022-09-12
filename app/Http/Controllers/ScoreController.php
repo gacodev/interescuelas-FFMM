@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participant;
 use App\Models\Score;
 use App\Models\Sport;
 use Illuminate\Http\Request;
@@ -20,17 +21,28 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        $participants= DB::table('participants')
-        //->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.force_image')
-        ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-        ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-        ->join('genders', 'genders.id', '=', 'gender_id')
-        ->join('forces', 'forces.id', '=', 'force_id')
-        ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-        ->paginate(5);
-        $sports= Sport::all()->pluck('sport');
-         dd($participants);
-         return view('awards',compact('sports','participants'));
+
+        $participants = DB::table('participants')
+            //->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.force_image')
+            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+            ->join('genders', 'genders.id', '=', 'gender_id')
+            ->join('forces', 'forces.id', '=', 'force_id')
+            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
+            ->paginate(5);
+        $sports = Sport::all()->pluck('sport');
+
+
+        /*
+        $sport =  Sport::with([
+            "discipline.participants.scores",
+        ])->get();
+
+
+        return $sport;
+        */
+
+        return view('awards', compact('sports', 'participants'));
     }
 
     /**
@@ -47,13 +59,13 @@ class ScoreController extends Controller
             'award_id' => $request->input('award')
         ]);
 
-        Score::create(['participant_id' => $request->input('id'),
-        'discipline_id' => $request->input('discipline'),
-        'award_id' => $request->input('award')
+        Score::create([
+            'participant_id' => $request->input('id'),
+            'discipline_id' => $request->input('discipline'),
+            'award_id' => $request->input('award')
         ]);
 
         return redirect('/participantes')->withSuccess('medalla agregada correctamente');
-        
     }
 
     /**
