@@ -114,12 +114,11 @@
             @yield('content')
         </main>
     </div>
-    <footer class="mt-4 fixed-bottom bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          
-          hecho con <span><i class="bi bi-suit-heart-fill"></i></span> 
-          Fuerza Aerea Colombiana 
-          © 2022 Copyright
+    <footer class="mt-4  text-center text-lg-start footer">
+        <div class="text-center p-2 bg-primary" >
+
+          <p style="line-height: 0.1;">Fuerza Aerea Colombiana <p>
+          <p style="line-height: 0.1;">© 2022 Copyright<p>
           
         </div>
       </footer>

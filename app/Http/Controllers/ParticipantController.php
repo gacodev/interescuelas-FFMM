@@ -39,7 +39,7 @@ class ParticipantController extends Controller
         ->join('disciplines', 'disciplines.id', '=', 'discipline_id')
         ->join('sports', 'sports.id', '=', 'sport_id')
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-        ->paginate(9);
+        ->paginate(6);
         //dd($participants);
         return view('participants',compact('participants'));
     }
@@ -159,7 +159,7 @@ class ParticipantController extends Controller
         ->orWhere('identification','LIKE','%'.$busqueda.'%')
         ->orWhere('nationality','LIKE','%'.$busqueda.'%')
         ->orderBy('name','asc')
-        ->paginate(9);
+        ->paginate(6);
         //dd($participants);
         return view('participants', compact('participants','busqueda'));
     }

@@ -57,6 +57,10 @@ Route::controller(ScoreController::class)
         Route::get('/resultados_data', 'show_data')->name('resultados.data');
         Route::post('scores', 'store')->name('scores');
         Route::get('/medalleria', 'index')->name('medalleria');
+        Route::get('/medalleria/{sport}', 'getDisciplineBySport');
+        Route::get('/medalleria/sport/{discipline}', 'getParticipantsByDiscipline');
+        Route::get('/medalleria/{sport}/{discipline}/{participant}', 'getAwardsByParticipant');
+        
     });
 
 

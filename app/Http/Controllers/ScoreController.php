@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Participant;
+use App\Models\Discipline;
+use App\Models\Award;
 use App\Models\Score;
 use App\Models\Sport;
 use Illuminate\Http\Request;
@@ -30,21 +32,41 @@ class ScoreController extends Controller
             ->join('forces', 'forces.id', '=', 'force_id')
             ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
             ->paginate(5);
-        $sports = Sport::all()->pluck('sport');
-
-
-        /*
-        $sport =  Sport::with([
+        $sports = Sport::select('id','sport')->get();
+        
+        /*$sport =  Sport::with([
             "discipline.participants.scores",
         ])->get();
 
 
         return $sport;
         */
-
-        return view('awards', compact('sports', 'participants'));
+        //dd($sports);
+        return view('awards.awards', compact('sports', 'participants'));
     }
 
+/**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDisciplineBySport(Request $request, Sport $sport)
+    {
+        $disciplines = Discipline::where('sport_id', '=',$sport->id)->get();
+        $participants = Participant::paginate(5);
+        //return $disciplines;
+        return view('awards.disciplines',compact('disciplines','participants'));
+
+    }
+
+
+    public function getParticipantsByDiscipline(Request $request, Discipline $discipline){
+        $participantsByDiscipline = Participant::where('discipline_id', '=',$discipline->id)->paginate(5);
+        $participants = Participant::paginate(5);
+        //dd($participantsByDiscipline);
+        return view('awards.participants',compact('participantsByDiscipline','participants'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -67,13 +89,6 @@ class ScoreController extends Controller
 
         return redirect('/participantes')->withSuccess('medalla agregada correctamente');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\score  $score
-     * @return \Illuminate\Http\Response
-     */
 
     public function findBySport(score $score, Sport $sport)
     {

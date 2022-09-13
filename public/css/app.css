@@ -86,6 +86,9 @@
   }
 }
 
+#item :hover {
+ background-color: rgb(119, 111, 111,1);
+} 
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

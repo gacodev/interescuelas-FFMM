@@ -46,11 +46,11 @@
                             
                             <div class="d-flex mb-2 d-block justify-content-center container">
                                 <div class="row d-flex">
-                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong class="mx-2 ">Nacionalidad: </strong> {{ $participant->nationality }}</p>
-                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
-                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong class="mx-2">Edad:  </strong> {{ $carbon::parse($participant->birthday)->age }} años</p>
-                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong class="mx-2">Deporte:   </strong> {{ $participant->sport}}</p>
-                                <p class="card-text m-2 col-12 d-flex justify-content-left"><strong class="mx-2">Disciplina:   </strong> {{ $participant->discipline }}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2 ">Nacionalidad: </strong> {{ $participant->nationality }}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2">Edad:  </strong> {{ $carbon::parse($participant->birthday)->age }} años</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2">Deporte:   </strong> {{ $participant->sport}}</p>
+                                <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2">Disciplina:   </strong> {{ $participant->discipline }}</p>
                                 </div>
                             </div>
 
