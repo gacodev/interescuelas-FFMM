@@ -11,7 +11,7 @@
                 <div class="card-body">
 
 
-                <div>
+                <div class="table-responsive">
                 <table class="table align-middle mb-0 bg-white">
                   <thead class="bg-light">
                   
@@ -94,9 +94,11 @@
                       <p class="card-text lh-1"><strong>Edad:  </strong>{{$participant->birthday}}</p>
                       <p class="card-text lh-1"><strong> Genero:  </strong>{{$participant->sexo}}</p>
                       </div>                 
+                      @role('admin')
                       <div class="text-center">
                         <button type="button" class="m-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver{{$participant->id}}">Ver</button>
                       </div>
+                      @endrole
                       </div>
                   </div>
                   </div>

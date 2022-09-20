@@ -26,11 +26,12 @@ Route::get('/', function () {
 
 });
 
+Route::get('/participantes',  [ParticipantController::class,'index'])->name('participants');
+
 Auth::routes();
 
 Route::controller(ParticipantController::class)
     ->group(function () {
-        Route::get('/participantes',  'index')->name('participants');
         Route::post('/participantes/crear',  'create')->name('participants.create');
         Route::get('/participantes/registro',  'participantsregister')->name('participants.registro');
         Route::get('/participantes/mostrar',   'show')->name('participants.show');

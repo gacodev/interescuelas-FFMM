@@ -14,7 +14,7 @@
                 <div class="card-body">
 
 
-                <div>
+                <div class="table-responsive">
                 <table class="table align-middle mb-0 bg-white">
                   <thead class="bg-light">
                   
@@ -84,7 +84,7 @@
                   <div class="card-header text-center text-white" style="background-color:{{$participant->color}}">
                   <strong>{{$participant->force}}</strong>  
                   <img src="{{$participant->force_image}}" width="50" height="50" alt="" class="d-inline"></div>
-                  <img class="img-card" src="{{$participant->photo}}" alt="" width="150" height="100">
+                  <img  src="{{$participant->photo}}" alt="" width="150" height="100" class="img-card">
                   <div class="card-body text-dark">
                       <div>
                       <img src="{{$participant->flag_image}}" width="50" height="50" alt="" class="d-inline">

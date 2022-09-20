@@ -53,11 +53,12 @@
                                 <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong class="mx-2">Disciplina:   </strong> {{ $participant->discipline }}</p>
                                 </div>
                             </div>
-
+                            @role('admin')
                             <div class="d-flex mb-2 justify-content-center">
                                     <button type="button" class="m-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver{{$participant->id}}">Ver</button>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#asignar{{$participant->id}}" class="m-1 btn btn-warning">Agregar Medallas</button>
                             </div>
+                            @endrole
                             </div>
 
                        </div>

@@ -44,10 +44,11 @@
                                         
                                     </table>
                                 </div>
+                                @role('admin')
                                 <div class="text-center">
-                                        
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-warning">Agregar Medallas</button>
-                                  </div>
+                                </div>
+                                @endrole
                             </div>
                         </div>
                         @endforeach

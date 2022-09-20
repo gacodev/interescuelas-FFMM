@@ -54,7 +54,13 @@ class ScoreController extends Controller
     public function getDisciplineBySport(Request $request, Sport $sport)
     {
         $disciplines = Discipline::where('sport_id', '=',$sport->id)->get();
-        $participants = Participant::paginate(5);
+        $participants = DB::table('participants')
+            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+            ->join('genders', 'genders.id', '=', 'gender_id')
+            ->join('forces', 'forces.id', '=', 'force_id')
+            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
+            ->paginate(5);
         //return $disciplines;
         return view('awards.disciplines',compact('disciplines','participants'));
 
@@ -63,8 +69,13 @@ class ScoreController extends Controller
 
     public function getParticipantsByDiscipline(Request $request, Discipline $discipline){
         $participantsByDiscipline = Participant::where('discipline_id', '=',$discipline->id)->paginate(5);
-        $participants = Participant::paginate(5);
-        //dd($participantsByDiscipline);
+        $participants = DB::table('participants')
+            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+            ->join('genders', 'genders.id', '=', 'gender_id')
+            ->join('forces', 'forces.id', '=', 'force_id')
+            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
+            ->paginate(5);
         return view('awards.participants',compact('participantsByDiscipline','participants'));
     }
     /**
