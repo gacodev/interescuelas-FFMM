@@ -10,7 +10,7 @@
 
                     <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
                     </h2>
-                    <h2 required class="text-center"><strong>Registrar Staff</strong></h2>
+                    <h2 required class="text-center"><strong>Registrar Equipos</strong></h2>
 
                     <div required class="form-group mt-1">
 

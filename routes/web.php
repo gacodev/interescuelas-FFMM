@@ -71,7 +71,6 @@ Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines', [DisciplinesCont
 
 Route::controller(TeamController::class)
     ->group(function () {
-        
         Route::get('/equipos', 'index')->name('teams');
 });
 

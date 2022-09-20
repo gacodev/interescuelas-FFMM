@@ -41,7 +41,7 @@ class ParticipantController extends Controller
         ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
         ->paginate(6);
         //dd($participants);
-        return view('participants',compact('participants'));
+        return view('participants.participants',compact('participants'));
     }
 
     /**
@@ -161,7 +161,7 @@ class ParticipantController extends Controller
         ->orderBy('name','asc')
         ->paginate(6);
         //dd($participants);
-        return view('participants', compact('participants','busqueda'));
+        return view('participants.participants', compact('participants','busqueda'));
     }
     public function searchToEdit(Request $request)
     {

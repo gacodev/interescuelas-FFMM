@@ -22,7 +22,7 @@ class TeamController extends Controller
         ->join('participants','participants.id','participant_id')
         ->paginate(4);
         //dd($TeamParticipants );
-        return view('teams',compact('TeamParticipants'));
+        return view('teams.teams',compact('TeamParticipants'));
     }
 
     /**

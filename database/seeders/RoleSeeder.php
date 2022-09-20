@@ -21,17 +21,11 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'consumer']);
         $role3 = Role::create(['name' => 'viewer']);
-        $permission = Permission::create(['name' => '/participantes/create'])->syncRoles('admin');
+        $permission = Permission::create(['name' => 'participants.create'])->syncRoles('admin');
         $permission = Permission::create(['name' => '/participantes/show'])->syncRoles('admin','consumer','viewer');
-        $permission = Permission::create(['name' => '/participantes/edit'])->syncRoles('admin','consumer');
+        $permission = Permission::create(['name' => '/participantes/editar'])->syncRoles('admin','consumer');
         $permission = Permission::create(['name' => '/participantes/destroy'])->syncRoles('admin');
-        $permission = Permission::create(['name' => '/participantes/index'])->syncRoles('admin','consumer','viewer');
-
-        $permission = Permission::create(['name' => '/home/create'])->syncRoles('admin','consumer');
-        $permission = Permission::create(['name' => '/home/show'])->syncRoles('admin','consumer','viewer');
-        $permission = Permission::create(['name' => '/home/edit'])->syncRoles('admin','consumer');
-        $permission = Permission::create(['name' => '/home/destroy'])->syncRoles('admin');
-        $permission = Permission::create(['name' => '/home/index'])->syncRoles('admin','consumer');
+        $permission = Permission::create(['name' => '/participantes/index'])->syncRoles('admin','consumer');
 
 
         $permission = Permission::create(['name' => '/staff/create'])->syncRoles(['admin','consumer']);
@@ -39,5 +33,18 @@ class RoleSeeder extends Seeder
         $permission = Permission::create(['name' => '/staff/edit'])->syncRoles(['admin','consumer']);
         $permission = Permission::create(['name' => '/staff/destroy'])->syncRoles(['admin']);
         $permission = Permission::create(['name' => '/staff/index'])->syncRoles(['admin','consumer','viewer']);
+
+
+        $permission = Permission::create(['name' => '/awards/create'])->syncRoles(['admin','consumer']);
+        $permission = Permission::create(['name' => '/awards/show'])->syncRoles(['admin','consumer','viewer']);
+        $permission = Permission::create(['name' => '/awards/edit'])->syncRoles(['admin','consumer']);
+        $permission = Permission::create(['name' => '/awards/destroy'])->syncRoles(['admin']);
+        $permission = Permission::create(['name' => '/awards/index'])->syncRoles(['admin','consumer','viewer']);
+
+        $permission = Permission::create(['name' => '/roles/create'])->syncRoles(['admin','consumer']);
+        $permission = Permission::create(['name' => '/roles/show'])->syncRoles(['admin','consumer','viewer']);
+        $permission = Permission::create(['name' => '/roles/edit'])->syncRoles(['admin','consumer']);
+        $permission = Permission::create(['name' => '/roles/destroy'])->syncRoles(['admin']);
+        $permission = Permission::create(['name' => '/roles/index'])->syncRoles(['admin','consumer','viewer']);
     }
 }

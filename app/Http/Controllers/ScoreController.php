@@ -97,7 +97,7 @@ class ScoreController extends Controller
 
     public function show(score $score)
     {
-        return view('resultados');
+        return view('awards.resultados');
     }
 
     public function show_data(score $score)

@@ -30,30 +30,41 @@
                 </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto ml-4 mb-2 mb-lg-0 mx-auto">
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
                       </li>
+                      @can('/participantes/editar')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar Participantes</a>
                       </li>
+                      @endcan
+                      @can('/staff')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/staff">Registrar equipos</a>
                       </li>
+                      @endcan
+                      @can('/participantes/registro')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar Participantes</a>
                       </li>
+                      @endcan
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
                       </li>
 
+
+                      @can('/roles')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/roles">Roles</a>
                       </li>
+                      @endcan
+                      
 
                       <li class="nav-item">
                         <a class="nav-link active b" aria-current="page" href="/medalleria">Medalleria</a>
@@ -114,14 +125,12 @@
             @yield('content')
         </main>
     </div>
-    <footer class="mt-4  text-center text-lg-start footer">
+</div>
+    <div class="footer navbar-fixed-bottom">
         <div class="text-center p-2 bg-primary" >
-
           <p style="line-height: 0.1;">Fuerza Aerea Colombiana <p>
           <p style="line-height: 0.1;">© 2022 Copyright<p>
-          
-        </div>
       </footer>
+    </div>
 </body>
-</script>
 </html>
