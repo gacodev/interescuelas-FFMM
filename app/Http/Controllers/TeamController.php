@@ -21,9 +21,9 @@ class TeamController extends Controller
     {
         $TeamParticipants =  Team::with([
             "participants.scores",
-        ])->get();
+        ])->paginate(2);
         //dd($TeamParticipants);
-        return $TeamParticipants;
+        //return $TeamParticipants;
         return view('teams.teams',compact('TeamParticipants'));
     }
 

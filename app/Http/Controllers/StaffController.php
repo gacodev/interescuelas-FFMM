@@ -49,7 +49,7 @@ class StaffController extends Controller
             'name' => 'required',
             'force_id' => 'required|exists:forces,id',
             'sport_id' => 'required|exists:sports,id',
-            'discipline_id' => 'required|exists:Ranges,id',
+            'discipline_id' => 'required|exists:disciplines,id',
         ]);
 
         $data = new Team($request->all());

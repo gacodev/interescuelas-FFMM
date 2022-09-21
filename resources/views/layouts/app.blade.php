@@ -41,7 +41,7 @@
                       </li>
                       @can('/participantes/editar')
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar Participantes</a>
+                        <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar</a>
                       </li>
                       @endcan
                       @can('/staff')
@@ -51,7 +51,7 @@
                       @endcan
                       @can('/participantes/registro')
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar Participantes</a>
+                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar</a>
                       </li>
                       @endcan
                       <li class="nav-item">
