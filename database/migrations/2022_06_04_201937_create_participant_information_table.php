@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('nationality_id');
             $table->string('discipline_id');
             $table->string('range_id')->nullable();
+            $table->unsignedBigInteger("team_id")->nullable();
+            $table->foreign("team_id")->references("id")->on("teams");
             $table->timestamps();
 
         });

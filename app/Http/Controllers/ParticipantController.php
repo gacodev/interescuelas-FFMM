@@ -82,7 +82,7 @@ class ParticipantController extends Controller
         $sportValues = Sport::all()->pluck('sport', 'id');
         $typeDocValues = Type_doc::all()->pluck('doc_type', 'id');
         $nationalityValues = Nationality::all()->pluck('nationality', 'id');
-        return view('registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues', 'nationalityValues'));
+        return view('participants.registerparticipantsform', compact('forceValues', 'sportValues', 'typeDocValues', 'nationalityValues'));
     }
 
 
@@ -194,6 +194,6 @@ class ParticipantController extends Controller
 
     public function import(){
        
-        return view('importParticipants');
+        return view('participants.importParticipants');
     }
 }

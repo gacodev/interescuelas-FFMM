@@ -6,6 +6,7 @@ use App\Models\Force;
 use App\Models\Range;
 use App\Models\Sport;
 use App\Models\Staff;
+use App\Models\Team;
 
 use Illuminate\Http\Request;
 
@@ -20,8 +21,7 @@ class StaffController extends Controller
     {
         $forceValues = Force::all()->pluck('force', 'id');
         $sportValues = Sport::all()->pluck('sport', 'id');
-
-        return view('staff', compact('forceValues', 'sportValues'));
+        return view('teams.teamscreate', compact('forceValues', 'sportValues'));
     }
 
     public function teams()
@@ -46,19 +46,18 @@ class StaffController extends Controller
     {
 
         $validated = $request->validate([
+            'name' => 'required',
             'force_id' => 'required|exists:forces,id',
             'sport_id' => 'required|exists:sports,id',
-            'Range_id' => 'required|exists:Ranges,id',
-            'name' => 'required',
-            'identification' => 'required',
+            'discipline_id' => 'required|exists:Ranges,id',
         ]);
 
-        $data = new Staff($request->all());
+        $data = new Team($request->all());
         $data->save();
 
         $request->session()->flash('status', 'Se creo satisfactoriamente!');
 
-        return redirect()->route('staff.index', []);
+        return redirect()->back();
     }
 
     /**

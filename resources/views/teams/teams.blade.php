@@ -18,40 +18,7 @@
                         </div>
                 
 
-                        @foreach($TeamParticipants as $participant)
-                        <div class="card border-dark mt-4 col-5 mx-2 d-inline-block" >
-                            <div class="card-header text-center text-white" style="background-color:red">Fuerza</div>
-                                <div class="card-body text-dark">
-                            <h5 class="card-title text-center text-uppercase"><strong>futbol </strong></h5>
-                            <img class="rounded"src="https://imgs.search.brave.com/eIMuOGJdc-UB8vOWiWFWTpt0dKbb1Ravfnj638DW-4w/rs:fit:770:420:1/g:ce/aHR0cHM6Ly9zMDMu/czNjLmVzL2ltYWcv/X3YwLzc3MHg0MjAv/ZS8wLzYvYmFsb24t/ZGUtZnV0Ym9sLmpw/Zw" width="200" height="120" alt="">
-                                <div>
-                                    <table class="table">
-                                        <tr>
-                                            <th>Grado</th>
-                                            <th>identificacion</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
-                                            <th>Fuerza</th>
-                                        </tr>
-                                        
-                                        <tr>
-                                        <td>{{ $participant->range_id }}</td>
-                                        <td>{{ $participant->name }}</td>
-                                        <td>{{ $participant->identification }}</td>
-                                        <td>{{ $participant->phone }}</td>
-                                        <td>{{ $participant->team_id}}</td>
-                                        </tr>
-                                        
-                                    </table>
-                                </div>
-                                @role('admin')
-                                <div class="text-center">
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-warning">Agregar Medallas</button>
-                                </div>
-                                @endrole
-                            </div>
-                        </div>
-                        @endforeach
+                      
 
 
 

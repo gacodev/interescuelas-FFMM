@@ -13,6 +13,7 @@
                 <button class="btn btn-primary ml-2">Buscar</button>
                 </form>
                 </div>
+                <div class="table-responsive">
             <table class="table table-hover table-default border border-dark rounded-2">
             <thead class="table-dark">
                 <tr class="text-center">
@@ -94,6 +95,7 @@
             @endforeach    
             </tbody>
             </table>
+            </div>
 
 
             

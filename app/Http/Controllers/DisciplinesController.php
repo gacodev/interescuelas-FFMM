@@ -17,4 +17,14 @@ class DisciplinesController extends Controller
 
         return $discipline;
     }
+
+    public function getDisciplineBySport(Request $request)
+    {
+        $discipline = Discipline::where("sport_id", "=", $request->sport_id)
+            ->get([
+                "id", "discipline"
+            ]);
+
+        return $discipline;
+    }
 }
