@@ -21,10 +21,24 @@ use App\Http\Controllers\TeamController;
 */
 
 Route::get('/', function () {
-
     return view('welcome');
-
 });
+Route::controller(StaffController::class)
+    ->group(function () {   
+        Route::get('/equipos/crear', 'index')->name('staff.index');
+        Route::post('/equipos/crear', 'create')->name('staff.create');
+        Route::get('/forces/{force_id}/grade', 'grade_show')->name('staff.grade_show');
+    });
+Route::controller(ScoreController::class)
+    ->group(function () {    
+        Route::get('/resultados', 'show')->name('resultados');
+        Route::get('/resultados_data', 'show_data')->name('resultados.data');
+        Route::post('scores', 'store')->name('scores');
+        Route::get('/medalleria', 'index')->name('medalleria');
+        Route::get('/medalleria/{sport}', 'getDisciplineBySport');
+        Route::get('/medalleria/sport/{discipline}', 'getParticipantsByDiscipline');
+        Route::get('/medalleria/{sport}/{discipline}/{participant}', 'getAwardsByParticipant');
+    });
 
 Route::get('/participantes',  [ParticipantController::class,'index'])->name('participants');
 
@@ -35,7 +49,6 @@ Route::controller(ParticipantController::class)
         Route::post('/participantes/crear',  'create')->name('participants.create');
         Route::get('/participantes/registro',  'participantsregister')->name('participants.registro');
         Route::get('/participantes/mostrar',   'show')->name('participants.show');
-        Route::get('/participantes/editar',   'searchToEdit')->name('components.editar');
         Route::get('/busqueda',  'search')->name('participants.search');
         Route::get('/participantes/editar',  'searchToEdit')->name('participants.searchToEdit');
         Route::patch('/participantes/{participant}',  'update')->name('participants.update');
@@ -43,27 +56,11 @@ Route::controller(ParticipantController::class)
         Route::get('/importeExcel', 'import')->name('excel.imports');
     });
 
-Route::controller(StaffController::class)
-    ->group(function () {   
-        
-        Route::get('/staff', 'index')->name('staff.index');
-        Route::post('/staff/create', 'create')->name('staff.create');
-        Route::get('/forces/{force_id}/grade', 'grade_show')->name('staff.grade_show');
 
-    });
 
-Route::controller(ScoreController::class)
-    ->group(function () {    
-        Route::get('/resultados', 'show')->name('resultados');
-        Route::get('/resultados_data', 'show_data')->name('resultados.data');
-        Route::post('scores', 'store')->name('scores');
-        Route::get('/medalleria', 'index')->name('medalleria');
-        Route::get('/medalleria/{sport}', 'getDisciplineBySport');
-        Route::get('/medalleria/sport/{discipline}', 'getParticipantsByDiscipline');
-        Route::get('/medalleria/{sport}/{discipline}/{participant}', 'getAwardsByParticipant');
-        
-    });
 
+
+    
 
 
 
@@ -73,6 +70,12 @@ Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines', [DisciplinesCont
 Route::controller(TeamController::class)
     ->group(function () {
         Route::get('/equipos', 'index')->name('teams');
+});
+
+
+Route::controller(TeamController::class)
+    ->group(function () {
+        Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
 });
 
 

@@ -4,26 +4,28 @@ namespace App\Imports;
 use App\Models\Participant;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ParticipantsImport implements ToCollection
+class ParticipantsImport implements ToCollection,WithHeadingRow
 {
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) 
         {
             Participant::create([
-            'force_id'=>$row[0],
-            'name'=>strtolower($row[1]),
-            'type_doc_id'=>$row[2],
-            'identification'=>$row[3],
-            'nationality_id'=>$row[4],
-            'birthday'=>$row[5],
-            'gender_id'=>$row[6],
-            'blood_id'=>$row[7],
-            'height'=>$row[8],
-            'weight'=>$row[9],
-            'photo'=>$row[10],
-            'discipline_id'=>$row[11]
+            'force_id'=>strtolower($row['fuerza']),
+            'name'=>strtolower($row['nombre']),
+            'type_doc_id'=>strtolower($row['tipodedocumento']),
+            'identification'=>$row['documento'],
+            'nationality_id'=>strtolower($row['nacionalidad']),
+            'birthday'=>$row['fechadenacimiento'],
+            'gender_id'=>strtolower($row['sexo']),
+            'blood_id'=>strtolower($row['sangre']),
+            'height'=>$row['estatura'],
+            'weight'=>$row['peso'],
+            'photo'=>strtolower($row['fotografia']),
+            'discipline_id'=>strtolower($row['disciplina']),
+            'discipline_id'=>strtolower($row['equipo'])
             ]);
         }
     }

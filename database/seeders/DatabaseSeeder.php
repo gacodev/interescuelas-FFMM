@@ -30,12 +30,10 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             DisciplinesSeeder::class,
             RangeSeeder::class,
-            ParticipantSeeder::class,
-            CompetenceSeeder::class,
-            ScoreSeeder::class,
             TeamSeeder::class,
+            ParticipantSeeder::class,
+            ScoreSeeder::class,
             TeamScoresSeeder::class,
-            TeamParticipantSeeder::class,
             
         ]);
 

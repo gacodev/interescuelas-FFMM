@@ -13,6 +13,7 @@
                 <button class="btn btn-primary ml-2">Buscar</button>
                 </form>
                 </div>
+                <div class="table-responsive">
             <table class="table table-hover table-default border border-dark rounded-2">
             <thead class="table-dark">
                 <tr class="text-center">
@@ -26,6 +27,7 @@
                 <th scope="col">Genero</th>
                 <th scope="col">Fecha de Nacimiento</th>
                 <th scope="col">Disciplina</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
                 </tr>
             </thead>
@@ -42,10 +44,19 @@
                 <td>{{$participant->gender_id}}</td>
                 <td>{{$participant->birthday}}</td>
                 <td>{{$participant->discipline_id}}</td>
-
-                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" 
-                data-bs-target="#editar{{$participant->id}}">Editar</button></td>
+                @role('admin')
+                <td>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" 
+                data-bs-target="#editar{{$participant->id}}">Editar</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                    data-bs-target="#asociar{{$participant->id}}">Asociar</button>
+                </td>
+                @endrole            
                 </tr>
+                
+                
 
 
                 <div class="modal" tabindex="-1" id="editar{{$participant->id}}" role="dialog">
@@ -90,10 +101,44 @@
                         </div>
                         </div>
                     </div>
-            </div>
+             </div>
+
+
+
+
+             <div class="modal" tabindex="-1" id="asociar{{$participant->id}}" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center"><strong>Edicion de Datos</strong></h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                <div class="modal-body">
+                <form action="/participantes/{{$participant->id}}" method = "POST">
+                    @csrf
+                    @method('PATCH')
+                        <strong class="d-inline-block text-center">Lista de equipos</strong> 
+                        <select name="equipos" id="teams">
+                            <option value="{{ 1 }}">futbol</option>
+                            <option value="{{ 1 }}">baloncesto</option>
+                            <option value="{{ 1 }}">esgrima</option>
+                        </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
+                    <button type="button" id="cancelar" class="btn btn-danger"
+                    data-bs-dismiss="modal">Cancelar</button>
+                    </form>
+                    </div>
+                    </div>
+                </div>
+         </div>
             @endforeach    
             </tbody>
             </table>
+            </div>
 
 
             

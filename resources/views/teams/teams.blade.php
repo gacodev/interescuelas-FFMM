@@ -18,7 +18,8 @@
                         </div>
                 
 
-                        @foreach($TeamParticipants as $participant)
+                      
+                        @foreach($TeamParticipants as $participants)
                         <div class="card border-dark mt-4 col-5 mx-2 d-inline-block" >
                             <div class="card-header text-center text-white" style="background-color:red">Fuerza</div>
                                 <div class="card-body text-dark">
@@ -27,32 +28,38 @@
                                 <div>
                                     <table class="table">
                                         <tr>
-                                            <th>Grado</th>
+                                            
                                             <th>identificacion</th>
                                             <th>Nombre</th>
                                             <th>Telefono</th>
-                                            <th>Fuerza</th>
+                                            <th>tipo de sangre</th>
+                                            <th>ver</th>
+                                    
                                         </tr>
-                                        
+                                    @foreach($participants->participants as $participant)
                                         <tr>
-                                        <td>{{ $participant->range_id }}</td>
-                                        <td>{{ $participant->name }}</td>
                                         <td>{{ $participant->identification }}</td>
-                                        <td>{{ $participant->phone }}</td>
-                                        <td>{{ $participant->team_id}}</td>
+                                        <td>{{ $participant->name }}</td>
+                                        <td>{{ $participant->phone}}</td>
+                                        <td>{{ $participant->blood_id }}</td>
+
+                                        <td><button type="button" class="m-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#ver{{ $participant->id }}">Ver</button></td>
+                        
                                         </tr>
-                                        
-                                    </table>
+                                    @endforeach
+                                </table>
+
                                 </div>
                                 @role('admin')
                                 <div class="text-center">
+                                        
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-warning">Agregar Medallas</button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-danger">Eliminar Medallas</button>
                                 </div>
                                 @endrole
                             </div>
                         </div>
                         @endforeach
-
 
 
                         <div class="modal" tabindex="-1" id="asignar" role="dialog">

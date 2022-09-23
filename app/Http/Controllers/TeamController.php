@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Participant;
 use App\Models\TeamParticipant;
+use App\Models\Scores;
 
 
 class TeamController extends Controller
@@ -18,10 +19,11 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $TeamParticipants = DB::table('team_participants')
-        ->join('participants','participants.id','participant_id')
-        ->paginate(4);
-        //dd($TeamParticipants );
+        $TeamParticipants =  Team::with([
+            "participants.scores",
+        ])->paginate(2);
+        //dd($TeamParticipants);
+        //return $TeamParticipants;
         return view('teams.teams',compact('TeamParticipants'));
     }
 
