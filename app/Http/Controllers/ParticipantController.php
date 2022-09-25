@@ -193,8 +193,10 @@ class ParticipantController extends Controller
         if (!($file && in_array($file->extension(), $valid_extensions))) {
             return back();
         }
-
-        Excel::import(new ParticipantsImport, $file);
+        $import = new ParticipantsImport();
+        $import->import($file);
+        #dd($import->failures());
+        #dd($import->errors());
 
         return redirect("/importeExcel")->withSuccess('Se cargaron los participantes correctamente');
     }

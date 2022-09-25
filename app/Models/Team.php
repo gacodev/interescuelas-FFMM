@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Participant;
-use App\Models\Team;
 
 class Team extends Model
 {
@@ -24,6 +23,6 @@ class Team extends Model
 
     public function team_scores()
     {
-        return $this->hasMany(Team_scores::class);
+        return $this->hasMany(TeamScores::class);
     }
 }
