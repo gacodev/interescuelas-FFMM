@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center mb-4">
+            <div class="d-flex flex-row-reverse">
+                <a required class="btn btn-primary m-1" href="{{ route('staff.index') }}"> Crear Equipos</a>
+            </div>
             <div class="card mb-4">
                         <div class="card-header text-center"><h1> <strong>{{ __('Listado de Equipos') }}</strong></h1></div>
 
