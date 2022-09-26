@@ -96,7 +96,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
                 'required',
             ],
             'fecha_de_nacimiento' => [
-                'required',
+                'string',
             ],
         ];
     }
@@ -133,9 +133,17 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $team = Team::where("name", "like", "%{$row['equipo']}%")->first();
         $row['equipo'] =  $team ? $team->id : null;
 
-        $row['identification'] = $row['documento'];
+        $row['identification'] = trim($row['documento']);
 
-        $row['fotografia'] = strtolower($row['fotografia']);
+        $row['fotografia'] =  "images/{$row['identification']}.png";
+
+        $patern = "/^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])(-|\/)([1-9]|0[1-9]|1[0-2])(-|\/)[0-9]{4}$/";
+        if (preg_match($patern, $row['fecha_de_nacimiento'])) {
+            $row['fecha_de_nacimiento'] = str_replace("/", "-",  $row['fecha_de_nacimiento']);
+            $row['fecha_de_nacimiento'] = date("Y-m-d", strtotime($row['fecha_de_nacimiento']));
+        } else {
+            $row['fecha_de_nacimiento'] = null;
+        }
 
         return $row;
     }
