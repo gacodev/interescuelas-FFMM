@@ -72,7 +72,6 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             'identification' => [
                 'required',
                 'integer',
-                'unique:participants',
             ],
             'nacionalidad' => [
                 'required',
