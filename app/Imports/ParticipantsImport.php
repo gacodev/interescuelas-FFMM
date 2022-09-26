@@ -62,8 +62,8 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
                 'integer',
             ],
             'disciplina' => [
-                'required',
                 'integer',
+                'nullable'
             ],
             'tipo_de_documento' => [
                 'required',
@@ -88,6 +88,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             ],
             'equipo' => [
                 'integer',
+                'nullable'
             ],
             'estatura' => [
                 'required',
@@ -97,6 +98,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             ],
             'fecha_de_nacimiento' => [
                 'string',
+                'nullable'
             ],
         ];
     }
@@ -107,31 +109,31 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
 
         $row['fuerza'] = strtolower(trim($row['fuerza']));
         $force = Force::where("force", "like", "%{$row['fuerza']}%")->first();
-        $row['fuerza'] =  $force ? $force->id : null;
+        $row['fuerza'] =  $force && $row['fuerza'] ? $force->id : null;
 
         $row['disciplina'] = strtolower(trim($row['disciplina']));
         $discipline = Discipline::where("discipline", "like", "%{$row['disciplina']}%")->first();
-        $row['disciplina'] =  $discipline ? $discipline->id : null;
+        $row['disciplina'] =  $discipline && $row['disciplina'] ? $discipline->id : null;
 
         $row['tipo_de_documento'] = strtolower(trim($row['tipo_de_documento']));
         $tipo_de_documento = Type_doc::where("doc_type", "like", "%{$row['tipo_de_documento']}%")->first();
-        $row['tipo_de_documento'] =  $tipo_de_documento ? $tipo_de_documento->id : null;
+        $row['tipo_de_documento'] =  $tipo_de_documento  && $row['tipo_de_documento'] ? $tipo_de_documento->id : null;
 
         $row['nacionalidad'] = strtolower(trim($row['nacionalidad']));
         $nationality = Nationality::where("nationality", "like", "%{$row['nacionalidad']}%")->first();
-        $row['nacionalidad'] =  $nationality ? $nationality->id : null;
+        $row['nacionalidad'] =  $nationality && $row['nacionalidad'] ? $nationality->id : null;
 
         $row['sexo'] = strtolower(trim($row['sexo']));
         $gender = Gender::where("sexo", "like", "%{$row['sexo']}%")->first();
-        $row['sexo'] =  $gender ? $gender->id : null;
+        $row['sexo'] =  $gender && $row['sexo'] ? $gender->id : null;
 
         $row['sangre'] = strtolower(trim($row['sangre']));
         $blood = Blood::where("type", "like", "%{$row['sangre']}%")->first();
-        $row['sangre'] =  $blood ? $blood->id : null;
+        $row['sangre'] =  $blood  && $row['sangre'] ? $blood->id : null;
 
         $row['equipo'] = strtolower(trim($row['equipo']));
         $team = Team::where("name", "like", "%{$row['equipo']}%")->first();
-        $row['equipo'] =  $team ? $team->id : null;
+        $row['equipo'] =  $team && $row['equipo'] ? $team->id : null;
 
         $row['identification'] = trim($row['documento']);
 
