@@ -28,7 +28,8 @@ class Participant extends Model
         'gender_id',
         'discipline_id',
         'nationality_id',
-        'phone'
+        'phone',
+        'team_id'
     ];
     public function team()
     {

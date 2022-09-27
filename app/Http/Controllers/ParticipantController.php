@@ -137,7 +137,8 @@ class ParticipantController extends Controller
             'height' => $request->input('height'),
             'gender_id' => $request->input('gender_id'),
             'birthday' => $request->input('birthday'),
-            'discipline_id' => $request->input('discipline_id')
+            'discipline_id' => $request->input('discipline_id'),
+            'team_id' => $request->input('team_id')
         ]);
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
@@ -205,5 +206,10 @@ class ParticipantController extends Controller
     {
 
         return view('participants.importParticipants');
+    }
+
+
+    public function assignteam(Request $request ){
+
     }
 }
