@@ -13,19 +13,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-
-                <div>
-                    <div required class="d-flex flex-row-reverse justify-content-center mb-2">
-                        <a required class="btn btn-primary m-1 d-flex-inline"href="{{ route('staff.index') }}"> Registrar
-                            Registrar Equipos</a>
-                        <a required class="btn btn-success m-1 d-flex-inline" href="{{ route('excel.imports') }}">
-                            Importar desde excel</a>
-                    </div>
-                    <h2 required class="text-center"><strong>XXVIII Juegos Inter escuelas de Cadetes 2022-Ejercito</strong>
-                    </h2>
+                <div required class="d-flex flex-row-reverse mb-2">
+                    <a required class="btn btn-success m-1 d-flex-inline" href="{{ route('excel.imports') }}">
+                        Importe un Excel</a>
+                </div>
+                <div class="card">
+                    <div class="m-3">
+                    <h2 required class="text-center"><strong>Interescuelas</strong></h2>
                     <h2 required class="text-center"><strong>Registro de Participantes</strong></h2>
-
-
                     <div required class="form-group mt-4">
                         <label>Documento de identidad</label>
                         <input type="number" name="#identification" required class="form-control">
@@ -120,8 +115,7 @@
                     </div>
 
                     <div required class="form-group mt-3">
-                        <label><strong>Fotografía en Uniforme No.3 sin gorra fondo blanco</strong></label>
-                        deportista y sigla de la Escuela)</label>
+                        <label><strong>Fotografía en Uniforme No.3 </label>
                         <input type="file" name="photo" required class="form-control">
                     </div>
 
@@ -190,7 +184,7 @@
 
 
 
-                    <div required class="form-group mb-5 mt-2 text-center">
+                    <div required class="form-group mb-2 mt-4 text-center">
                         <button type="submit" required class="btn btn-primary col-sm-2 col-md-3 col-xs-2">
                             Registrar
                         </button>
@@ -198,7 +192,7 @@
                             Descargar Formato
                         </button>
                     </div>
-                </div>
+                </div> </div>
                 {!! Form::close() !!}
             </div>
         </div>

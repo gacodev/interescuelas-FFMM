@@ -30,7 +30,7 @@
                 </a>
                 </div>
 
-                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         
                       <li class="nav-item">
@@ -126,11 +126,6 @@
         </main>
     </div>
 </div>
-    <div class="footer navbar-fixed-bottom">
-        <div class="text-center p-2 bg-primary" >
-          <p style="line-height: 0.1;">Fuerza Aerea Colombiana <p>
-          <p style="line-height: 0.1;">© 2022 Copyright<p>
-      </footer>
-    </div>
+  @include('../footer.footer')
 </body>
 </html>

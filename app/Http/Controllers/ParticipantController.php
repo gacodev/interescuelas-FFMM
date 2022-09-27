@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ use App\Imports\ParticipantsImport;
 
 class ParticipantController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -27,18 +28,18 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        $participants= DB::table('participants')
-        //->select('id','name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','discipline', 'sport_id')
-        ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-        ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-        ->join('genders', 'genders.id', '=', 'gender_id')
-        ->join('forces', 'forces.id', '=', 'force_id')
-        ->join('disciplines', 'disciplines.id', '=', 'discipline_id')
-        ->join('sports', 'sports.id', '=', 'sport_id')
-        ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-        ->paginate(6);
+        $participants = DB::table('participants')
+            //->select('id','name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','discipline', 'sport_id')
+            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+            ->join('genders', 'genders.id', '=', 'gender_id')
+            ->join('forces', 'forces.id', '=', 'force_id')
+            ->join('disciplines', 'disciplines.id', '=', 'discipline_id')
+            ->join('sports', 'sports.id', '=', 'sport_id')
+            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
+            ->paginate(6);
         //dd($participants);
-        return view('participants.participants',compact('participants'));
+        return view('participants.participants', compact('participants'));
     }
 
     /**
@@ -127,7 +128,7 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, Participant $participant)
     {
-         $participant->update([
+        $participant->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'photo' => $request->input('photo'),
@@ -144,33 +145,33 @@ class ParticipantController extends Controller
     public function search(Request $request)
     {
         $busqueda = trim($request->get('busqueda'));
-        
+
         $participants = DB::table('participants')
-        ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
-        ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-        ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-        ->join('genders', 'genders.id', '=', 'gender_id')
-        ->join('forces', 'forces.id', '=', 'force_id')
-        ->join('scores', 'scores.participant_id', '=', 'participants.id')
-        ->where('name','LIKE','%'.$busqueda.'%')
-        ->orWhere('identification','LIKE','%'.$busqueda.'%')
-        ->orWhere('nationality','LIKE','%'.$busqueda.'%')
-        ->orderBy('name','asc')
-        ->paginate(6);
+            ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
+            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
+            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
+            ->join('genders', 'genders.id', '=', 'gender_id')
+            ->join('forces', 'forces.id', '=', 'force_id')
+            ->join('scores', 'scores.participant_id', '=', 'participants.id')
+            ->where('name', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('nationality', 'LIKE', '%' . $busqueda . '%')
+            ->orderBy('name', 'asc')
+            ->paginate(6);
         //dd($participants);
-        return view('participants.participants', compact('participants','busqueda'));
+        return view('participants.participants', compact('participants', 'busqueda'));
     }
     public function searchToEdit(Request $request)
     {
         $busqueda = trim($request->get('busqueda'));
-        
+
         $participants = DB::table('participants')
-        ->where('name','LIKE','%'.$busqueda.'%')
-        ->orWhere('identification','LIKE','%'.$busqueda.'%')
-        ->orderBy('name','asc')
-        ->paginate(5);
+            ->where('name', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
+            ->orderBy('name', 'asc')
+            ->paginate(5);
         //dd($participants);
-        return view('components.editar', compact('participants','busqueda'));
+        return view('components.editar', compact('participants', 'busqueda'));
     }
     /**
      * Remove the specified resource from storage.
@@ -184,16 +185,25 @@ class ParticipantController extends Controller
     }
 
 
-    public function importExcel(Request $request){
+    public function importExcel(Request $request)
+    {
         $file = $request->file('file');
-        Excel::import(new ParticipantsImport,$file);
-        
+        $valid_extensions = ["xlsx", "xls", "csv"];
+
+        if (!($file && in_array($file->extension(), $valid_extensions))) {
+            return back();
+        }
+        $import = new ParticipantsImport();
+        $import->import($file);
+        #dd($import->failures());
+        #dd($import->errors());
+
         return redirect("/importeExcel")->withSuccess('Se cargaron los participantes correctamente');
-        
     }
 
-    public function import(){
-       
+    public function import()
+    {
+
         return view('participants.importParticipants');
     }
 }
