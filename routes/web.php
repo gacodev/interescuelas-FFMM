@@ -51,7 +51,7 @@ Route::controller(ParticipantController::class)
         Route::get('/participantes/mostrar',   'show')->name('participants.show');
         Route::get('/busqueda',  'search')->name('participants.search');
         Route::get('/participantes/editar',  'searchToEdit')->name('participants.searchToEdit');
-        Route::patch('/participantes/{participant}',  'update')->name('participants.update');
+        Route::put('/participantes/{participant}',  'update')->name('participants.update');
         Route::post('/importparticipants', 'importExcel')->name('import.excel');
         Route::get('/importeExcel', 'import')->name('excel.imports');
     });

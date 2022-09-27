@@ -27,7 +27,7 @@
                 <th scope="col">Genero</th>
                 <th scope="col">Fecha de Nacimiento</th>
                 <th scope="col">Disciplina</th>
-                <th scope="col"></th>
+                <th scope="col">Equipo</th>
                 <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,14 +44,11 @@
                 <td>{{$participant->gender_id}}</td>
                 <td>{{$participant->birthday}}</td>
                 <td>{{$participant->discipline_id}}</td>
+                <td>{{$participant->team_id}}</td>
                 @role('admin')
                 <td>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" 
                 data-bs-target="#editar{{$participant->id}}">Editar</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-                    data-bs-target="#asociar{{$participant->id}}">Asociar</button>
                 </td>
                 @endrole            
                 </tr>
@@ -71,7 +68,7 @@
                     <div class="modal-body">
                     <form action="/participantes/{{$participant->id}}" method = "POST">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
                             <strong class="d-inline-block">Documento</strong> 
                             <input type="text" name ="identification" class="form-control" disabled value="{{$participant->identification}}">
                             <strong class="d-inline-block">Nombre</strong>  
@@ -92,6 +89,8 @@
                             <input type="date" name ="birthday" class="form-control" value="{{$participant->birthday}}">
                             <strong class="d-inline-block">Disciplina</strong>  
                             <input type="text" name ="discipline_id" class="form-control" value="{{$participant->discipline_id}}">
+                            <strong class="d-inline-block">Team</strong>  
+                            <input type="text" name ="team_id" class="form-control" value="{{$participant->team_id}}">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
