@@ -4,9 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center mb-4">
+
             <div class="d-flex flex-row-reverse">
                 <a required class="btn btn-primary m-1" href="{{ route('staff.index') }}"> Crear Equipos</a>
             </div>
+
             <div class="card mb-4">
                         <div class="card-header text-center"><h1> <strong>{{ __('Listado de Equipos') }}</strong></h1></div>
 
@@ -18,17 +20,17 @@
                         <i class="fas fa-search" aria-hidden="true"></i>
                         <button class="btn btn-primary ml-2">Buscar</button>
                         </form>  
-                        </div>
+            </div>
                 
 
                       
-                        @foreach($TeamParticipants as $participants)
-                        <div class="card border-dark mt-4 col-5 mx-2 d-inline-block" >
-                            <div class="card-header text-center text-white" style="background-color:red">Fuerza</div>
+                        @foreach($TeamParticipants as $team)
+                        <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-11 col-lg-5  mx-2 >
+                            <div class="card-header text-center text-white" style="background-color:red">{{ $team->force_id }}</div>
                                 <div class="card-body text-dark">
-                            <h5 class="card-title text-center text-uppercase"><strong>futbol </strong></h5>
+                            <h5 class="card-title text-center text-uppercase"><strong>{{ $team->name }}</strong></h5>
                             <img class="rounded"src="https://imgs.search.brave.com/eIMuOGJdc-UB8vOWiWFWTpt0dKbb1Ravfnj638DW-4w/rs:fit:770:420:1/g:ce/aHR0cHM6Ly9zMDMu/czNjLmVzL2ltYWcv/X3YwLzc3MHg0MjAv/ZS8wLzYvYmFsb24t/ZGUtZnV0Ym9sLmpw/Zw" width="200" height="120" alt="">
-                                <div>
+                                <div class="table-responsive">
                                     <table class="table">
                                         <tr>
                                             
@@ -39,7 +41,7 @@
                                             <th>ver</th>
                                     
                                         </tr>
-                                    @foreach($participants->participants as $participant)
+                                    @foreach($team->participants as $participant)
                                         <tr>
                                         <td>{{ $participant->identification }}</td>
                                         <td>{{ $participant->name }}</td>
