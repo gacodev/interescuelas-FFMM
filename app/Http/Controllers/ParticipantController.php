@@ -18,6 +18,7 @@ use App\Models\Staff;
 use App\Models\Type_doc;
 use App\Imports\ExcelImport;
 use App\Imports\SportsImport;
+use App\Imports\TeamsImport;
 
 class ParticipantController extends Controller
 {

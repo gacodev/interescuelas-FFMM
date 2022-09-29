@@ -49,7 +49,6 @@ class DisciplineImport implements ToModel, SkipsEmptyRows, WithBatchInserts, Wit
             'discipline' => [
                 'required',
                 'string',
-                'unique:disciplines',
             ],
         ];
     }
@@ -62,8 +61,6 @@ class DisciplineImport implements ToModel, SkipsEmptyRows, WithBatchInserts, Wit
         $row['deporte'] = strtoupper(trim($row['deporte']));
         $deporte = Sport::where("sport", "like", "%{$row['deporte']}%")->first();
         $row['sport'] =  $deporte && $row['deporte'] ? $deporte->id : null;
-
-        //dd($row['sport']);
 
         $row['gender'] = null;
         if (str_contains($row['deporte'], 'FEMENINO')) {
