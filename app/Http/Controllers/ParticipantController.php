@@ -197,7 +197,7 @@ class ParticipantController extends Controller
         }
 
         $import = new ExcelImport();
-        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'PARTICIPANTES');
+        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'EQUIPOS', 'PARTICIPANTES');
 
         Excel::import($import, $file);
 
