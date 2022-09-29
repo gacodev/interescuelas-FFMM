@@ -44,21 +44,14 @@
                         <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar</a>
                       </li>
                       @endcan
-                      @can('/staff')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/staff">Registrar equipos</a>
-                      </li>
-                      @endcan
-                      @can('/participantes/registro')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes/registro">Registrar</a>
-                      </li>
-                      @endcan
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
                       </li>
-
-
+                      
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/disciplinas">Disciplinas</a>
+                      </li>
+                     
                       @can('/roles')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/roles">Roles</a>

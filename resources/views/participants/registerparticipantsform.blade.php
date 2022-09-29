@@ -188,9 +188,6 @@
                         <button type="submit" required class="btn btn-primary col-sm-2 col-md-3 col-xs-2">
                             Registrar
                         </button>
-                        <button type="submit" required class="btn btn-success col-sm-2 col-md-3 col-xs-2">
-                            Descargar Formato
-                        </button>
                     </div>
                 </div> </div>
                 {!! Form::close() !!}
