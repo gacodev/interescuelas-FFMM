@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->string('sport');
-            $table->string('description');
-            $table->string('sport_image')->unique();
+            $table->string('description')->nullable();
+            $table->string('sport_image')->nullable();
         });
     }
 

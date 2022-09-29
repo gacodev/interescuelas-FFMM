@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\DisciplineImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,8 @@ use App\Models\Nationality;
 use App\Models\Sport;
 use App\Models\Staff;
 use App\Models\Type_doc;
-use App\Imports\ParticipantsImport;
-
+use App\Imports\ExcelImport;
+use App\Imports\SportsImport;
 
 class ParticipantController extends Controller
 {
@@ -194,8 +195,14 @@ class ParticipantController extends Controller
         if (!($file && in_array($file->extension(), $valid_extensions))) {
             return back();
         }
-        $import = new ParticipantsImport();
-        $import->import($file);
+
+        $import = new ExcelImport();
+        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'PARTICIPANTES');
+
+        Excel::import($import, $file);
+
+        #$import = new DisciplineImport();
+        #$import->import($file);
         #dd($import->failures());
         #dd($import->errors());
 
@@ -209,7 +216,7 @@ class ParticipantController extends Controller
     }
 
 
-    public function assignteam(Request $request ){
-
+    public function assignteam(Request $request)
+    {
     }
 }
