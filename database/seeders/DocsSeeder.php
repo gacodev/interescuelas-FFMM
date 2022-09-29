@@ -16,10 +16,10 @@ class DocsSeeder extends Seeder
     public function run()
     {
         DB::table('type_docs')->insert([
-            ['doc_type'=>'Cedula de Ciudadania'],
-            ['doc_type'=>'Tarjeta de identidad'],
+            ['doc_type'=>'cedula de ciudadania'],
+            ['doc_type'=>'tarjeta de identidad'],
             ['doc_type'=>'pasaporte'],
-            ['doc_type'=>'Cédula de extranjería'],
+            ['doc_type'=>'cedula de extranjería'],
         ]);
     }
 }
