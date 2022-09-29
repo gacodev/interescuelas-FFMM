@@ -47,8 +47,9 @@ class DisciplinesController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function destroy(Discipline $discipline)
     {
-
+        //dd($discipline);
+        $discipline->delete();
     }
 }

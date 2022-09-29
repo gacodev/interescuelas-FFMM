@@ -30,7 +30,11 @@
                 <td>{{$discipline->description}}</td>
                 @role('admin')
                 <td><button class="btn btn-warning">Editar</button></td>
-                <td><button class="btn btn-danger">Eliminar</button></td>
+                <form action="/disciplinas/{{$discipline->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <td><button class="btn btn-danger" id="eliminar_disciplina">Eliminar</button></td>
+                </form>
                 @endrole
             </tr>
         @endforeach    

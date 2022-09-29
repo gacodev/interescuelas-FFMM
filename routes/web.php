@@ -81,6 +81,7 @@ Route::controller(TeamController::class)
 Route::controller(DisciplinesController::class)
     ->group(function(){
         Route::get('/disciplinas', 'index')->name('disciplines');
+        Route::delete('/disciplinas/{discipline}', 'destroy')->name('disciplines');
     });
 
 
