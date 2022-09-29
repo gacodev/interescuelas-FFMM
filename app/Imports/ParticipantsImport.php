@@ -71,7 +71,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             ],
             'documento' => [
                 'required',
-                'integer',
+                'string',
             ],
             'nacionalidad' => [
                 'required',
@@ -82,18 +82,18 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
                 'integer',
             ],
             'sangre' => [
-                'required',
                 'integer',
+                'nullable'
             ],
             'equipo' => [
                 'integer',
                 'nullable'
             ],
             'estatura' => [
-                'required',
+                'nullable',
             ],
             'peso' => [
-                'required',
+                'nullable'
             ],
             'fecha_de_nacimiento' => [
                 'string',
@@ -134,7 +134,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $team = Team::where("name", "like", "%{$row['equipo']}%")->first();
         $row['equipo'] =  $team && $row['equipo'] ? $team->id : null;
 
-        $row['documento'] = trim($row['documento']);
+        $row['documento'] = (string) trim($row['documento']);
 
         $row['fotografia'] =  "images/{$row['documento']}.png";
 
