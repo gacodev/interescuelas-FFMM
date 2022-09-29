@@ -78,4 +78,9 @@ Route::controller(TeamController::class)
         Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
 });
 
+Route::controller(DisciplinesController::class)
+    ->group(function(){
+        Route::get('/disciplinas', 'index')->name('disciplines');
+    });
+
 
