@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('discipline_id')->nullable();
             $table->string('range_id')->nullable();
             $table->unsignedBigInteger("team_id")->nullable();
-            $table->foreign("team_id")->references("id")->on("teams");
+            $table->foreign("team_id")->references("id")->on("teams")->nullable();
             $table->unique(['identification', 'discipline_id', 'team_id']);
             $table->timestamps();
         });
