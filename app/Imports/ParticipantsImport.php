@@ -37,7 +37,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             'force_id' => $row['fuerza'],
             'name' => $row['nombre'],
             'type_doc_id' => $row['tipo_de_documento'],
-            'identification' => $row['identification'],
+            'identification' => $row['documento'],
             'nationality_id' => $row['nacionalidad'],
             'birthday' => $row['fecha_de_nacimiento'],
             'gender_id' => $row['sexo'],
@@ -69,7 +69,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
                 'required',
                 'integer',
             ],
-            'identification' => [
+            'documento' => [
                 'required',
                 'integer',
             ],
@@ -134,9 +134,9 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $team = Team::where("name", "like", "%{$row['equipo']}%")->first();
         $row['equipo'] =  $team && $row['equipo'] ? $team->id : null;
 
-        $row['identification'] = trim($row['documento']);
+        $row['documento'] = trim($row['documento']);
 
-        $row['fotografia'] =  "images/{$row['identification']}.png";
+        $row['fotografia'] =  "images/{$row['documento']}.png";
 
         $patern = "/^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])(-|\/)([1-9]|0[1-9]|1[0-2])(-|\/)[0-9]{4}$/";
         if (preg_match($patern, $row['fecha_de_nacimiento'])) {

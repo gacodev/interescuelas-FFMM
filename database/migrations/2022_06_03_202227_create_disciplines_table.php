@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('discipline')->unique();
             $table->string('description');
-            $table->string('discipline_image')->unique();
+            $table->string('discipline_image');
             $table->foreignId('gender_id')->constrained();
             $table->foreignId('sport_id')->constrained();
             $table->boolean('team')->nullable();

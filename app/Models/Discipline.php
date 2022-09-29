@@ -9,12 +9,13 @@ class Discipline extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "disciplines";
 
     protected $fillable = [
         "discipline",
         "description",
-        "image",
+        "discipline_image",
         "sport_id",
         "gender_id",
     ];
