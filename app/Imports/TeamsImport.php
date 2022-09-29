@@ -28,49 +28,53 @@ use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Validators\Failure;
 
 
-class DisciplineImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHeadingRow, WithChunkReading, WithValidation, SkipsOnError, SkipsOnFailure
+class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHeadingRow, WithChunkReading, WithValidation, SkipsOnError, SkipsOnFailure
 {
     use Importable, SkipsErrors, SkipsFailures;
 
     public function model(array $row)
     {
-        return new Discipline([
-            'discipline' => $row['discipline'],
-            'description' => "",
-            'discipline_image' => "",
-            'sport_id' => $row['sport'],
-            'gender_id' => $row['gender'],
+        return new Team([
+            'name' => $row['nombre_equipo'],
+            'force_id' => $row['fuerza'],
+            'sport_id' => $row['deporte'],
+            'discipline_id' => $row['disciplina'],
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'discipline' => [
+            'disciplina' => [
                 'required',
-                'string',
+                'integer',
+            ],
+            'deporte' => [
+                'required',
+                'integer',
+            ],
+            'fuerza' => [
+                'required',
+                'integer',
             ],
         ];
     }
 
     public function prepareForValidation($row, $index)
     {
-        $row['discipline'] = strtoupper(trim($row['disciplina']));
+        $row['nombre_equipo'] = strtoupper(trim($row['nombre_equipo']));
 
-        $row['sport'] = null;
+        $row['fuerza'] = strtoupper(trim($row['fuerza']));
+        $fuerza = Force::where("force", "like", "%{$row['fuerza']}%")->first();
+        $row['fuerza'] =  $fuerza && $row['fuerza'] ? $fuerza->id : null;
+
         $row['deporte'] = strtoupper(trim($row['deporte']));
         $deporte = Sport::where("sport", "like", "%{$row['deporte']}%")->first();
-        $row['sport'] =  $deporte && $row['deporte'] ? $deporte->id : null;
+        $row['deporte'] =  $deporte && $row['deporte'] ? $deporte->id : null;
 
-        $row['gender'] = null;
-        if (str_contains($row['deporte'], 'FEMENINO')) {
-            $row['gender'] = 'FEMENINO';
-        } else if (str_contains($row['deporte'], 'MASCULINO')) {
-            $row['gender'] = 'MASCULINO';
-        }
-
-        $gender = Gender::where("sexo", "like", "%{$row['gender']}%")->first();
-        $row['gender'] =  $gender && $row['deporte'] ? $gender->id : null;
+        $row['disciplina'] = strtoupper(trim($row['disciplina']));
+        $disciplina = Discipline::where("discipline", "like", "%{$row['disciplina']}%")->first();
+        $row['disciplina'] =  $disciplina && $row['disciplina'] ? $disciplina->id : null;
 
         return $row;
     }

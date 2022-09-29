@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id();
             $table->string('nationality')->unique();
-            $table->string('flag_image')->unique();
+            $table->string('flag_image');
         });
     }
 

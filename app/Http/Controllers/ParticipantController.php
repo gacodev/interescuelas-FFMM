@@ -18,6 +18,7 @@ use App\Models\Staff;
 use App\Models\Type_doc;
 use App\Imports\ExcelImport;
 use App\Imports\SportsImport;
+use App\Imports\TeamsImport;
 
 class ParticipantController extends Controller
 {
@@ -197,7 +198,7 @@ class ParticipantController extends Controller
         }
 
         $import = new ExcelImport();
-        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'PARTICIPANTES');
+        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'EQUIPOS', 'PARTICIPANTES');
 
         Excel::import($import, $file);
 

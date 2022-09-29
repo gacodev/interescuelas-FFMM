@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
             $table->string('blood_id')->nullable();
-            $table->string('weight')->default('0');
-            $table->string('height')->default('0');
+            $table->string('weight')->default('0')->nullable();
+            $table->string('height')->default('0')->nullable();
             $table->string('birthday')->nullable();
             $table->string('type_doc_id');
             $table->string('gender_id');

@@ -10,6 +10,7 @@ use App\Models\Participant;
 use App\Models\Type_doc;
 use App\Models\Blood;
 use App\Models\Discipline;
+use App\Models\Sport;
 use App\Models\Team;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -71,7 +72,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             ],
             'documento' => [
                 'required',
-                'integer',
+                'string',
             ],
             'nacionalidad' => [
                 'required',
@@ -82,18 +83,18 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
                 'integer',
             ],
             'sangre' => [
-                'required',
                 'integer',
+                'nullable'
             ],
             'equipo' => [
                 'integer',
                 'nullable'
             ],
             'estatura' => [
-                'required',
+                'nullable',
             ],
             'peso' => [
-                'required',
+                'nullable'
             ],
             'fecha_de_nacimiento' => [
                 'string',
@@ -110,8 +111,16 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $force = Force::where("force", "like", "%{$row['fuerza']}%")->first();
         $row['fuerza'] =  $force && $row['fuerza'] ? $force->id : null;
 
-        $row['disciplina'] = strtolower(trim($row['disciplina']));
-        $discipline = Discipline::where("discipline", "like", "%{$row['disciplina']}%")->first();
+        $row['disciplina'] = strtoupper(trim($row['disciplina']));
+        $row['deporte'] = strtoupper(trim($row['deporte']));
+
+        $row['deporte'] = strtoupper(trim($row['deporte']));
+        $deporte = Sport::where("sport", "like", "%{$row['deporte']}%")->first();
+        $row['sport'] =  $deporte && $row['deporte'] ? $deporte->id : null;
+
+        $discipline = Discipline::where("discipline", "like", "%{$row['disciplina']}%")
+            ->where("sport_id", "=", $row['sport'])
+            ->first();
         $row['disciplina'] =  $discipline && $row['disciplina'] ? $discipline->id : null;
 
         $row['tipo_de_documento'] = strtolower(trim($row['tipo_de_documento']));
@@ -134,7 +143,7 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $team = Team::where("name", "like", "%{$row['equipo']}%")->first();
         $row['equipo'] =  $team && $row['equipo'] ? $team->id : null;
 
-        $row['documento'] = trim($row['documento']);
+        $row['documento'] = (string) trim($row['documento']);
 
         $row['fotografia'] =  "images/{$row['documento']}.png";
 

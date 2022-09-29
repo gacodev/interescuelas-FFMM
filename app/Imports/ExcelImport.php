@@ -19,6 +19,7 @@ class ExcelImport implements WithMultipleSheets, SkipsOnError, SkipsOnFailure
         return [
             'DEPORTES' =>  new SportsImport(),
             'DISCIPLINAS' =>  new DisciplineImport(),
+            'EQUIPOS' =>  new TeamsImport(),
             'PARTICIPANTES' =>  new ParticipantsImport(),
         ];
     }

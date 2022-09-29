@@ -16,10 +16,14 @@ class BloodSeeder extends Seeder
     public function run()
     {
         DB::table('bloods')->insert([
-            ['type'=>'A'],
-            ['type'=>'B'],
-            ['type'=>'O'],
-            ['type'=>'AB'],
+            ['type' => 'A+'],
+            ['type' => 'A-'],
+            ['type' => 'B+'],
+            ['type' => 'B-'],
+            ['type' => 'O+'],
+            ['type' => 'O-'],
+            ['type' => 'AB+'],
+            ['type' => 'AB-'],
         ]);
     }
 }
