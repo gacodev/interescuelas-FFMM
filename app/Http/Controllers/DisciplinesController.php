@@ -27,4 +27,29 @@ class DisciplinesController extends Controller
 
         return $discipline;
     }
+
+    public function index(){
+        $disciplines = Discipline::
+        join('sports', 'sports.id', '=', 'sport_id')
+        ->join('genders', 'genders.id', '=', 'gender_id')
+        ->get();
+        //return $disciplines;
+        return view('disciplines.getDisciplines',compact('disciplines'));
+    }
+
+    public function create(Request $request)
+    {
+
+    }
+
+    public function edit(Request $request)
+    {
+
+    }
+
+    public function destroy(Discipline $discipline)
+    {
+        //dd($discipline);
+        $discipline->delete();
+    }
 }

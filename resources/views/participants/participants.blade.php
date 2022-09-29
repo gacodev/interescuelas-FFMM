@@ -5,11 +5,14 @@
 <div class="container d-flex">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
+            @can('/participantes/registro')
+            <div class="d-flex flex-row-reverse">
+            <a class="btn btn-primary mb-2" aria-current="page" href="/participantes/registro">Registrar</a>
+            </div>
+            @endcan
             <div class="card mb-5 row">
                 <div class="card-header text-center"><h1> <strong>{{ __('Listado de Participantes') }}</strong></h1></div>
                 <div class="card-body">
-               
-               
                 <div class="col-12">
                 <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2 mb-3" action="{{route('participants.search')}}" method="get">
                 <input class="col-4 mr-2" type="text" name="busqueda">
