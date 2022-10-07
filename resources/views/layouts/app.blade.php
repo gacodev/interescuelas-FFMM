@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @livewireStyles
+    @livewireStyles()
 </head>
 <body>
     <div id="app">
@@ -121,6 +121,6 @@
     </div>
 </div>
   @include('../footer.footer')
-  @livewireScripts
+  @livewireScripts()
 </body>
 </html>

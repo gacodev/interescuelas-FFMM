@@ -11,7 +11,7 @@ class Participants extends Component
 {
     use WithPagination;
 
-    public $search = '';
+    public $search;
 
     public function render()
     {
@@ -25,7 +25,7 @@ class Participants extends Component
                 ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
                 ->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('identification', 'like', '%' . $this->search . '%')
-                ->paginate(5),
+                ->paginate(5)
         ]);
     }
 }

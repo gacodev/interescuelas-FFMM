@@ -15,7 +15,8 @@
                     <div class="card-header text-center">
                         <h1> <strong>{{ __('Listado de Participantes') }}</strong></h1>
                     </div>
-                    <livewire:participants />
+
+                    @livewire('participants')
                 </div>
             </div>
         </div>
