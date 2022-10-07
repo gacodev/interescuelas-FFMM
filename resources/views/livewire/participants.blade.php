@@ -1,10 +1,9 @@
 <div class="card-body">
     <div class="col-12">
         @inject('carbon', 'Carbon\Carbon')
-        <div class="form-inline d-flex justify-content-center active-pink-2 mt-2 mb-3">
-            <input class="col-4 mr-2" type="text" name="busqueda" wire:model="search">
-            <i class="fas fa-search" aria-hidden="true"></i>
-            <button type="submit" class="btn btn-primary  d-inline mx-2">Buscar</button>
+        <div class="form-inline d-flex justify-content-center active-pink-2 mt-2 mb-3 col-6 m-auto">
+            <input class="col-4 mr-2 form-control" type="text" name="busqueda" wire:model="search">
+            <i class="bi bi-search p-2"></i>
         </div>
 
         @if (Session::has('success'))
