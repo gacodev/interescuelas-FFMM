@@ -30,18 +30,7 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        $participants = DB::table('participants')
-            //->select('id','name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.image','discipline', 'sport_id')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->join('disciplines', 'disciplines.id', '=', 'discipline_id')
-            ->join('sports', 'sports.id', '=', 'sport_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(6);
-        //dd($participants);
-        return view('participants.participants', compact('participants'));
+        return view('participants.participants');
     }
 
     /**
