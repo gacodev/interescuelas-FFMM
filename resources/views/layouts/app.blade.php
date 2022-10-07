@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -32,10 +33,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        
+
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
-                      
+
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
                       </li>
@@ -47,17 +48,17 @@
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
                       </li>
-                      
+
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/disciplinas">Disciplinas</a>
                       </li>
-                     
+
                       @can('/roles')
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/roles">Roles</a>
                       </li>
                       @endcan
-                      
+
 
                       <li class="nav-item">
                         <a class="nav-link active b" aria-current="page" href="/medalleria">Medalleria</a>
@@ -120,5 +121,6 @@
     </div>
 </div>
   @include('../footer.footer')
+  @livewireScripts
 </body>
 </html>
