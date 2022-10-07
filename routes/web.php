@@ -24,13 +24,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::controller(StaffController::class)
-    ->group(function () {   
+    ->group(function () {
         Route::get('/equipos/crear', 'index')->name('staff.index');
         Route::post('/equipos/crear', 'create')->name('staff.create');
         Route::get('/forces/{force_id}/grade', 'grade_show')->name('staff.grade_show');
     });
 Route::controller(ScoreController::class)
-    ->group(function () {    
+    ->group(function () {
         Route::get('/resultados', 'show')->name('resultados');
         Route::get('/resultados_data', 'show_data')->name('resultados.data');
         Route::post('scores', 'store')->name('scores');
@@ -60,7 +60,7 @@ Route::controller(ParticipantController::class)
 
 
 
-    
+
 
 
 
