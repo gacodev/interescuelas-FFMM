@@ -23,4 +23,5 @@ class Sport extends Model
     {
         return $this->hasMany(Discipline::class);
     }
+
 }

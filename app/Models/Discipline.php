@@ -29,4 +29,8 @@ class Discipline extends Model
     {
         return $this->hasMany(Participant::class);
     }
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

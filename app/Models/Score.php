@@ -15,4 +15,9 @@ class score extends Model
     {
         return $this->belongsTo(Participant::class);
     }
+
+    public function disciplines()
+    {
+        return $this->belongsToMany(Discipline::class);
+    }
 }

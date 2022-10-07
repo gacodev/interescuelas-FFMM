@@ -28,8 +28,9 @@ class ScoreController extends Controller
             ->join('forces', 'forces.id', '=', 'force_id')
             ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
             ->paginate(5);
-        $sports = Sport::select('id','sport')->get();
-        
+       $sports = Sport::select('id','sport')->get();
+        //$sports =  Sport::with(["discipline.scores"])->get();
+
         /*$sport =  Sport::with([
             "discipline.participants.scores",
         ])->get();
@@ -37,7 +38,7 @@ class ScoreController extends Controller
 
         return $sport;
         */
-        //dd($sports);
+        //return $sports;
         return view('awards.awards', compact('sports', 'participants'));
     }
 
