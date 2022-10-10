@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
-            RhSeeder::class,
             BloodSeeder::class,
             RoleSeeder::class,
             SportsSeeder::class,
@@ -32,9 +31,8 @@ class DatabaseSeeder extends Seeder
             RangeSeeder::class,
             TeamSeeder::class,
             ParticipantSeeder::class,
-            ScoreSeeder::class,
-            TeamScoresSeeder::class,
-            
+            DisciplineParticipantSeeder::class
+
         ]);
 
         \App\Models\User::factory()->create([

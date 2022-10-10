@@ -38,10 +38,10 @@ class Participant extends Model
 
     public function discipline()
     {
-        return $this->belongsTo(Discipline::class);
+        return $this->belongsToMany(Discipline::class);
     }
-    public function scores()
+    public function disciplineParticipants()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(DisciplineParticipant::class);
     }
 }

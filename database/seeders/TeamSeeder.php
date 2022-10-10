@@ -15,14 +15,9 @@ class TeamSeeder extends Seeder
     public function run()
     {
         DB::table('teams')->insert([
-            ['name'=>'esgrima 1','discipline_id' => 1,'force_id' => 1,'sport_id'=>1],
-            ['name'=>'futbol 8','discipline_id' => 1,'force_id' => 2,'sport_id'=>2],
-            ['name'=>'baloncesto','discipline_id' => 1,'force_id' => 3,'sport_id'=>3],
-            /*['discipline_id' => 1,'force_id' => 4],
-            ['discipline_id' => 2,'force_id' => 1],
-            ['discipline_id' => 2,'force_id' => 2],
-            ['discipline_id' => 2,'force_id' => 3],
-            ['discipline_id' => 2,'force_id' => 4],*/
+            ['name'=>'esgrima EJC','force_id' => 1,'discipline_id'=>1],
+            ['name'=>'futbol FAC','force_id' => 2,'discipline_id'=>2],
+            ['name'=>'baloncesto ARC','force_id' => 3,'discipline_id'=>3],
         ]);
     }
 }

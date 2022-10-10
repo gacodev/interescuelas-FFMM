@@ -134,25 +134,6 @@ class ParticipantController extends Controller
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
 
-    public function search(Request $request)
-    {
-        $busqueda = trim($request->get('busqueda'));
-
-        $participants = DB::table('participants')
-            ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->join('scores', 'scores.participant_id', '=', 'participants.id')
-            ->where('name', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('nationality', 'LIKE', '%' . $busqueda . '%')
-            ->orderBy('name', 'asc')
-            ->paginate(6);
-        //dd($participants);
-        return view('participants.participants', compact('participants', 'busqueda'));
-    }
     public function searchToEdit(Request $request)
     {
         $busqueda = trim($request->get('busqueda'));
