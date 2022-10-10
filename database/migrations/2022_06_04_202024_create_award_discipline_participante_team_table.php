@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('discipline_participants', function (Blueprint $table) {
             $table->id()->unique();
-            $table->foreignId('award_id')->constrained()->nullable();
+            $table->unsignedBigInteger('award_id')->nullable();
+            $table->foreign('award_id')->references("id")->on("awards");
+
             $table->foreignId('discipline_id')->constrained();
             $table->foreignId('participant_id')->constrained();
-            $table->foreignId('team_id')->constrained()->nullable();
+
+            $table->unsignedBigInteger('team_id')->nullable();
+            $table->foreign('team_id')->references("id")->on("teams");
+
             $table->timestamps();
         });
     }

@@ -41,16 +41,29 @@
                                     <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
                                             class="mx-2">Edad: </strong>
                                         {{ $carbon::parse($participant->birthday)->age }} años</p>
-                                    <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
-                                            class="mx-2">Disciplinas: </strong>
-                                    <ul>
+                                    <p class="card-text m-2 col-12 d-flex justify-content-left lh-1">
                                         @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                                            <li style="list-style: none">
-                                                {{ $disciplineParticipant->discipline->discipline }} -
-                                                {{ $disciplineParticipant->discipline->sport->sport }}
-                                            </li>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Disciplina: {{ $disciplineParticipant->discipline->discipline }}
+                                                </div>
+                                                <div class="card-body">
+                                                    <blockquote class="blockquote mb-0">
+                                                        <p>Deporte:
+                                                            {{ $disciplineParticipant->discipline->sport->sport }}</p>
+
+
+                                                        <footer class="blockquote mb-0">Medalla:
+                                                            @if (isset($disciplineParticipant->award->award))
+                                                                {{ $disciplineParticipant->award->award }}
+                                                            @else
+                                                                N/a
+                                                            @endif
+                                                        </footer>
+                                                    </blockquote>
+                                                </div>
+                                            </div>
                                         @endforeach
-                                    </ul>
                                     </p>
                                 </div>
                             </div>
