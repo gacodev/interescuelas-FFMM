@@ -15,7 +15,14 @@ class Participants extends Component
 
     public function render()
     {
-        $participant = Participant::where('name', 'like', '%' . $this->search . '%')
+        $participant = Participant::with([
+            "disciplineParticipants",
+            "disciplineParticipants.award",
+            "disciplineParticipants.discipline",
+            "disciplineParticipants.discipline.sport",
+            "force",
+            "nationality",
+        ])->where('name', 'like', '%' . $this->search . '%')
             ->orWhere('identification', 'like', '%' . $this->search . '%')
             ->paginate(6);
 
