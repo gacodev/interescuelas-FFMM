@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger("sport_id");
-            $table->foreign("sport_id")->references("id")->on("disciplines")->nullable();
+            $table->foreignId('sport_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->unsignedBigInteger("force_id");
             $table->foreign("force_id")->references("id")->on("forces")->nullable();
-            $table->unsignedBigInteger("discipline_id");
-            $table->foreign("discipline_id")->references("id")->on("disciplines")->nullable();
+            $table->foreignId('discipline_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('award_id')->nullable();
             $table->foreign('award_id')->references("id")->on("awards");
 
-            $table->foreignId('discipline_id')->constrained();
+            $table->foreignId('discipline_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('participant_id')->constrained();
 
             $table->unsignedBigInteger('team_id')->nullable();

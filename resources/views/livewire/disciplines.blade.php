@@ -37,7 +37,56 @@
                 </form>
                 @endrole
             </tr>
+
         @endforeach
+
     </table>
+    @if (\Session::has('success'))
+    <div class="alert alert-success">
+        <p class="text-center">{!! \Session::get('success') !!}</p>
+    </div>
+    @endif
+    <div class="modal" tabindex="-1" id="agregar" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center"><strong>Agregar Disciplinas</strong></h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        <div class="modal-body">
+        <form action="/disciplinas/create" method="POST">
+            @csrf
+            @method('POST')
+            <div>
+                <strong class="d-inline-block">Nombre de Disciplina</strong>
+                <input type="text" name ="discipline" id="discipline"class="form-control" required>
+                <strong class="d-inline-block">descripcion</strong>
+                <textarea type="text" name ="description" id="description" class="form-control" required></textarea>
+                <strong class="d-inline-block">Deporte al que pertenece</strong>
+                <select name="sport_id" id="sport_id" class="form-select" required>
+                    <option value="1">Futbol</option>
+                    <option value="2">Atletismo</option>
+                </select>
+                <strong class="d-inline-block">Imagen</strong>
+                <input type="file" name ="discipline_image" name="discipline_image" class="form-control" required>
+                <strong class="d-inline-block">Genero</strong>
+                <select name="gender_id" class="form-select" id="gender_id">
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
+                    <option value="3">No binario</option>
+                </select>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <button type="button" id="cancelar" class="btn btn-danger"
+            data-bs-dismiss="modal">Cancelar</button>
+        </div>
+            </form>
+            </div>
+            </div>
+        </div>
+ </div>
 </div>
 </div>

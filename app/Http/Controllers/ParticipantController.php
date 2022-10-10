@@ -95,12 +95,13 @@ class ParticipantController extends Controller
      * @param  \App\Models\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function show(Participant $participant)
-    {
-        $data = Participant::all(); //->where($force_id= $fuerza);
-        return $data;
-    }
 
+
+    public function edit(Participant $participant)
+    {
+
+        return view('components.editar');
+    }
 
 
     /**

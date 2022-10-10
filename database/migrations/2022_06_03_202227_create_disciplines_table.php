@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreignId('gender_id')->constrained();
             $table->foreignId('sport_id')->constrained();
             $table->unique(['discipline', 'sport_id', 'gender_id']);
-            $table->boolean('team')->nullable();
         });
     }
 

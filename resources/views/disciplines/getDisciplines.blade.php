@@ -4,7 +4,8 @@
 <div class="container">
     @can('/participantes/registro')
             <div class="d-flex flex-row-reverse">
-            <a class="btn btn-primary mb-2" aria-current="page" href="/participantes/registro">Agregar Disciplina</a>
+            <button class="btn btn-primary mb-2" data-bs-toggle="modal"
+            data-bs-target="#agregar" aria-current="page">Agregar Disciplina</button>
             </div>
     @endcan
     @livewire('disciplines')
