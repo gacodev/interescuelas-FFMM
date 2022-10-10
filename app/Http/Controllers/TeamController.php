@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -19,12 +20,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $TeamParticipants =  Team::with([
-            "participants.scores",
-        ])->paginate(2);
-        //dd($TeamParticipants);
-        //return $TeamParticipants;
-        return view('teams.teams',compact('TeamParticipants'));
+        return view('teams.teams');
     }
 
     /**

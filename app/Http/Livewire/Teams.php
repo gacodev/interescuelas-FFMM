@@ -17,10 +17,11 @@ class Teams extends Component
     public function render()
     {
         $TeamParticipants =  Team::with([
-            "participants.scores",
+            "force",
+            "disciplineParticipants",
+            "disciplineParticipants.participant",
         ])->where('name', 'like', '%' . $this->search . '%')
-        ->paginate(2);
-        return view('livewire.teams',compact('TeamParticipants'));
-
+            ->paginate(2);
+        return view('livewire.teams', compact('TeamParticipants'));
     }
 }

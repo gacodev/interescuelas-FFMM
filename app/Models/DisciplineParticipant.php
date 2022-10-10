@@ -18,7 +18,7 @@ class DisciplineParticipant extends Model
         'team_id'
     ];
 
-    public function participants()
+    public function participant()
     {
         return $this->belongsTo(Participant::class);
     }

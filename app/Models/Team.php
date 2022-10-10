@@ -16,13 +16,18 @@ class Team extends Model
         'discipline_id'
     ];
 
+    public function force()
+    {
+        return $this->belongsTo(Force::class);
+    }
+
     public function participants()
     {
         return $this->hasMany(Participant::class);
     }
 
-    public function team_scores()
+    public function disciplineParticipants()
     {
-        return $this->hasMany(TeamScores::class);
+        return $this->hasMany(DisciplineParticipant::class);
     }
 }
