@@ -19,17 +19,16 @@ class ScoreController extends Controller
      */
     public function index()
     {
+        $participants = Participant::with([
+            "disciplineParticipants",
+            "disciplineParticipants.award",
+            "disciplineParticipants.discipline",
+            "disciplineParticipants.discipline.sport",
+            "force",
+            "nationality",
+        ])->paginate(5);
 
-        $participants = DB::table('participants')
-            //->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.force_image')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
-       $sports = Sport::select('id','sport')->get();
-        //$sports =  Sport::with(["discipline.scores"])->get();
+        $sports =  Sport::with(["discipline"])->get();
 
         /*$sport =  Sport::with([
             "discipline.participants.scores",
@@ -42,7 +41,7 @@ class ScoreController extends Controller
         return view('awards.awards', compact('sports', 'participants'));
     }
 
-/**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,7 +49,7 @@ class ScoreController extends Controller
      */
     public function getDisciplineBySport(Request $request, Sport $sport)
     {
-        $disciplines = Discipline::where('sport_id', '=',$sport->id)->get();
+        $disciplines = Discipline::where('sport_id', '=', $sport->id)->get();
         $participants = DB::table('participants')
             ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
             ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
@@ -59,13 +58,13 @@ class ScoreController extends Controller
             ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
             ->paginate(5);
         //return $disciplines;
-        return view('awards.disciplines',compact('disciplines','participants'));
-
+        return view('awards.disciplines', compact('disciplines', 'participants'));
     }
 
 
-    public function getParticipantsByDiscipline(Request $request, Discipline $discipline){
-        $participantsByDiscipline = Participant::where('discipline_id', '=',$discipline->id)->paginate(5);
+    public function getParticipantsByDiscipline(Request $request, Discipline $discipline)
+    {
+        $participantsByDiscipline = Participant::where('discipline_id', '=', $discipline->id)->paginate(5);
         $participants = DB::table('participants')
             ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
             ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
@@ -73,7 +72,7 @@ class ScoreController extends Controller
             ->join('forces', 'forces.id', '=', 'force_id')
             ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
             ->paginate(5);
-        return view('awards.participants',compact('participantsByDiscipline','participants'));
+        return view('awards.participants', compact('participantsByDiscipline', 'participants'));
     }
     /**
      * Store a newly created resource in storage.

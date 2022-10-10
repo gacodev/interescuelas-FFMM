@@ -15,7 +15,8 @@
 
             @foreach ($participants as $participant)
                 <div class="card border-dark my-2 mx-2 col-lg-3 col-md-4 col-xs-12 col-sm-4 col-xl-3 mw-100">
-                    <div class="card-header text-center text-white" style="background-color:{{ $participant->color }}">
+                    <div class="card-header text-center text-white"
+                        style="background-color:{{ $participant->force->color }}">
                         <strong>{{ $participant->force->force }}</strong>
                         <img src="{{ $participant->force->force_image }}" width="50" height="50" alt=""
                             class="d-inline">
