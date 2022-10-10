@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('competences', function (Blueprint $table) {
+        Schema::create('discipline_participants', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('award_id')->constrained()->nullable();
             $table->foreignId('discipline_id')->constrained();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competences');
+        Schema::dropIfExists('discipline_participants');
     }
 };

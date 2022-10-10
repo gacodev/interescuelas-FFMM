@@ -13,12 +13,11 @@
         @endif
         <div class="d-flex flex-wrap justify-content-center">
 
-
             @foreach ($participants as $participant)
                 <div class="card border-dark my-2 mx-2 col-lg-3 col-md-4 col-xs-12 col-sm-4 col-xl-3 mw-100">
                     <div class="card-header text-center text-white" style="background-color:{{ $participant->color }}">
-                        <strong>{{ $participant->force }}</strong>
-                        <img src="{{ $participant->force_image }}" width="50" height="50" alt=""
+                        <strong>{{ $participant->force->force }}</strong>
+                        <img src="{{ $participant->force->force_image }}" width="50" height="50" alt=""
                             class="d-inline">
                     </div>
 
@@ -28,25 +27,31 @@
                             <div>
                                 <img class="img-card d-inline-block" src="{{ $participant->photo }}" alt=""
                                     width="120" height="80">
-                                <img src="{{ $participant->flag_image }}" width="50" height="50" alt=""
-                                    class="mt-2 d-inline-block">
+                                <img src="{{ $participant->nationality->flag_image }}" width="50" height="50"
+                                    alt="" class="mt-2 d-inline-block">
                             </div>
 
                             <div class="d-flex mb-2 d-block justify-content-center container">
                                 <div class="row d-flex">
                                     <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
                                             class="mx-2 ">Nacionalidad: </strong>
-                                        {{ $participant->nationality }}</p>
+                                        {{ $participant->nationality->nationality }}</p>
                                     <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
                                             class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
                                     <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
                                             class="mx-2">Edad: </strong>
                                         {{ $carbon::parse($participant->birthday)->age }} años</p>
                                     <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
-                                            class="mx-2">Deporte: </strong> {{ $participant->sport }}</p>
-                                    <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
-                                            class="mx-2">Disciplina: </strong>
-                                        {{ $participant->discipline }}</p>
+                                            class="mx-2">Disciplinas: </strong>
+                                    <ul>
+                                        @foreach ($participant->disciplineParticipants as $disciplineParticipant)
+                                            <li style="list-style: none">
+                                                {{ $disciplineParticipant->discipline->discipline }} -
+                                                {{ $disciplineParticipant->discipline->sport->sport }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    </p>
                                 </div>
                             </div>
                             @role('admin')
@@ -107,7 +112,7 @@
                                     <div class="d-inline-block w-40 mt-2">
                                         <strong class="d-block">{{ $participant->name }}</strong>
                                         <strong class="d-block">{{ $participant->sport }}</strong>
-                                        <strong class="d-block">{{ $participant->discipline }}</strong>
+                                        <strong class="d-block"></strong>
                                     </div>
                                     <div class="mt-2">
                                         <form action="/scores" method="post">

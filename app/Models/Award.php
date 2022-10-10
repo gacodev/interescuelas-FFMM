@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Force extends Model
+class Award extends Model
 {
     use HasFactory;
 
-    protected $table= "forces";
+    public $timestamps = false;
+    protected $table = "awards";
 
     protected $fillable = [
-        "force",
+        "award",
+        "description",
         "image",
-        "flag_image"
     ];
-
-    public function grades()
-    {
-        return $this->hasMany(Grade::class);
-    }
 }

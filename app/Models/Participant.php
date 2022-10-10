@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,17 +32,19 @@ class Participant extends Model
         'phone',
         'team_id'
     ];
-    public function team()
+
+    public function force()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Force::class);
     }
 
-    public function discipline()
-    {
-        return $this->belongsToMany(Discipline::class);
-    }
     public function disciplineParticipants()
     {
         return $this->hasMany(DisciplineParticipant::class);
+    }
+
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class);
     }
 }

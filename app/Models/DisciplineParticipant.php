@@ -20,6 +20,21 @@ class DisciplineParticipant extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(Participant::class);
+        return $this->belongsTo(Participant::class);
+    }
+
+    public function award()
+    {
+        return $this->belongsTo(Award::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
+    public function discipline()
+    {
+        return $this->belongsTo(Discipline::class);
     }
 }

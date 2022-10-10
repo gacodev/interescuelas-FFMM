@@ -15,11 +15,13 @@ class Participants extends Component
 
     public function render()
     {
+        $participant = Participant::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('identification', 'like', '%' . $this->search . '%')
+            ->paginate(6);
+
+
         return view('livewire.participants', [
-            'participants' => Participant::
-                 where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('identification', 'like', '%' . $this->search . '%')
-                ->paginate(6)
+            'participants' => $participant
         ]);
     }
 }
