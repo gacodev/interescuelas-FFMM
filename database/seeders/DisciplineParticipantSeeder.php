@@ -22,6 +22,7 @@ class DisciplineParticipantSeeder extends Seeder
             ['award_id' => 1, 'participant_id' => 4, 'team_id' => 2, 'discipline_id' => 3],
             ['award_id' => 2, 'participant_id' => 5, 'team_id' => 2, 'discipline_id' => 3],
             ['award_id' => 3, 'participant_id' => 6, 'team_id' => 2, 'discipline_id' => 3],
-        ]);
+            ['award_id' => 3, 'participant_id' => 6, 'team_id' => 2, 'discipline_id' => 2],
+            ['award_id' => 3, 'participant_id' => 1, 'team_id' => 2, 'discipline_id' => 2],        ]);
     }
 }

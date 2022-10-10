@@ -134,18 +134,6 @@ class ParticipantController extends Controller
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
 
-    public function searchToEdit(Request $request)
-    {
-        $busqueda = trim($request->get('busqueda'));
-
-        $participants = DB::table('participants')
-            ->where('name', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
-            ->orderBy('name', 'asc')
-            ->paginate(5);
-        //dd($participants);
-        return view('components.editar', compact('participants', 'busqueda'));
-    }
     /**
      * Remove the specified resource from storage.
      *

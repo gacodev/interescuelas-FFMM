@@ -47,4 +47,8 @@ class Participant extends Model
     {
         return $this->belongsTo(Nationality::class);
     }
+    public function disciplines()
+    {
+        return $this->belongsTo(Discipline::class);
+    }
 }

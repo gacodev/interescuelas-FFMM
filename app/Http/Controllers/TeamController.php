@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Participant;
-use App\Models\TeamParticipant;
-use App\Models\Scores;
+use App\Models\Force;
+use App\Models\Range;
+use App\Models\Sport;
+use App\Models\Discipline;
 
 
 class TeamController extends Controller
@@ -22,16 +24,36 @@ class TeamController extends Controller
     {
         return view('teams.teams');
     }
-
+    public function teams_create()
+    {
+        $search = '';
+        $forceValues = Force::all()->pluck('force', 'id');
+        $sportValues = Sport::all()->pluck('sport', 'id');
+        $disciplineValues = Discipline::where('sport_id', 'like','%'.$search.'%')->pluck('discipline', 'id');
+        return view('teams.teamscreate', compact('forceValues', 'sportValues','disciplineValues'));
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'force_id' => 'required|exists:forces,id',
+            'sport_id' => 'required|exists:sports,id',
+            'discipline_id' => 'required|exists:disciplines,id',
+        ]);
+
+        $data = new Team($request->all());
+        $data->save();
+
+        $request->session()->flash('status', 'Se creo satisfactoriamente!');
+
+        return redirect()->back();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -76,6 +98,14 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function Range_show(Request $request)
+    {
+        $rangeValues = Range::where("force_id", "=", $request->force_id)->get([
+            "id", "range"
+        ]);
+        return $RangeValues;
     }
 
     /**
