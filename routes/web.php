@@ -28,7 +28,7 @@ Route::controller(TeamController::class)
         Route::get('/equipos', 'index')->name('teams.index');
         Route::get('/equipos/form', 'teams_create')->name('teams.form');
         Route::post('/equipos/crear', 'create')->name('teams.create');
-        Route::get('/forces/{force_id}/grade', 'grade_show')->name('teams.grade_show');
+        Route::get('/forces/{force_id}/range', 'range_show')->name('teams.range_show');
         Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
     });
 Route::controller(ScoreController::class)

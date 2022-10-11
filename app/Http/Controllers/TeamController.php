@@ -100,9 +100,10 @@ class TeamController extends Controller
         //
     }
 
-    public function Range_show(Request $request)
+    public function range_show(Request $request)
     {
-        $rangeValues = Range::where("force_id", "=", $request->force_id)->get([
+
+        $rangeValues = Range::where("force_id", "like", $request->force_id)->get([
             "id", "range"
         ]);
         return $RangeValues;

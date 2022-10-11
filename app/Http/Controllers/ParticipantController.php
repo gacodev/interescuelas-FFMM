@@ -55,8 +55,6 @@ class ParticipantController extends Controller
             'email' => 'required|unique:participants',
             'birthday' => 'required',
             'gender_id' => 'required|exists:genders,id',
-            'sport_id' => 'required|exists:sports,id',
-            'Discipline_id' => 'required|exists:disciplines,id'
         ]);
 
         $data = new Participant($request->all());

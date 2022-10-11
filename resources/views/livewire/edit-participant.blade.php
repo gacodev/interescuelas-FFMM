@@ -28,6 +28,7 @@
                             <th scope="col">Disciplinas</th>
                             <th scope="col">Modificar</th>
                             <th colspan="2" scope="col">Disciplinas</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -72,9 +73,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"><strong>Edicion de Datos</strong></h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                                     </div>
                                     <div class="modal-body">
                                         <form action="/participantes/{{$participant->id}}" method="POST">

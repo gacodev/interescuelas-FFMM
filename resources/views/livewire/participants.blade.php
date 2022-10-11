@@ -88,9 +88,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title"></h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                             </div>
                             <div class="modal-body">
                                 <div>
@@ -112,9 +110,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title"> Escoja la medalla a asignar</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                             </div>
                             <div class="modal-body">
 
