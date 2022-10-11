@@ -42,28 +42,31 @@ class ScoreController extends Controller
     public function getDisciplineBySport(Request $request, Sport $sport)
     {
         $disciplines = Discipline::where('sport_id', '=', $sport->id)->get();
-        $participants = DB::table('participants')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
-        //return $disciplines;
+        $participants = Participant::with([
+            "disciplineParticipants",
+            "disciplineParticipants.award",
+            "disciplineParticipants.discipline",
+            "disciplineParticipants.discipline.sport",
+            "force",
+            "nationality",
+        ])->paginate(5);
         return view('awards.disciplines', compact('disciplines', 'participants'));
     }
 
 
     public function getParticipantsByDiscipline(Request $request, Discipline $discipline)
     {
-        $participantsByDiscipline = Participant::where('discipline_id', '=', $discipline->id)->paginate(5);
-        $participants = DB::table('participants')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
+        $participantsByDiscipline = DisciplineParticipant::with(["participant"])
+            ->where('discipline_id', '=', $discipline->id)->paginate(5);
+
+        $participants = Participant::with([
+            "disciplineParticipants",
+            "disciplineParticipants.award",
+            "disciplineParticipants.discipline",
+            "disciplineParticipants.discipline.sport",
+            "force",
+            "nationality",
+        ])->paginate(5);
         return view('awards.participants', compact('participantsByDiscipline', 'participants'));
     }
     /**
