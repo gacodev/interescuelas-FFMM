@@ -9,8 +9,7 @@
                     <div class="card-header text-center">
                         <h1> <strong>{{ __('Editar de Participantes') }}</strong></h1>
                     </div>
-
-                    @livewire('edit-participants')
+                    @livewire('edit-participant')
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ class EditParticipant extends Component
             ->paginate(6);
 
 
-        return view('livewire.edit-participants', [
+        return view('livewire.edit-participant', [
             'participants' => $participant
         ]);
     }
