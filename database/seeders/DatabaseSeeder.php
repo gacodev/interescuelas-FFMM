@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
 
             BloodSeeder::class,
             RoleSeeder::class,
-            SportsSeeder::class,
+            //SportsSeeder::class,
             NationalitySeeder::class,
             AwardsSeeder::class,
             ForcesSeeder::class,
             DocsSeeder::class,
             GenderSeeder::class,
-            DisciplinesSeeder::class,
+            //DisciplinesSeeder::class,
             RangeSeeder::class,
-            TeamSeeder::class,
+            //TeamSeeder::class,
             //ParticipantSeeder::class,
             //DisciplineParticipantSeeder::class
 

@@ -8,7 +8,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             @foreach ($participants as $participant)
                 <div class="col-12 col-md-6 col-lg-4 p-2">
                     <div class="card border-dark">

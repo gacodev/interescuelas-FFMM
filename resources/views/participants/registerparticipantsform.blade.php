@@ -66,18 +66,6 @@
                         @endif
                     </div>
 
-                    <div required class="form-group mt-2">
-                        {{ Form::label('Grado', null, ['class' => 'control-label']) }}
-                        {{ Form::select('range_id', [], null, array_merge(['class' => 'form-control', 'required' => true, 'id' => 'ranges'], [])) }}
-
-                        @if ($errors->has('range_id'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ $errors->first('range_id') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        @endif
-                    </div>
-
                     <div required class="form-group mt-3">
                         <label>Nombre Completo</label>
                         <input type="text" name="name" required class="form-control">
@@ -161,34 +149,4 @@
         </div>
     </div>
 </div>
-
-<script>
-
-
-    let ranges = document.getElementById("ranges");
-
-    function insertranges(data) {
-        let options = `<option value="0"></option>`;
-
-        data.map(element => {
-            options += `<option value="${element.id}">${element.range}</option>`;
-        })
-
-        ranges.innerHTML = options;
-    }
-
-    function getForce(e) {
-        let value = e.target.value;
-        axios.get(`/forces/${value}/range`)
-            .then(res => {
-                console.log(res.data)
-                insertranges(res.data)
-            })
-    }
-
-    let force = document.getElementById("force");
-    force.addEventListener("change", getForce)
-    let gender = document.getElementById("gender_id");
-
-</script>
 @endsection
