@@ -49,7 +49,7 @@ class Discipline extends Model
 
     public function getSilverAwardAttribute()
     {
-        $award = Award::where("award", "=", "silver")->first();
+        $award = Award::where("award", "=", "plata")->first();
         $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
         return $countAward;
     }
