@@ -11,7 +11,6 @@ class DisciplineParticipant extends Model
     protected $table = "discipline_participants";
 
     protected $fillable = [
-
         'discipline_id',
         'participant_id',
         'award_id',

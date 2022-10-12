@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
             DisciplinesSeeder::class,
             RangeSeeder::class,
             TeamSeeder::class,
-            ParticipantSeeder::class,
-            DisciplineParticipantSeeder::class
+            //ParticipantSeeder::class,
+            //DisciplineParticipantSeeder::class
 
         ]);
 

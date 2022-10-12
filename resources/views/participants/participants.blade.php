@@ -3,7 +3,7 @@
 @section('content')
     @inject('carbon', 'Carbon\Carbon')
 
-    <div class="container d-flex">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
                 @can('/participantes/registro')
