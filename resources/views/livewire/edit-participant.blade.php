@@ -20,12 +20,12 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Fotografia</th>
-                            <th scope="col">Tipo de sangre</th>
+                            <th scope="col">RH</th>
                             <th scope="col">Peso</th>
                             <th scope="col">Estatura</th>
                             <th scope="col">Genero</th>
-                            <th scope="col">Fecha de Nacimiento</th>
-                            <th scope="col">Disciplinas</th>
+                            <th scope="col">Cumpleanos</th>
+                            <th colspan="2" scope="col">Disciplinas</th>
                             <th scope="col">Modificar</th>
                             <th colspan="2" scope="col">Disciplinas</th>
 
@@ -44,7 +44,7 @@
                             <td>{{$participant->gender_id}}</td>
                             <td>{{$participant->birthday}}</td>
                             @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                            <td class="d-flex flex-column">
+                            <td class="d-inline-flex">
                                 <div class="card p-0 m-0">
                                     <div class="card-body p-0 m-0">
                                         <strong>Deporte:</strong>
@@ -87,7 +87,7 @@
                                             <input type="text" name="phone" class="form-control" value="{{$participant->phone}}">
                                             <strong class="d-inline-block">Foto</strong>
                                             <input type="file" name="photo" class="form-control" value="{{$participant->photo}}">
-                                            <strong class="d-inline-block">Tipo de sangre</strong>
+                                            <strong class="d-inline-block">RH</strong>
                                             <input type="text" name="blood_id" class="form-control" value="{{$participant->blood_id}}">
                                             <strong class="d-inline-block">Peso</strong>
                                             <input type="text" name="weight" class="form-control" value="{{$participant->weight}}">
@@ -120,14 +120,44 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/participantes/{{$participant->id}}" method="POST">
+                                        <form action="/participantes/asociar" method="POST">
                                             @csrf
-                                            @method('PATCH')
+                                            <input type="hidden" name="participant_id"value="{{ $participant->id }}">
                                             <strong class="d-inline-block text-center">Lista de equipos</strong>
-                                            <select name="equipos" id="teams">
-                                                <option value="{{ 1 }}">futbol</option>
-                                                <option value="{{ 1 }}">baloncesto</option>
-                                                <option value="{{ 1 }}">esgrima</option>
+                                            <select class="form-select" name="discipline_id" id="disciplines">
+                                                @foreach ($disciplines as $discipline )
+                                                <option value="{{ $discipline->id }}">{{ $discipline->discipline }}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
+                                        <button type="button" id="cancelar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                          <div class="modal" tabindex="-1" id="desasociar{{$participant->id}}" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center"><strong>Edicion de Datos</strong></h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/participantes/asociar" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="participant_id"value="{{ $participant->id }}">
+                                            <strong class="d-inline-block text-center">Lista de equipos</strong>
+                                            <select class="form-select" name="discipline_id" id="disciplines">
+                                                @foreach ($disciplines as $discipline )
+                                                <option value="{{ $discipline->id }}">{{ $discipline->discipline }}</option>
+                                                @endforeach
                                             </select>
                                     </div>
                                     <div class="modal-footer">

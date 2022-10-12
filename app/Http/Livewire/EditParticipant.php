@@ -5,6 +5,8 @@ use App\Models\Participant;
 use Livewire\WithPagination;
 
 use Livewire\Component;
+use App\Models\Discipline;
+
 
 class EditParticipant extends Component
 {
@@ -25,9 +27,19 @@ class EditParticipant extends Component
             ->orWhere('identification', 'like', '%' . $this->search . '%')
             ->paginate(6);
 
+        $disciplines = Discipline::get();
+
 
         return view('livewire.edit-participant', [
-            'participants' => $participant
+            'participants' => $participant,
+            'disciplines' => $disciplines
         ]);
     }
+
+
+    public function getdisciplinas($participant){
+        $disciplinesparticipant = DisciplineParticipant::
+        where('participant_id','=', $participant);
+        return $disciplinesparticipant;
+  }
 }

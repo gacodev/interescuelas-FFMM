@@ -19,6 +19,7 @@ use App\Models\Type_doc;
 use App\Imports\ExcelImport;
 use App\Imports\SportsImport;
 use App\Imports\TeamsImport;
+use App\Models\DisciplineParticipant;
 
 class ParticipantController extends Controller
 {
@@ -85,6 +86,35 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function asociar(Request $request){
+
+        $validated = $request->validate([
+            'discipline_id' => 'required|integer',
+            'participant_id' => 'required|integer'
+        ]);
+
+        if($validated){
+            $data = new DisciplineParticipant($request->all());
+            $data->save();
+            $request->session()->flash('success', 'Se asocio a esta disciplina satisfactoriamente!');
+            return redirect()->back();
+        }
+        else{
+            return back()->$request->session()->flash('status', 'error');
+        }
+    }
+
+
+
+    public function desasociar(Request $request, DisciplineParticipant $disciplineparticipant)
+    {
+        $disciplineparticipant->update([
+            'discipline_id' => $request->null,
+        ]);
+        $request->session()->flash('success', 'Se desasocio a esta disciplina satisfactoriamente!');
+        return redirect()->back();
     }
 
     /**
