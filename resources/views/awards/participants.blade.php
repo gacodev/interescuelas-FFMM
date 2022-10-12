@@ -52,10 +52,10 @@
                                             <div class="ms-3">
                                                 <td>1</td>
                                                 <td>{{ $participantByDiscipline->discipline->discipline }}</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
+                                                <td>{{ $participantByDiscipline->participant->gold_award }}</td>
+                                                <td>{{ $participantByDiscipline->participant->silver_award }}</td>
+                                                <td>{{ $participantByDiscipline->participant->bronze_award }}</td>
+                                                <td>{{ $participantByDiscipline->participant->total_award }}</td>
 
 
                                         </tr>

@@ -51,4 +51,32 @@ class Participant extends Model
     {
         return $this->belongsTo(Discipline::class);
     }
+
+    public function getGoldAwardAttribute()
+    {
+        $award = Award::where("award", "=", "oro")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getSilverAwardAttribute()
+    {
+        $award = Award::where("award", "=", "plata")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getBronzeAwardAttribute()
+    {
+        $award = Award::where("award", "=", "bronce")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getTotalAwardAttribute()
+    {
+        $awards = Award::all()->pluck("id");
+        $countAward = $this->disciplineParticipants->whereIn("award_id", $awards)->count();
+        return $countAward;
+    }
 }
