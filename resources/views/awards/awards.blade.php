@@ -47,10 +47,10 @@
                                             </td>
                                             <div class="ms-3">
                                                 <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
+                                                <td>{{ $sport->gold_award }}</td>
+                                                <td>{{ $sport->silver_award }}</td>
+                                                <td>{{ $sport->bronze_award }}</td>
+                                                <td>{{ $sport->total_award }}</td>
 
                                         </tr>
                                     @endforeach

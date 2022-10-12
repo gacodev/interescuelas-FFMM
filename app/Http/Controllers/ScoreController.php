@@ -29,7 +29,13 @@ class ScoreController extends Controller
             "nationality",
         ])->paginate(5);
 
-        $sports =  Sport::with(["discipline"])->get();
+        $sports =  Sport::with([
+            "discipline",
+            "discipline.disciplineParticipants",
+        ])->get();
+
+        //return $sports[12]->gold_award;
+        //return $sports[0]->discipline[0]->bronze_award;
         return view('awards.awards', compact('sports', 'participants'));
     }
 
