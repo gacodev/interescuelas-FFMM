@@ -16,6 +16,12 @@ class Team extends Model
         'discipline_id'
     ];
 
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
     public function force()
     {
         return $this->belongsTo(Force::class);

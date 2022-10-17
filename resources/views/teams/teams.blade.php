@@ -10,12 +10,14 @@
             </div>
 
             <div class="card col-12 mb-4">
-                        <div class="card-header text-center"><h1> <strong>{{ __('Listado de Equipos') }}</strong></h1></div>
-                        @livewire('teams')
-                        </div>
-                    </div>
+                <div class="card-header text-center">
+                    <h1> <strong>{{ __('Listado de Equipos') }}</strong></h1>
+                </div>
+                @livewire('teams')
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
