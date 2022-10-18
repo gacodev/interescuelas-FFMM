@@ -84,16 +84,16 @@ class ScoreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'participant_id' => $request->input('id'),
-            'discipline_id' => $request->input('discipline'),
-            'award_id' => $request->input('award')
+            'participant_id' => $request->id,
+            'discipline_id' => $request->discipline,
+            'award_id' => $request->award
         ]);
 
-        Score::create([
-            'participant_id' => $request->input('id'),
-            'discipline_id' => $request->input('discipline'),
-            'award_id' => $request->input('award')
-        ]);
+        $competencia = DisciplineParticipant::where("participant_id", "=", $request->id)
+            ->where("discipline_id", "=", $request->discipline)->first();
+
+        $competencia["award_id"] = $request->award;
+        $competencia->update();
 
         return redirect('/participantes')->withSuccess('medalla agregada correctamente');
     }

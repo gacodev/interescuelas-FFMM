@@ -127,10 +127,14 @@
                                 <div class="modal-body">
 
                                     <div>
-                                        <div class="d-inline-block w-40 mb-4">
-                                            <img src="{{ $participant->photo }}" alt="" width="120"
-                                                height="80">
+                                        <div class="col-8 col-md-8 col-lg-6 p-4">
+                                            <img class="img-card d-inline-block img-fluid img-thumbnail"
+                                                src="{{ $participant->photo }}" alt="">
+                                            <img src="{{ $participant->nationality->flag_image }}" width="80"
+                                                height="80" style="position: absolute; right: 1.5rem; "
+                                                alt="" class="mt-2 d-inline-block">
                                         </div>
+
                                         <div class="d-inline-block w-40 mt-2">
                                             <strong class="d-block">{{ $participant->name }}</strong>
                                             <strong class="d-block">{{ $participant->sport }}</strong>
@@ -140,9 +144,17 @@
                                             <form action="/scores" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $participant->id }}">
-                                                <input type="hidden" name="discipline"
-                                                    value="{{ $participant->discipline_id }}">
-                                                <select class="form-select" name="award" id="awards">
+                                                <select class="form-select" name="discipline" id="disciplines">
+                                                    @foreach ($participant->disciplineParticipants as $disciplineParticipant)
+                                                        @if (isset($disciplineParticipant->discipline->discipline))
+                                                            <option
+                                                                value="{{ $disciplineParticipant->discipline->id }}">
+                                                                {{ $disciplineParticipant->discipline->discipline }}
+                                                            </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                                <select class="form-select mt-4" name="award" id="awards">
                                                     <option value="1">oro</option>
                                                     <option value="2">Plata</option>
                                                     <option value="3">Bronce</option>
