@@ -4,6 +4,11 @@
         <i class="bi bi-search p-2"></i>
     </div>
 
+    @if (Session::has('success'))
+        <div class="alert alert-success text-center">
+            {{ Session::get('success') }}
+        </div>
+    @endif
 
     <div class="d-flex flex-wrap justify-content-center">
         @foreach ($TeamParticipants as $team)
@@ -61,6 +66,36 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal" tabindex="-1" id="desasociar{{ $disciplineParticipant->participant->id  }}" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+
+                                    <div class="modal-body">
+                                        <form action="/equipos/desasociar" method="POST">
+                                        @csrf
+                                        <p>va a eliminar a <strong>{{ $disciplineParticipant->participant->name }}</strong> del equipo</p>
+                                        <p>va a eliminar a <strong>{{ $disciplineParticipant->participant_id}}</strong> del equipo</p>
+                                        <input type="hidden" name="discipline" value="{{ $disciplineParticipant->discipline_id}}">
+                                        <input type="hidden" name="id" value="{{ $disciplineParticipant->participant->id}}">
+                                        <input type="hidden" name="team" value="{{ $disciplineParticipant->team_id}}">
+
+                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="desasociar" class="btn btn-danger" data-bs-dismiss="modal">desasociar</button>
+                                            <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                                            </form>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </table>
                     @endif
@@ -75,6 +110,8 @@
                 @endrole
             </div>
         </div>
+
+
         @endforeach
 
     </div>
@@ -176,20 +213,3 @@
     </div>
 
 
-    <div class="modal" tabindex="-1" id="desasociar" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="cerrar" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    </form>
-                </div>
-            </div>

@@ -29,7 +29,7 @@ class EditParticipant extends Component
 
         $disciplines = Discipline::get();
 
-
+        //dd($participant);
         return view('livewire.edit-participant', [
             'participants' => $participant,
             'disciplines' => $disciplines

@@ -114,7 +114,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-center"><strong>Edicion de Datos</strong></h5>
+                                        <h5 class="modal-title text-center"><strong>Asociar disciplina</strong></h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>

@@ -21,7 +21,6 @@ class DisciplineParticipant extends Model
     {
         return $this->belongsTo(Participant::class);
     }
-
     public function award()
     {
         return $this->belongsTo(Award::class);
