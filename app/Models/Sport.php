@@ -24,6 +24,11 @@ class Sport extends Model
         return $this->hasMany(Discipline::class);
     }
 
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
     public function getGoldAwardAttribute()
     {
         $award = Award::where("award", "=", "oro")->first();
@@ -69,5 +74,12 @@ class Sport extends Model
             ->count();
 
         return $countDiciplineParticipant;
+    }
+
+    public function getTotalTeamsAttribute()
+    {
+        $countTeams = $this->teams->count();
+
+        return $countTeams;
     }
 }
