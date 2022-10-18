@@ -108,13 +108,12 @@ class ParticipantController extends Controller
 
 
 
-    public function desasociar(Request $request, DisciplineParticipant $disciplineparticipant)
+    public function desasociar(Request $request)
     {
-        $disciplineparticipant->update([
-            'discipline_id' => $request->null,
-        ]);
-        $request->session()->flash('success', 'Se desasocio a esta disciplina satisfactoriamente!');
-        return redirect()->back();
+        //dd($request);
+        $result = DisciplineParticipant::where('discipline_id', '=', $request->discipline)->where('participant_id','=',$request->id);
+        $result->delete();
+        return redirect()->back()->withSuccess('Se desasocio correctamente la disciplina');
     }
 
     /**
