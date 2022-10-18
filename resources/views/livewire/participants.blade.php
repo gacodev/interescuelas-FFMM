@@ -27,7 +27,7 @@
 
                         <div class="card-body text-dark d-flex">
                             <div class="text-center">
-                                <div>
+                                <div class="col-8 col-md-8 col-lg-6 p-4">
                                     <img class="img-card d-inline-block img-fluid img-thumbnail"
                                         src="{{ $participant->photo }}" alt="">
 
