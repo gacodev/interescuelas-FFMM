@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                @include('awards.multiMedalist')
+                @livewire('multimedallist')
             </div>
         </div>
 

@@ -20,23 +20,12 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        $participants = Participant::with([
-            "disciplineParticipants",
-            "disciplineParticipants.award",
-            "disciplineParticipants.discipline",
-            "disciplineParticipants.discipline.sport",
-            "force",
-            "nationality",
-        ])->paginate(5);
-
         $sports =  Sport::with([
             "discipline",
             "discipline.disciplineParticipants",
         ])->get();
 
-        //return $sports[12]->gold_award;
-        //return $sports[0]->discipline[0]->bronze_award;
-        return view('awards.awards', compact('sports', 'participants'));
+        return view('awards.awards', compact('sports'));
     }
 
     /**
@@ -48,15 +37,8 @@ class ScoreController extends Controller
     public function getDisciplineBySport(Request $request, Sport $sport)
     {
         $disciplines = Discipline::where('sport_id', '=', $sport->id)->get();
-        $participants = Participant::with([
-            "disciplineParticipants",
-            "disciplineParticipants.award",
-            "disciplineParticipants.discipline",
-            "disciplineParticipants.discipline.sport",
-            "force",
-            "nationality",
-        ])->paginate(5);
-        return view('awards.disciplines', compact('disciplines', 'participants'));
+
+        return view('awards.disciplines', compact('disciplines'));
     }
 
 
@@ -65,15 +47,7 @@ class ScoreController extends Controller
         $participantsByDiscipline = DisciplineParticipant::with(["participant"])
             ->where('discipline_id', '=', $discipline->id)->paginate(5);
 
-        $participants = Participant::with([
-            "disciplineParticipants",
-            "disciplineParticipants.award",
-            "disciplineParticipants.discipline",
-            "disciplineParticipants.discipline.sport",
-            "force",
-            "nationality",
-        ])->paginate(5);
-        return view('awards.participants', compact('participantsByDiscipline', 'participants'));
+        return view('awards.participants', compact('participantsByDiscipline'));
     }
     /**
      * Store a newly created resource in storage.

@@ -63,8 +63,9 @@
                         </div>
                     </div>
                 </div>
-
-                @include('awards.multiMedalist')
+                @if (isset($disciplines[0]))
+                    @livewire('multimedallist', ['sport_id' => $disciplines[0]->sport->id])
+                @endif
             </div>
         </div>
 
