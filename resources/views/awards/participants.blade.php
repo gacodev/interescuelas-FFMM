@@ -22,7 +22,7 @@
 
                                     <tr>
                                         <th>Participante</th>
-                                        <th>Escuela</th>
+                                        <th>Fuerza</th>
                                         <th>Competencia</th>
                                         <th>Oro</th>
                                         <th>Plata</th>
@@ -50,7 +50,7 @@
                                                 </div>
                                             </td>
                                             <div class="ms-3">
-                                                <td>1</td>
+                                                <td>{{ $participantByDiscipline->participant->force->force }}</td>
                                                 <td>{{ $participantByDiscipline->discipline->discipline }}</td>
                                                 <td>{{ $participantByDiscipline->participant->gold_award }}</td>
                                                 <td>{{ $participantByDiscipline->participant->silver_award }}</td>
@@ -64,9 +64,6 @@
                                 </tbody>
 
                             </table>
-                            <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
-                                <span class="p-2">{!! $participants->links('pagination::bootstrap-4') !!}</span>
-                            </div>
                         </div>
                     </div>
                 </div>

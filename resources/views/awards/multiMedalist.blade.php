@@ -22,7 +22,7 @@
                             <div>
                                 <div>
                                     <img class="img-card d-inline-block img-fluid img-thumbnail"
-                                        src="{{ $participant->photo }}" alt="">
+                                        src="/{{ $participant->photo }}" alt="">
 
                                     <img src="{{ $participant->nationality->flag_image }}" width="80" height="80"
                                         style="position: absolute; right: 1.5rem; " alt=""
