@@ -63,7 +63,7 @@
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asociar{{$participant->id}}">Asociar</button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{$participant->id}}">Desasociar</button>
+                                <button wire:click="updateDisciplines({{ $participant->id }})"class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{$participant->id}}">Desasociar</button>
                             </td>
                             @endrole
                         </tr>
@@ -139,25 +139,28 @@
                             </div>
                         </div>
 
-
                           <div class="modal" tabindex="-1" id="desasociar{{$participant->id}}" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-center"><strong>Edicion de Datos</strong></h5>
+                                        <h5 class="modal-title text-center"><strong>Desasociar</strong></h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/participantes/asociar" method="POST">
+                                        <form action="/participantes/desasociar" method="POST">
                                             @csrf
                                             <input type="hidden" name="participant_id"value="{{ $participant->id }}">
-                                            <strong class="d-inline-block text-center">Lista de equipos</strong>
+                                            <strong class="d-inline-block text-center">Disciplinas</strong>
                                             <select class="form-select" name="discipline_id" id="disciplines">
-                                                @foreach ($disciplines as $discipline )
+                                                @if(isset($pdisciplines))
+                                                @foreach ($pdisciplines as $discipline )
                                                 <option value="{{ $discipline->id }}">{{ $discipline->discipline }}</option>
                                                 @endforeach
+                                                @endif
+
+
                                             </select>
                                     </div>
                                     <div class="modal-footer">
@@ -167,7 +170,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                          </div>
+
                         @endforeach
                     </tbody>
                 </table>

@@ -54,11 +54,11 @@ Route::controller(ParticipantController::class)
         Route::post('/importparticipants', 'importExcel')->name('import.excel');
         Route::get('/importeExcel', 'import')->name('excel.imports');
         Route::post('/participantes/asociar',   'asociar')->name('participants.asociar');
+        Route::post('/participantes/desasociar',   'desasociar')->name('participants.asociar');
 
 
     });
 
-Route::get('/participantes/desasociar/{id}', [Livewire\DisciplineParticipant\getdisciplinas::class])->name('participants.desasociar');
 Route::controller(RoleController::class)
 ->group(function (){
     Route::get('/roles', 'index')->name('roles');

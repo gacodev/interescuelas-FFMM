@@ -148,16 +148,32 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, Participant $participant)
     {
-        $participant->update([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'photo' => $request->input('photo'),
-            'blood_id' => $request->input('blood_id'),
-            'weight' => $request->input('weight'),
-            'height' => $request->input('height'),
-            'gender_id' => $request->input('gender_id'),
-            'birthday' => $request->input('birthday'),
-        ]);
+        if($request->hasfile('photo')){
+            $participant->update([
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'photo' => $request->input('photo'),
+                'blood_id' => $request->input('blood_id'),
+                'weight' => $request->input('weight'),
+                'height' => $request->input('height'),
+                'gender_id' => $request->input('gender_id'),
+                'birthday' => $request->input('birthday'),
+            ]);
+        }
+        else
+        {
+            $participant->update([
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'blood_id' => $request->input('blood_id'),
+                'weight' => $request->input('weight'),
+                'height' => $request->input('height'),
+                'gender_id' => $request->input('gender_id'),
+                'birthday' => $request->input('birthday'),
+            ]);
+        }
+
+
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
 

@@ -6,13 +6,19 @@ use Livewire\WithPagination;
 
 use Livewire\Component;
 use App\Models\Discipline;
+use App\Models\DisciplineParticipant;
 
 
 class EditParticipant extends Component
 {
     use WithPagination;
-
     public $search;
+
+    public function updateDisciplines($id){
+        $pdisciplines = DisciplineParticipant::join('disciplines','disciplines.id','discipline_participants.discipline_id')->where('participant_id','=',$id)->get();
+        //ddd($pdisciplines);
+        return $pdisciplines;
+    }
 
     public function render()
     {
