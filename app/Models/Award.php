@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class Award extends Model
 {
     use HasFactory;
 
-    protected $table = "staff";
+    public $timestamps = false;
+    protected $table = "awards";
 
     protected $fillable = [
-        "sport_id",
-        "force_id",
-        "range_id",
-        "name",
-        "identification",
+        "award",
+        "description",
+        "image",
     ];
 }

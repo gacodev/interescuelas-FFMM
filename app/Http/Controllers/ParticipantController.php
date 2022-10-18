@@ -19,6 +19,7 @@ use App\Models\Type_doc;
 use App\Imports\ExcelImport;
 use App\Imports\SportsImport;
 use App\Imports\TeamsImport;
+use App\Models\DisciplineParticipant;
 
 class ParticipantController extends Controller
 {
@@ -55,8 +56,6 @@ class ParticipantController extends Controller
             'email' => 'required|unique:participants',
             'birthday' => 'required',
             'gender_id' => 'required|exists:genders,id',
-            'sport_id' => 'required|exists:sports,id',
-            'Discipline_id' => 'required|exists:disciplines,id'
         ]);
 
         $data = new Participant($request->all());
@@ -89,18 +88,48 @@ class ParticipantController extends Controller
         //
     }
 
+    public function asociar(Request $request){
+
+        $validated = $request->validate([
+            'discipline_id' => 'required|integer',
+            'participant_id' => 'required|integer'
+        ]);
+
+        if($validated){
+            $data = new DisciplineParticipant($request->all());
+            $data->save();
+            $request->session()->flash('success', 'Se asocio a esta disciplina satisfactoriamente!');
+            return redirect()->back();
+        }
+        else{
+            return back()->$request->session()->flash('status', 'error');
+        }
+    }
+
+
+
+    public function desasociar(Request $request, DisciplineParticipant $disciplineparticipant)
+    {
+        $disciplineparticipant->update([
+            'discipline_id' => $request->null,
+        ]);
+        $request->session()->flash('success', 'Se desasocio a esta disciplina satisfactoriamente!');
+        return redirect()->back();
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function show(Participant $participant)
-    {
-        $data = Participant::all(); //->where($force_id= $fuerza);
-        return $data;
-    }
 
+
+    public function edit(Participant $participant)
+    {
+
+        return view('components.editar');
+    }
 
 
     /**
@@ -128,43 +157,10 @@ class ParticipantController extends Controller
             'height' => $request->input('height'),
             'gender_id' => $request->input('gender_id'),
             'birthday' => $request->input('birthday'),
-            'discipline_id' => $request->input('discipline_id'),
-            'team_id' => $request->input('team_id')
         ]);
         return redirect("/participantes/editar")->withSuccess('Se actualizaron correctamente los datos del usuario');
     }
 
-    public function search(Request $request)
-    {
-        $busqueda = trim($request->get('busqueda'));
-
-        $participants = DB::table('participants')
-            ->select('name', 'identification', 'nationality', 'doc_type', 'sexo', 'force', 'color',  'photo', 'birthday', 'phone', 'email', 'flag_image', 'award_id', 'forces.image')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->join('scores', 'scores.participant_id', '=', 'participants.id')
-            ->where('name', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('nationality', 'LIKE', '%' . $busqueda . '%')
-            ->orderBy('name', 'asc')
-            ->paginate(6);
-        //dd($participants);
-        return view('participants.participants', compact('participants', 'busqueda'));
-    }
-    public function searchToEdit(Request $request)
-    {
-        $busqueda = trim($request->get('busqueda'));
-
-        $participants = DB::table('participants')
-            ->where('name', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('identification', 'LIKE', '%' . $busqueda . '%')
-            ->orderBy('name', 'asc')
-            ->paginate(5);
-        //dd($participants);
-        return view('components.editar', compact('participants', 'busqueda'));
-    }
     /**
      * Remove the specified resource from storage.
      *
@@ -187,7 +183,7 @@ class ParticipantController extends Controller
         }
 
         $import = new ExcelImport();
-        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'EQUIPOS', 'PARTICIPANTES');
+        $import->onlySheets('DEPORTES', 'DISCIPLINAS', 'EQUIPOS', 'PARTICIPANTES', 'PARTICIPANTES_DISCIPLINAS');
 
         Excel::import($import, $file);
 

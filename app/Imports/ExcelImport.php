@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\DisciplineParticipant;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithConditionalSheets;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
@@ -21,6 +22,7 @@ class ExcelImport implements WithMultipleSheets, SkipsOnError, SkipsOnFailure
             'DISCIPLINAS' =>  new DisciplineImport(),
             'EQUIPOS' =>  new TeamsImport(),
             'PARTICIPANTES' =>  new ParticipantsImport(),
+            'PARTICIPANTES_DISCIPLINAS' =>  new DisciplineParticipantsImport(),
         ];
     }
 }

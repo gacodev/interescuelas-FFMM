@@ -19,22 +19,20 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
-            RhSeeder::class,
             BloodSeeder::class,
             RoleSeeder::class,
-            SportsSeeder::class,
+            //SportsSeeder::class,
             NationalitySeeder::class,
             AwardsSeeder::class,
             ForcesSeeder::class,
             DocsSeeder::class,
             GenderSeeder::class,
-            DisciplinesSeeder::class,
+            //DisciplinesSeeder::class,
             RangeSeeder::class,
-            TeamSeeder::class,
-            ParticipantSeeder::class,
-            ScoreSeeder::class,
-            TeamScoresSeeder::class,
-            
+            //TeamSeeder::class,
+            //ParticipantSeeder::class,
+            //DisciplineParticipantSeeder::class
+
         ]);
 
         \App\Models\User::factory()->create([

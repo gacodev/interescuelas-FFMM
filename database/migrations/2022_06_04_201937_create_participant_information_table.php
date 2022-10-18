@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('identification');
+            $table->string('identification')->unique();
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable();
@@ -28,11 +28,7 @@ return new class extends Migration
             $table->string('gender_id');
             $table->string('force_id');
             $table->string('nationality_id');
-            $table->string('discipline_id')->nullable();
             $table->string('range_id')->nullable();
-            $table->unsignedBigInteger("team_id")->nullable();
-            $table->foreign("team_id")->references("id")->on("teams")->nullable();
-            $table->unique(['identification', 'discipline_id', 'team_id']);
             $table->timestamps();
         });
     }

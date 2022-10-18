@@ -12,11 +12,12 @@ class Disciplines extends Component
     public $search;
     public function render()
     {
-        $disciplines = Discipline::
-        leftjoin('sports', 'sports.id', '=', 'sport_id')
-        ->leftjoin('genders', 'genders.id', '=', 'gender_id')
-        ->where('discipline', 'like', '%' . $this->search . '%')
-        ->paginate(25);
-        return view('livewire.disciplines',compact('disciplines'));
+        $disciplines = Discipline::with([
+            "sport",
+            "gender",
+        ])
+            ->where('discipline', 'like', '%' . $this->search . '%')
+            ->paginate(25);
+        return view('livewire.disciplines', compact('disciplines'));
     }
 }

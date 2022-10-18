@@ -16,6 +16,7 @@ class DisciplinesSeeder extends Seeder
     public function run()
     {
         DB::table('disciplines')->insert([
+            ['discipline' => 'N/A', 'description' => 'soy 100', 'discipline_image' => 'N/A', 'sport_id' => 8, 'gender_id' => 1],
             ['discipline' => '100 metros', 'description' => 'soy 100', 'discipline_image' => 'localhost/sports/disciplines/100.png', 'sport_id' => 8, 'gender_id' => 1],
             ['discipline' => '200 metros', 'description' => 'soy 100', 'discipline_image' => 'localhost/sports/disciplines/200.png', 'sport_id' => 8, 'gender_id' => 1],
             ['discipline' => '300 metros', 'description' => 'soy 100', 'discipline_image' => 'localhost/sports/disciplines/300.png', 'sport_id' => 8, 'gender_id' => 1],

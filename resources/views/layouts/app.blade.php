@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,52 +24,56 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles()
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div>
-                <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Escudo_Fuerza_Aerea_Colombiana.svg/800px-Escudo_Fuerza_Aerea_Colombiana.svg.png" alt="" width="50px" height="50px">
-                </a>
+                    <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Escudo_Fuerza_Aerea_Colombiana.svg/800px-Escudo_Fuerza_Aerea_Colombiana.svg.png"
+                            alt="" width="50px" height="50px">
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
 
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/participantes">Participantes</a>
 
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
-                      </li>
-                      @can('/participantes/editar')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar</a>
-                      </li>
-                      @endcan
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
-                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/equipos">Equipos</a>
+                        </li>
+                        @can('/participantes/editar')
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/participantes/editar">Editar</a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/resultados">Resultados</a>
+                        </li>
 
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/disciplinas">Disciplinas</a>
-                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/disciplinas">Disciplinas</a>
+                        </li>
 
-                      @can('/roles')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/roles">Roles</a>
-                      </li>
-                      @endcan
+                        @can('/roles')
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/roles">Roles</a>
+                            </li>
+                        @endcan
 
 
-                      <li class="nav-item">
-                        <a class="nav-link active b" aria-current="page" href="/medalleria">Medalleria</a>
-                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link active b" aria-current="page" href="/medalleria">Medalleria</a>
+                        </li>
                     </ul>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -93,13 +100,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -115,12 +123,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4"">
             @yield('content')
         </main>
     </div>
-</div>
-  @include('../footer.footer')
-  @livewireScripts()
+    </div>
+    @include('../footer.footer')
+    @livewireScripts()
 </body>
+
 </html>

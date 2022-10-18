@@ -73,7 +73,8 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
         $row['deporte'] =  $deporte && $row['deporte'] ? $deporte->id : null;
 
         $row['disciplina'] = strtoupper(trim($row['disciplina']));
-        $disciplina = Discipline::where("discipline", "like", "%{$row['disciplina']}%")->first();
+        $disciplina = Discipline::where("discipline", "like", "%{$row['disciplina']}%")
+            ->where("sport_id", "=", $deporte->id)->first();
         $row['disciplina'] =  $disciplina && $row['disciplina'] ? $disciplina->id : null;
 
         return $row;

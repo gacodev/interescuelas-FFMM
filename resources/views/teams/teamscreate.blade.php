@@ -44,7 +44,7 @@
                         <div required class="form-group mt-2">
                             {{ Form::label('Disciplina a la que pertenece', null, ['class' => 'control-label']) }}
                             {{ Form::select('discipline_id', array_merge(['0' => 'Seleccione el deporte'],
-                                 $sportValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
+                                 $disciplineValues->toArray()), null, array_merge(['class' => 'form-control', 'required' => true], [])) }}
 
 
                             @if ($errors->has('discipline_id'))
@@ -69,7 +69,7 @@
                                 Registrar
                             </button>
                         </div>
-                    
+
 
                     {!! Form::close() !!}
                 </div>

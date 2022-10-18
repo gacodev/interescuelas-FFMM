@@ -13,7 +13,8 @@ class Force extends Model
 
     protected $fillable = [
         "force",
-        "image"
+        "image",
+        "flag_image"
     ];
 
     public function grades()

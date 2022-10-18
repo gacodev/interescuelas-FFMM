@@ -7,7 +7,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\AwarsController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\DisciplinesController;
+use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\TeamController;
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +23,13 @@ use App\Http\Controllers\TeamController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::controller(StaffController::class)
+Route::controller(TeamController::class)
     ->group(function () {
-        Route::get('/equipos/crear', 'index')->name('staff.index');
-        Route::post('/equipos/crear', 'create')->name('staff.create');
-        Route::get('/forces/{force_id}/grade', 'grade_show')->name('staff.grade_show');
+        Route::get('/equipos', 'index')->name('teams.index');
+        Route::get('/equipos/form', 'teams_create')->name('teams.form');
+        Route::post('/equipos/crear', 'create')->name('teams.create');
+        Route::get('/forces/{force_id}/range', 'range_show')->name('teams.range_show');
+        Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
     });
 Route::controller(ScoreController::class)
     ->group(function () {
@@ -40,48 +42,39 @@ Route::controller(ScoreController::class)
         Route::get('/medalleria/{sport}/{discipline}/{participant}', 'getAwardsByParticipant');
     });
 
-Route::get('/participantes',  [ParticipantController::class,'index'])->name('participants');
-
 Auth::routes();
 
 Route::controller(ParticipantController::class)
     ->group(function () {
+        Route::get('/participantes',   'index')->name('participants.show');
         Route::post('/participantes/crear',  'create')->name('participants.create');
-        Route::get('/participantes/registro',  'participantsregister')->name('participants.registro');
-        Route::get('/participantes/mostrar',   'show')->name('participants.show');
-        Route::get('/busqueda',  'search')->name('participants.search');
-        Route::get('/participantes/editar',  'searchToEdit')->name('participants.searchToEdit');
+        Route::get('/participantes/editar',  'edit')->name('participants.edit');
         Route::put('/participantes/{participant}',  'update')->name('participants.update');
+        Route::get('/participantes/registro',  'participantsregister')->name('participants.registro');
         Route::post('/importparticipants', 'importExcel')->name('import.excel');
         Route::get('/importeExcel', 'import')->name('excel.imports');
+        Route::post('/participantes/asociar',   'asociar')->name('participants.asociar');
+
+
     });
 
-
-
-
-
-
-
-
-
-Route::get('roles', [RoleController::class, 'index'])->name('roles');
-Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines', [DisciplinesController::class, 'show'])->name('cagories.show');
-
-Route::controller(TeamController::class)
-    ->group(function () {
-        Route::get('/equipos', 'index')->name('teams');
+Route::get('/participantes/desasociar/{id}', [Livewire\DisciplineParticipant\getdisciplinas::class])->name('participants.desasociar');
+Route::controller(RoleController::class)
+->group(function (){
+    Route::get('/roles', 'index')->name('roles');
+    Route::post('/roles/create', 'create')->name('roles');
+    Route::put('/roles/{role}', 'update')->name('roles');
+    Route::put('/roles/{role}', 'update')->name('roles');
 });
 
 
-Route::controller(TeamController::class)
-    ->group(function () {
-        Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
-});
-
-Route::controller(DisciplinesController::class)
+Route::controller(DisciplineController::class)
     ->group(function(){
         Route::get('/disciplinas', 'index')->name('disciplines');
-        Route::delete('/disciplinas/{discipline}', 'destroy')->name('disciplines');
+        Route::post('/disciplinas/create', 'create')->name('disciplines.create');
+        Route::put('/disciplinas/{discipline}', 'update')->name('disciplines.update');
+        Route::delete('/disciplinas/{discipline}', 'destroy')->name('disciplines.destroy');
+        Route::get('/sports/{sport_id}/gender/{gender_id}/Disciplines','show')->name('cagories.show');
     });
 
 

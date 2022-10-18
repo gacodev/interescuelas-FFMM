@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use App\Models\Discipline;
+use App\Models\DisciplineParticipant;
 use App\Models\Award;
 use App\Models\Score;
 use App\Models\Sport;
@@ -19,29 +20,15 @@ class ScoreController extends Controller
      */
     public function index()
     {
-
-        $participants = DB::table('participants')
-            //->select('name', 'identification','nationality','doc_type','sexo','force','color','photo','birthday','phone','email','flag_image','award_id','forces.force_image')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
-        $sports = Sport::select('id','sport')->get();
-        
-        /*$sport =  Sport::with([
-            "discipline.participants.scores",
+        $sports =  Sport::with([
+            "discipline",
+            "discipline.disciplineParticipants",
         ])->get();
 
-
-        return $sport;
-        */
-        //dd($sports);
-        return view('awards.awards', compact('sports', 'participants'));
+        return view('awards.awards', compact('sports'));
     }
 
-/**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,30 +36,18 @@ class ScoreController extends Controller
      */
     public function getDisciplineBySport(Request $request, Sport $sport)
     {
-        $disciplines = Discipline::where('sport_id', '=',$sport->id)->get();
-        $participants = DB::table('participants')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
-        //return $disciplines;
-        return view('awards.disciplines',compact('disciplines','participants'));
+        $disciplines = Discipline::where('sport_id', '=', $sport->id)->get();
 
+        return view('awards.disciplines', compact('disciplines'));
     }
 
 
-    public function getParticipantsByDiscipline(Request $request, Discipline $discipline){
-        $participantsByDiscipline = Participant::where('discipline_id', '=',$discipline->id)->paginate(5);
-        $participants = DB::table('participants')
-            ->join('nationalities', 'nationalities.id', '=', 'nationality_id')
-            ->join('type_docs', 'type_docs.id', '=', 'type_doc_id')
-            ->join('genders', 'genders.id', '=', 'gender_id')
-            ->join('forces', 'forces.id', '=', 'force_id')
-            ->leftJoin('scores', 'scores.participant_id', '=', 'participants.id')
-            ->paginate(5);
-        return view('awards.participants',compact('participantsByDiscipline','participants'));
+    public function getParticipantsByDiscipline(Request $request, Discipline $discipline)
+    {
+        $participantsByDiscipline = DisciplineParticipant::with(["participant"])
+            ->where('discipline_id', '=', $discipline->id)->paginate(5);
+
+        return view('awards.participants', compact('participantsByDiscipline'));
     }
     /**
      * Store a newly created resource in storage.
@@ -83,16 +58,16 @@ class ScoreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'participant_id' => $request->input('id'),
-            'discipline_id' => $request->input('discipline'),
-            'award_id' => $request->input('award')
+            'participant_id' => $request->id,
+            'discipline_id' => $request->discipline,
+            'award_id' => $request->award
         ]);
 
-        Score::create([
-            'participant_id' => $request->input('id'),
-            'discipline_id' => $request->input('discipline'),
-            'award_id' => $request->input('award')
-        ]);
+        $competencia = DisciplineParticipant::where("participant_id", "=", $request->id)
+            ->where("discipline_id", "=", $request->discipline)->first();
+
+        $competencia["award_id"] = $request->award;
+        $competencia->update();
 
         return redirect('/participantes')->withSuccess('medalla agregada correctamente');
     }
@@ -102,18 +77,64 @@ class ScoreController extends Controller
         $scores = Score::findOrFail($sport);
     }
 
-    public function show(score $score)
+    public function show(Request $request)
     {
         return view('awards.resultados');
     }
 
     public function show_data(score $score)
     {
-        $ForcesScores = DB::select('SELECT * FROM view_awards');
-        $EjcScores = DB::select("SELECT * FROM view_awards WHERE `force` = 'Ejercito Nacional'");
-        $FacScores = DB::select("SELECT * FROM view_awards WHERE `force` = 'Fuerza Aerea Colombiana'");
-        $ArcScores = DB::select("SELECT * FROM view_awards WHERE `force` = 'Armada Nacional'");
-        $PonalScores = DB::select("SELECT * FROM view_awards WHERE `force` = 'Policia Nacional'");
+        $ForcesScores = DB::select('select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id
+        GROUP by f.`force`,award');
+        $EjcScores = DB::select("select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id WHERE f.id = 1
+        GROUP by a.award");
+        $FacScores = DB::select("select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id WHERE f.id = 2
+        GROUP by a.award ");
+        $ArcScores = DB::select("select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id WHERE f.id = 3
+        GROUP by a.award ");
+        $PonalScores = DB::select("select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id WHERE f.id = 4
+        GROUP by a.award ");
+        $GendersScores = DB::select("select count(dp.award_id),a.award,f.`force`,g.sexo  from discipline_participants dp
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join genders g on g.id = p.gender_id
+        left join forces f on p.force_id = f.id
+        GROUP by f.`force`,g.sexo,dp.award_id,a.award ");
+
+        $disciplineScores = DB::select("select count(dp.award_id),dp.discipline_id,d.discipline ,f.`force` from discipline_participants dp
+        left join disciplines d on d.id = dp.discipline_id
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id
+        GROUP by dp.discipline_id,d.discipline ,f.`force` ");
+        $sportScores = DB::select("select count(dp.award_id),s.id ,s.sport ,f.`force` from discipline_participants dp
+        left join disciplines d on d.id = dp.discipline_id
+        left join awards a on a.id = dp.award_id
+        left join participants p on dp.participant_id = p.id
+        left join forces f on p.force_id = f.id
+        left join sports s on d.sport_id = s.id
+        GROUP by sport_id,f.`force`");
+        $teamScores = DB::select("select count(dp.award_id),f.`force` FROM discipline_participants dp
+        left join teams t on t.id = dp.team_id
+        left join participants p on p.id = dp.participant_id
+        left join forces f on f.id = p.force_id
+        left join disciplines d on d.id = dp.discipline_id
+        GROUP BY f.`force`");
 
         return [
             "forces" => $ForcesScores,
@@ -121,6 +142,10 @@ class ScoreController extends Controller
             "FAC" => $FacScores,
             "ARC" => $ArcScores,
             "PONAL" => $PonalScores,
+            "BYGENDERS" => $GendersScores,
+            "BYSPORTS" => $sportScores,
+            "BYDISCIPLINES" => $disciplineScores,
+            "BYTEAMS" => $teamScores,
         ];
     }
 

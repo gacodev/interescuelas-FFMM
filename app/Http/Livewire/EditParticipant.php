@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Livewire;
-
 use App\Models\Participant;
 use Livewire\WithPagination;
 
 use Livewire\Component;
+use App\Models\Discipline;
 
-class Participants extends Component
+
+class EditParticipant extends Component
 {
     use WithPagination;
 
@@ -26,9 +27,19 @@ class Participants extends Component
             ->orWhere('identification', 'like', '%' . $this->search . '%')
             ->paginate(6);
 
+        $disciplines = Discipline::get();
 
-        return view('livewire.participants', [
-            'participants' => $participant
+
+        return view('livewire.edit-participant', [
+            'participants' => $participant,
+            'disciplines' => $disciplines
         ]);
     }
+
+
+    public function getdisciplinas($participant){
+        $disciplinesparticipant = DisciplineParticipant::
+        where('participant_id','=', $participant);
+        return $disciplinesparticipant;
+  }
 }

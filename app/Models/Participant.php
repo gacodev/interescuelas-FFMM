@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,17 +32,51 @@ class Participant extends Model
         'phone',
         'team_id'
     ];
-    public function team()
+
+    public function force()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Force::class);
     }
 
-    public function discipline()
+    public function disciplineParticipants()
+    {
+        return $this->hasMany(DisciplineParticipant::class);
+    }
+
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class);
+    }
+    public function disciplines()
     {
         return $this->belongsTo(Discipline::class);
     }
-    public function scores()
+
+    public function getGoldAwardAttribute()
     {
-        return $this->hasMany(Score::class);
+        $award = Award::where("award", "=", "oro")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getSilverAwardAttribute()
+    {
+        $award = Award::where("award", "=", "plata")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getBronzeAwardAttribute()
+    {
+        $award = Award::where("award", "=", "bronce")->first();
+        $countAward = $this->disciplineParticipants->where("award_id", "=", $award->id)->count();
+        return $countAward;
+    }
+
+    public function getTotalAwardAttribute()
+    {
+        $awards = Award::all()->pluck("id");
+        $countAward = $this->disciplineParticipants->whereIn("award_id", $awards)->count();
+        return $countAward;
     }
 }

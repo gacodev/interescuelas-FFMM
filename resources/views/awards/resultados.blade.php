@@ -28,10 +28,10 @@
                 <canvas id="forces" class="col-12"></canvas>
 
                 <div class="container__pie d-flex flex-wrap col-12 justify-content-center">
-                    <canvas id="Ejc" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="Arc" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="Fac" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="Ponal" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="EJC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="ARC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="FAC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                    <canvas id="PONAL" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
                 </div>
 
 
@@ -141,22 +141,22 @@
                         setForcesChart(data)
 
                         let pieCharts = [{
-                                idElement: 'Ejc',
+                                idElement: 'EJC',
                                 title: 'Ejercito Nacional',
                                 data: "EJC"
                             },
                             {
-                                idElement: 'Arc',
+                                idElement: 'ARC',
                                 title: 'Armada Nacional',
                                 data: "ARC"
                             },
                             {
-                                idElement: 'Fac',
+                                idElement: 'FAC',
                                 title: 'Fuerza Aerea Colombiana',
                                 data: "FAC"
                             },
                             {
-                                idElement: 'Ponal',
+                                idElement: 'PONAL',
                                 title: 'Policia Nacional',
                                 data: "PONAL"
                             },
