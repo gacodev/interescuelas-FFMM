@@ -25,6 +25,11 @@ class Discipline extends Model
         return $this->belongsTo(Sport::class);
     }
 
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
     public function participants()
     {
         return $this->hasMany(Participant::class);

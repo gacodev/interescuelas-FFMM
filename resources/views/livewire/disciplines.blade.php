@@ -4,7 +4,7 @@
                 <i class="bi bi-search p-2"></i>
         </div>
 
-<div class="table-responsive">
+<div class="table-responsive"> 
     <table class="table table-hover table-default border border-dark rounded-2">
         <thead class="table-dark">
             <tr class="text-center">
@@ -23,10 +23,10 @@
         @foreach($disciplines as $discipline)
             <tr class="text-center">
                 <th>{{$discipline->id}}</th>
-                <th>{{$discipline->sport}}</th>
+                <th>{{$discipline->sport->sport}}</th>
                 <td>{{$discipline->discipline}}</td>
                 <td>{{$discipline->description}}</td>
-                <td>{{$discipline->sexo}}</td>
+                <td>{{$discipline->gender->sexo}}</td>
 
                 @role('admin')
                 <td><button class="btn btn-warning">Editar</button></td>
@@ -41,6 +41,11 @@
         @endforeach
 
     </table>
+
+     <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
+        <span class="p-2">{!! $disciplines->links('pagination::bootstrap-4') !!}</span>
+    </div>
+
     @if (\Session::has('success'))
     <div class="alert alert-success">
         <p class="text-center">{!! \Session::get('success') !!}</p>
