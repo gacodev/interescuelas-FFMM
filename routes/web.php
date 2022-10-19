@@ -30,6 +30,7 @@ Route::controller(TeamController::class)
         Route::post('/equipos/crear', 'create')->name('teams.create');
         Route::get('/forces/{force_id}/range', 'range_show')->name('teams.range_show');
         Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
+        Route::post('/equipos/desasociar', 'desasociar')->name('teams.desasociar');
     });
 Route::controller(ScoreController::class)
     ->group(function () {
@@ -54,11 +55,9 @@ Route::controller(ParticipantController::class)
         Route::post('/importparticipants', 'importExcel')->name('import.excel');
         Route::get('/importeExcel', 'import')->name('excel.imports');
         Route::post('/participantes/asociar',   'asociar')->name('participants.asociar');
-
-
+        Route::post('/participant/desasociar',   'desasociar')->name('participants.asociar');
     });
 
-Route::get('/participantes/desasociar/{id}', [Livewire\DisciplineParticipant\getdisciplinas::class])->name('participants.desasociar');
 Route::controller(RoleController::class)
 ->group(function (){
     Route::get('/roles', 'index')->name('roles');

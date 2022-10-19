@@ -11,11 +11,12 @@ use App\Models\Force;
 use App\Models\Range;
 use App\Models\Sport;
 use App\Models\Discipline;
+use App\Models\DisciplineParticipant;
 
 
 class TeamController extends Controller
 {
-    /**
+    /**TeamindexControllerTeamindexController
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -64,6 +65,16 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function desasociar(Request $request)
+    {
+        $result = DisciplineParticipant::
+        where('discipline_id', '=', $request->discipline)
+        ->where('participant_id','=',$request->id)
+        ->where('team_id','=',$request->team);
+        $result->delete();
+        return redirect()->back()->withSuccess('Se desasocio del equipo correctamente');
     }
 
     /**

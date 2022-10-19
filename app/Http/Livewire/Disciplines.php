@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Discipline;
+use App\Models\Sport;
 use Livewire\WithPagination;
 
 class Disciplines extends Component
@@ -18,6 +19,8 @@ class Disciplines extends Component
         ])
             ->where('discipline', 'like', '%' . $this->search . '%')
             ->paginate(25);
-        return view('livewire.disciplines', compact('disciplines'));
+
+        $sports = Sport::get();
+        return view('livewire.disciplines', compact('disciplines','sports'));
     }
 }

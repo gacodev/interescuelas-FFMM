@@ -6,12 +6,12 @@ use Livewire\WithPagination;
 
 use Livewire\Component;
 use App\Models\Discipline;
+use App\Models\DisciplineParticipant;
 
 
 class EditParticipant extends Component
 {
     use WithPagination;
-
     public $search;
 
     public function render()
@@ -29,7 +29,7 @@ class EditParticipant extends Component
 
         $disciplines = Discipline::get();
 
-
+        //dd($participant);
         return view('livewire.edit-participant', [
             'participants' => $participant,
             'disciplines' => $disciplines
