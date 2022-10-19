@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('disciplines', function (Blueprint $table) {
             $table->id();
             $table->string('discipline');
-            $table->string('description');
-            $table->string('discipline_image');
+            $table->string('description')->nullable();
+            $table->string('discipline_image')->nullable();
             $table->foreignId('gender_id')->constrained();
             $table->foreignId('sport_id')->constrained();
             $table->unique(['discipline', 'sport_id', 'gender_id']);

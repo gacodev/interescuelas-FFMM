@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discipline;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -30,55 +31,46 @@ class DisciplineController extends Controller
     }
 
     public function index(){
-        $disciplines = Discipline::
-        join('sports', 'sports.id', '=', 'sport_id')
-        ->join('genders', 'genders.id', '=', 'gender_id')
-        ->get();
-        //return $disciplines;
-        return view('disciplines.getDisciplines',compact('disciplines'));
+        return view('disciplines.getDisciplines');
     }
 
     public function create(Request $request)
     {
-        /*$validated = $request->validate([
-            'discipline' => 'string',
-            'description' => 'required',
-            'gender_id' => 'required|exists:genders,id',
-            "discipline_image"=> 'required|exists',
-            'sport_id' => 'required|exists:sports,id',
-        ]);
-        if(!$validated){
-            $request->session()->flash('status', 'No se pudo crear porfavor revise los datos');
-        }
-        else{
-
-            $discipline = new Discipline;
-            $discipline->discipline = Input::get('discipline');
-            $discipline->description = Input::get('description');
-            $discipline->sport_id = Input::get('sport_id');
-            $discipline->gender_id = Input::get('gender_id');
-            $discipline->discipline_image = Input::get('discipline_image');
-            $discipline->save();
-            */
-            dd($request);
-        $validated = $request->parameters->validate([
-            'discipline' => 'required',
-            'description' => 'required',
-            'gender_id' => 'required|exists:genders,id',
-            "discipline_image"=> 'required|exists',
-            'sport_id' => 'required|exists:sports,id',
-        ]);
-
-        $data = new Discipline($request->all());
-        $data->save();
-        $request->session()->flash('success', 'Se accedio correctamente');
+         Discipline::create([
+                'discipline' => $request['discipline'],
+                'description' => $request['description'],
+                'gender_id' => $request['gender_id'],
+                'discipline_image' => $request['discipline_image'],
+                'sport_id' => $request['sport_id']
+                ]);
+        $request->session()->flash('success', 'Se creo la disciplina correctamente');
         return redirect()->back();
     }
 
-    public function edit(Request $request)
+    public function update(Request $request, Discipline $discipline)
     {
+        //dd($request);
+        if($request->hasfile('discipline_image')){
+        $discipline->update([
+            'discipline' => $request->input('discipline'),
+            'description' => $request->input('description'),
+            'sport_id' => $request->input('sport_id'),
+            'gender_id' => $request->input('gender_id'),
 
-        return redirect()->back()->with('success', 'se actualizo correctamente');
+            ]);
+        }
+        else{
+            $discipline->update([
+                'discipline' => $request->input('discipline'),
+                'description' => $request->input('description'),
+                'sport_id' => $request->input('sport_id'),
+                'discipline_image' => $request->input('discipline_image'),
+                'gender_id' => $request->input('gender_id'),
+                ]);
+        }
+        $request->session()->flash('success', 'Se actualizo la disciplina correctamente');
+        return redirect()->back();
+
     }
 
     public function destroy(Discipline $discipline)
