@@ -97,14 +97,24 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
+                                    <h5 class="modal-title"><strong>DATOS PERSONALES</strong></h5>
                                     <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
                                         aria-label="close"></i>
                                 </div>
                                 <div class="modal-body">
-                                    <div>
-
-                                        aqui ira el contenido del perfil del participante
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NOMBRE: </strong><p class="d-flex d-inline align-items-right">{{ $participant->name }}</p><td></th>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">DOCUMENTO:</strong><p class="d-flex d-inline align-items-right">{{ $participant->identification}}</p><td></th>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NACIONALIDAD: </strong><p class="text-uppercase d-flex d-inline align-items-right">{{ $participant->nationality->nationality }}<td></th>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FUERZA: </strong><p class="d-flex d-inline align-items-right">{{ $participant->force->force}}</p><td></th></tr>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">TELEFONO: </strong><p class="d-flex d-inline align-items-right">{{ $participant->phone}}</p><td></th></tr>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">DEPORTE: </strong><p class="d-flex d-inline align-items-right">{{ $disciplineParticipant->discipline->sport->sport}}</p><td></th></tr>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FECHA DE NACIMIENTO </strong><p class="d-flex d-inline align-items-right">{{ $participant->birthday}}</p><td></th></tr>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">GRADO </strong><p class="d-flex d-inline align-items-right">{{ $participant->range_id}}</p><td></th></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

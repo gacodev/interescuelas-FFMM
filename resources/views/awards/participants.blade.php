@@ -45,7 +45,6 @@
 
                                                         <a id="item" type="button" data-bs-toggle="modal"
                                                             data-bs-target="#ver{{ $participantByDiscipline->participant->id }}">{{ strtoupper($participantByDiscipline->participant->name) }}</a>
-
                                                     </div>
                                                 </div>
                                             </td>
@@ -56,13 +55,11 @@
                                                 <td>{{ $participantByDiscipline->participant->silver_award }}</td>
                                                 <td>{{ $participantByDiscipline->participant->bronze_award }}</td>
                                                 <td>{{ $participantByDiscipline->participant->total_award }}</td>
-
-
                                         </tr>
+
                                     @endforeach
 
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -72,9 +69,14 @@
                     @livewire('multimedallist', ['discipline_id' => $participantsByDiscipline[0]->discipline->id])
                 @endif
 
+
+
             </div>
         </div>
 
 
     </div>
 @endsection
+<script>
+
+</script>
