@@ -12,6 +12,7 @@ use App\Models\Blood;
 use App\Models\Discipline;
 use App\Models\Sport;
 use App\Models\Team;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -26,6 +27,7 @@ use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 
 use Maatwebsite\Excel\Validators\Failure;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHeadingRow, WithChunkReading, WithValidation, SkipsOnError, SkipsOnFailure
@@ -125,8 +127,11 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
             $row['fecha_de_nacimiento'] = str_replace("/", "-",  $row['fecha_de_nacimiento']);
             $row['fecha_de_nacimiento'] = date("Y-m-d", strtotime($row['fecha_de_nacimiento']));
         } else {
-            $row['fecha_de_nacimiento'] = null;
+            $row['fecha_de_nacimiento'] = Carbon::instance(Date::excelToDateTimeObject((int)$row['fecha_de_nacimiento']))->format('Y-m-d');
         }
+
+
+
 
         return $row;
     }
