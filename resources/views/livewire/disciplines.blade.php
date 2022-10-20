@@ -43,9 +43,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title text-center"><strong>Editar Disciplinas</strong></h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
+                                aria-label="close"></i>
                             </div>
                             <div class="modal-body">
                                 <form action="/disciplinas/{{ $discipline->id }}" method="POST">
@@ -101,9 +100,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-center"><strong>Agregar Disciplinas</strong></h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
+                        aria-label="close"></i>
                     </div>
                     <div class="modal-body">
                         <form action="/disciplinas/create" method="POST">

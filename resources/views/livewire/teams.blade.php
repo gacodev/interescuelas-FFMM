@@ -5,9 +5,9 @@
     </div>
 
     @if (Session::has('success'))
-        <div class="alert alert-success text-center">
-            {{ Session::get('success') }}
-        </div>
+    <div class="alert alert-success text-center">
+        {{ Session::get('success') }}
+    </div>
     @endif
 
     <div class="d-flex flex-wrap justify-content-center">
@@ -47,7 +47,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -69,27 +69,27 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+
+                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
+
                                     </div>
 
 
                                     <div class="modal-body">
                                         <form action="/equipos/desasociar" method="POST">
-                                        @csrf
-                                        <p>va a eliminar a <strong>{{ $disciplineParticipant->participant->name }}</strong> del equipo</p>
-                                        <p>va a eliminar a <strong>{{ $disciplineParticipant->participant_id}}</strong> del equipo</p>
-                                        <input type="hidden" name="discipline" value="{{ $disciplineParticipant->discipline_id}}">
-                                        <input type="hidden" name="id" value="{{ $disciplineParticipant->participant->id}}">
-                                        <input type="hidden" name="team" value="{{ $disciplineParticipant->team_id}}">
+                                            @csrf
+                                            <p>va a eliminar a <strong>{{ $disciplineParticipant->participant->name }}</strong> del equipo</p>
+                                            <p>va a eliminar a <strong>{{ $disciplineParticipant->participant_id}}</strong> del equipo</p>
+                                            <input type="hidden" name="discipline" value="{{ $disciplineParticipant->discipline_id}}">
+                                            <input type="hidden" name="id" value="{{ $disciplineParticipant->participant->id}}">
+                                            <input type="hidden" name="team" value="{{ $disciplineParticipant->team_id}}">
 
                                     </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="desasociar" class="btn btn-danger" data-bs-dismiss="modal">desasociar</button>
-                                            <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
-                                            </form>
-                                        </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" id="desasociar" class="btn btn-danger" data-bs-dismiss="modal">desasociar</button>
+                                        <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,9 +118,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                 </div>
                 <div class="modal-body">
                     <form action="">
@@ -176,5 +174,3 @@
     <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
         <span class="p-2">{!! $TeamParticipants->links('pagination::bootstrap-4') !!}</span>
     </div>
-
-
