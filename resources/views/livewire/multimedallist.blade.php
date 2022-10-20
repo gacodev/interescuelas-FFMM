@@ -58,7 +58,8 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title">DATOS PERSONALES</h5>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
+                                        aria-label="close"></i>
                                     </button>
                                 </div>
                                 <div class="modal-body">

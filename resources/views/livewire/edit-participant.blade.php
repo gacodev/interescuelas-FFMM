@@ -7,9 +7,9 @@
             </div>
 
             @if (Session::has('success'))
-                <div class="alert alert-success text-center">
-                    {{ Session::get('success') }}
-                </div>
+            <div class="alert alert-success text-center">
+                {{ Session::get('success') }}
+            </div>
             @endif
 
             <div class="table-responsive">
@@ -24,8 +24,8 @@
                             <th scope="col">Peso</th>
                             <th scope="col">Estatura</th>
                             <th scope="col">Genero</th>
-                            <th scope="col">Cumpleanos</th>
-                            <th colspan="2" scope="col">Disciplinas</th>
+                            <th scope="col">Fecha de Nacimiento</th>
+                            <th colspan="2" scope="col" class="justify-content-center">Disciplinas</th>
                             <th scope="col">Modificar</th>
                             <th colspan="2" scope="col">Disciplinas</th>
 
@@ -73,7 +73,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"><strong>Edicion de Datos</strong></h5>
-                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
+                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                                     </div>
                                     <div class="modal-body">
                                         <form action="/participantes/{{$participant->id}}" method="POST">
@@ -96,7 +96,7 @@
                                             <strong class="d-inline-block">Genero</strong>
                                             <input type="text" name="gender_id" class="form-control" value="{{$participant->gender_id}}">
                                             <strong class="d-inline-block">Fecha de Nacimiento</strong>
-                                            <input type="text" name="discipline_id" class="form-control" value="{{$participant->birthday}}">
+                                            <input type="text" name="birthday" class="form-control" value="{{$participant->birthday}}">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
@@ -115,14 +115,14 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title text-center"><strong>Asociar disciplina</strong></h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+
+                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
+
                                     </div>
                                     <div class="modal-body">
                                         <form action="/participantes/asociar" method="POST">
                                             @csrf
-                                            <input type="hidden" name="participant_id"value="{{ $participant->id }}">
+                                            <input type="hidden" name="participant_id" value="{{ $participant->id }}">
                                             <strong class="d-inline-block text-center">Lista de equipos</strong>
                                             <select class="form-select" name="discipline_id" id="disciplines">
                                                 @foreach ($disciplines as $discipline )
@@ -146,8 +146,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"> Desasociar Disciplina</h5>
-                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                            aria-label="close"></i>
+                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
                                     </div>
                                     <div class="modal-body">
 
@@ -163,23 +162,19 @@
                                                     <input type="hidden" name="id" value="{{ $participant->id }}">
                                                     <select class="form-select" name="discipline" id="disciplines">
                                                         @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                                                            @if (isset($disciplineParticipant->discipline->discipline))
-                                                                <option
-                                                                    value="{{ $disciplineParticipant->discipline->id }}">
-                                                                    {{ $disciplineParticipant->discipline->discipline }}
-                                                                </option>
-                                                            @endif
+                                                        @if (isset($disciplineParticipant->discipline->discipline))
+                                                        <option value="{{ $disciplineParticipant->discipline->id }}">
+                                                            {{ $disciplineParticipant->discipline->discipline }}
+                                                        </option>
+                                                        @endif
                                                         @endforeach
                                                     </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="asignar"
-                                            onclick="return confirm('Esta seguro de desasociar esta disciplina?')"
-                                            class="btn btn-danger">Desasociar</button>
-                                        <button type="button" id="cerrar" class="btn btn-dark"
-                                            data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" id="asignar" onclick="return confirm('Esta seguro de desasociar esta disciplina?')" class="btn btn-danger">Desasociar</button>
+                                        <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -193,13 +188,6 @@
                 </table>
             </div>
         </div>
-
-
-        @if(Session::has('success'))
-        <div class="alert alert-success text-center">
-            {{Session::get('success')}}
-        </div>
-        @endif
         <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
             <span class="p-2">{!! $participants->links('pagination::bootstrap-4') !!}</span>
         </div>

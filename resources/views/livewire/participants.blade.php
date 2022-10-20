@@ -39,15 +39,16 @@
 
                                 <div class="d-flex mb-2 d-block justify-content-center container">
                                     <div class="row d-flex">
-                                        <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
+                                    <div class="mr-2">
+                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
                                                 class="mx-2 ">Nacionalidad: </strong>
                                             {{ $participant->nationality->nationality }}</p>
-                                        <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
-                                                class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
-                                        <p class="card-text m-2 col-12 d-flex justify-content-left lh-1"><strong
-                                                class="mx-2">Edad: </strong>
-                                            {{ $carbon::parse($participant->birthday)->age }} años</p>
-                                        <p class="card-text m-2 col-12 d-flex justify-content-left lh-1">
+                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
+                                                    class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
+                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
+                                                    class="mx-2">Edad: </strong>
+                                                {{ $carbon::parse($participant->birthday)->age }} años</p>
+                                    </div>
                                             @foreach ($participant->disciplineParticipants as $disciplineParticipant)
                                                 <div class="card mb-2 border-dark">
                                                     <div class="card-header">
@@ -74,7 +75,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        </p>
+
                                     </div>
                                 </div>
                                 @role('admin')

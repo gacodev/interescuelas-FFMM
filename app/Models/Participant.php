@@ -79,4 +79,5 @@ class Participant extends Model
         $countAward = $this->disciplineParticipants->whereIn("award_id", $awards)->count();
         return $countAward;
     }
+
 }
