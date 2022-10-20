@@ -27,7 +27,9 @@
 
                             <th class="lh-1">Identificacion</th>
                             <th class="lh-1">Nombre</th>
+                            @role('admin')
                             <th class="lh-1">Desasociar</th>
+                            @endrole
 
                         </tr>
 
@@ -36,8 +38,9 @@
                             <td>{{ $disciplineParticipant->participant->identification }}</td>
                             <td>{{ $disciplineParticipant->participant->name }}</td>
 
-                            <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button>
-                            </td>
+                            @role('admin')
+                            <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button></td>
+                            @endrole
 
                         </tr>
 
