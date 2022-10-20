@@ -84,6 +84,7 @@ class ScoreController extends Controller
 
     public function show_data(score $score)
     {
+        /*
         $ForcesScores = DB::select('select count(dp.award_id),a.award,f.`force`  FROM discipline_participants dp
         left join awards a on a.id = dp.award_id
         left join participants p on dp.participant_id = p.id
@@ -146,6 +147,19 @@ class ScoreController extends Controller
             "BYSPORTS" => $sportScores,
             "BYDISCIPLINES" => $disciplineScores,
             "BYTEAMS" => $teamScores,
+        ];
+        */
+
+        $ForcesScores = DB::select("select f.`force`, count(dpg.award_id) as gold, count(dps.award_id) as silver, count(dpb.award_id) as bronze
+        from forces f
+        join participants p on p.force_id = f.id
+        left JOIN discipline_participants dpg on (dpg.participant_id = p.id and dpg.award_id in (select id from awards a WHERE a.award = 'oro'))
+        left JOIN discipline_participants dps on (dps.participant_id = p.id and dps.award_id in (select id from awards a WHERE a.award = 'plata'))
+        left JOIN discipline_participants dpb on (dpb.participant_id = p.id and dpb.award_id in (select id from awards a WHERE a.award = 'bronce'))
+        GROUP by f.`force`");
+
+        return [
+            "forces" => $ForcesScores
         ];
     }
 
