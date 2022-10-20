@@ -37,24 +37,21 @@
 
                 <script>
                     function setForcesChart(data) {
-
-                        let gold = data.forces.filter(element => element.award == "oro");
-                        goldData = gold.map(element => ({
+                        goldData = data.forces.map(element => ({
                             x: element.force,
-                            y: element.total
+                            y: element.gold
                         }))
 
-                        let silver = data.forces.filter(element => element.award == "plata");
-                        silverData = silver.map(element => ({
+                        silverData = data.forces.map(element => ({
                             x: element.force,
-                            y: element.total
+                            y: element.silver
                         }))
 
-                        let bronze = data.forces.filter(element => element.award == "bronce");
-                        bronzeData = bronze.map(element => ({
+                        bronzeData = data.forces.map(element => ({
                             x: element.force,
-                            y: element.total
+                            y: element.bronze
                         }))
+
 
                         const ctx = document.getElementById('forces').getContext('2d');
                         const forces = new Chart(ctx, {
@@ -93,9 +90,9 @@
                     }
 
                     function setForceChart(data, idElement, title) {
-                        console.log(data)
-
                         let chartBackground = [];
+
+
 
                         let inputData = data;
                         let chartData = inputData.map(element => {
@@ -134,10 +131,10 @@
                                 }
                             },
                         });
+
                     }
 
                     function setChart(data) {
-                        console.log(data)
                         setForcesChart(data)
 
                         let pieCharts = [{
@@ -162,9 +159,11 @@
                             },
                         ]
 
+                        /*
                         pieCharts.map((element) => {
                             setForceChart(data[element.data], element.idElement, element.title)
                         })
+                        */
 
 
                     }
