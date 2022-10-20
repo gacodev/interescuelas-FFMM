@@ -82,11 +82,11 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
 
     public function batchSize(): int
     {
-        return 50;
+        return 1;
     }
 
     public function chunkSize(): int
     {
-        return 50;
+        return 1;
     }
 }

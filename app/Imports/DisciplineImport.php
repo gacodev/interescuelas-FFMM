@@ -77,11 +77,11 @@ class DisciplineImport implements ToModel, SkipsEmptyRows, WithBatchInserts, Wit
 
     public function batchSize(): int
     {
-        return 50;
+        return 1;
     }
 
     public function chunkSize(): int
     {
-        return 50;
+        return 1;
     }
 }

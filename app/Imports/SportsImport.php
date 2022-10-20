@@ -61,11 +61,11 @@ class SportsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHea
 
     public function batchSize(): int
     {
-        return 50;
+        return 1;
     }
 
     public function chunkSize(): int
     {
-        return 50;
+        return 1;
     }
 }
