@@ -13,7 +13,8 @@ class Team extends Model
         'name',
         'force_id',
         'sport_id',
-        'discipline_id'
+        'discipline_id',
+        'award_id'
     ];
 
 

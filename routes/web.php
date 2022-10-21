@@ -31,7 +31,7 @@ Route::controller(TeamController::class)
         Route::get('/forces/{force_id}/range', 'range_show')->name('teams.range_show');
         Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
         Route::post('/equipos/desasociar', 'desasociar')->name('teams.desasociar');
-        Route::put('/equipos/asignar/', 'update')->name('teams.asignar');
+        Route::post('/equipos/asignar/{data}', 'update')->name('teams.asignar');
     });
 Route::controller(ScoreController::class)
     ->group(function () {

@@ -106,18 +106,15 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $participant->update([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'photo' => $request->input('photo'),
-            'blood_id' => $request->input('blood_id'),
-            'weight' => $request->input('weight'),
-            'height' => $request->input('height'),
-            'award_id' => $request->input('award_id'),
-            'birthday' => $request->input('birthday'),
-        ]);
+        //dd($request);
+
+        $data = Team::where('id','=',$request->input('team_id'));
+        $data->update(['award_id'=>$request->input('award_id')]);
+
+        $request->session()->flash('success', 'La medalla se asigno correctamente');
+        return redirect()->back();
     }
 
     public function range_show(Request $request)
