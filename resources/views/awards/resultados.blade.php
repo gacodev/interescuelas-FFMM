@@ -25,7 +25,11 @@
                         max-width: 15vw;
                     }
                 </style>
-                <canvas id="forces" class="col-12"></canvas>
+                <div class="row">
+                    <canvas id="forces" class="col-12"></canvas>
+                    <canvas id="genders" class="col-12"></canvas>
+                </div>
+
 
                 <div class="container__pie d-flex flex-wrap col-12 justify-content-center">
                     <canvas id="EJC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
@@ -36,24 +40,24 @@
 
 
                 <script>
-                    function setForcesChart(data) {
-                        goldData = data.forces.map(element => ({
-                            x: element.force,
+                    function setLineChart(data, idElement, key, title) {
+                        goldData = data.map(element => ({
+                            x: element[key],
                             y: element.gold
                         }))
 
-                        silverData = data.forces.map(element => ({
-                            x: element.force,
+                        silverData = data.map(element => ({
+                            x: element[key],
                             y: element.silver
                         }))
 
-                        bronzeData = data.forces.map(element => ({
-                            x: element.force,
+                        bronzeData = data.map(element => ({
+                            x: element[key],
                             y: element.bronze
                         }))
 
 
-                        const ctx = document.getElementById('forces').getContext('2d');
+                        const ctx = document.getElementById(idElement).getContext('2d');
                         const forces = new Chart(ctx, {
                             type: 'bar',
                             data: {
@@ -84,6 +88,15 @@
                                     y: {
                                         beginAtZero: true
                                     }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: title
+                                    }
                                 }
                             }
                         });
@@ -91,8 +104,6 @@
 
                     function setForceChart(data, idElement, title) {
                         let chartBackground = [];
-
-
 
                         let inputData = data;
                         let chartData = inputData.map(element => {
@@ -105,8 +116,6 @@
                         let chartLabels = inputData.map(element =>
                             (element.award.toUpperCase())
                         )
-
-
 
                         const ctx = document.getElementById(idElement).getContext('2d');
                         const forces = new Chart(ctx, {
@@ -135,7 +144,25 @@
                     }
 
                     function setChart(data) {
-                        setForcesChart(data)
+
+                        let lineCharts = [{
+                                idElement: 'forces',
+                                title: 'FUERZAS',
+                                data: "forces",
+                                key: "force",
+                            },
+                            {
+                                idElement: 'genders',
+                                title: 'GENEROS',
+                                data: "genders",
+                                key: "sexo",
+                            }
+                        ]
+
+                        lineCharts.map((element) => {
+                            setLineChart(data[element.data], element.idElement, element.key, element.title);
+                        })
+
 
                         let pieCharts = [{
                                 idElement: 'EJC',
