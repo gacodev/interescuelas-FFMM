@@ -32,6 +32,7 @@ Route::controller(TeamController::class)
         Route::get('/disciplines', 'getDisciplineBySport')->name('sport.disciplines');
         Route::post('/equipos/desasociar', 'desasociar')->name('teams.desasociar');
         Route::post('/equipos/asignar/{data}', 'update')->name('teams.asignar');
+        Route::post('/equipos/eliminar/{data}', 'quitar')->name('teams.quitar');
     });
 Route::controller(ScoreController::class)
     ->group(function () {

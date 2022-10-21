@@ -132,8 +132,13 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function quitar(Request $request)
     {
-        //
+        //dd($request);
+        $data = Team::where('id','=',$request->input('team_id'));
+        $data->update(['award_id'=>null]);
+
+        $request->session()->flash('success', 'La medalla se elimino correctamente');
+        return redirect()->back();
     }
 }
