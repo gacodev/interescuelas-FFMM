@@ -108,7 +108,16 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $participant->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'photo' => $request->input('photo'),
+            'blood_id' => $request->input('blood_id'),
+            'weight' => $request->input('weight'),
+            'height' => $request->input('height'),
+            'award_id' => $request->input('award_id'),
+            'birthday' => $request->input('birthday'),
+        ]);
     }
 
     public function range_show(Request $request)
