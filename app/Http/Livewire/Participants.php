@@ -11,7 +11,13 @@ class Participants extends Component
 {
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
     public $search;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
@@ -22,7 +28,8 @@ class Participants extends Component
             "disciplineParticipants.discipline.sport",
             "force",
             "nationality",
-        ])->where('name', 'like', '%' . $this->search . '%')
+        ])->has('disciplineParticipants.discipline')
+            ->where('name', 'like', '%' . $this->search . '%')
             ->orWhere('identification', 'like', '%' . $this->search . '%')
             ->paginate(6);
 

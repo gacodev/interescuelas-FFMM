@@ -63,7 +63,6 @@ class DisciplineParticipantsImport implements ToModel, SkipsEmptyRows, WithBatch
             ],
             'disciplina' => [
                 'integer',
-                'nullable'
             ],
             'equipo' => [
                 'integer',

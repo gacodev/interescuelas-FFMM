@@ -13,7 +13,14 @@ class Teams extends Component
 {
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
     public $search;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $TeamParticipants =  Team::with([

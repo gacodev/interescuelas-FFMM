@@ -189,7 +189,7 @@
             </div>
         </div>
         <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
-            <span class="p-2">{!! $participants->links('pagination::bootstrap-4') !!}</span>
+            <span class="p-2">{!! $participants->links() !!}</span>
         </div>
     </div>
 </div>
