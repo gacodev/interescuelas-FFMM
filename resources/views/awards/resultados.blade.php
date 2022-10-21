@@ -30,12 +30,12 @@
                     <canvas id="genders" class="col-12"></canvas>
                 </div>
 
-
-                <div class="container__pie d-flex flex-wrap col-12 justify-content-center">
-                    <canvas id="EJC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="ARC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="FAC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="PONAL" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                <h4 class="text-center mt-2 mb-1"><strong>INSTITUCIONES</strong> </h4>
+                <div class="row">
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="EJC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="ARC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="FAC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL"></canvas></div>
                 </div>
 
 
@@ -102,20 +102,10 @@
                         });
                     }
 
-                    function setForceChart(data, idElement, title) {
-                        let chartBackground = [];
-
-                        let inputData = data;
-                        let chartData = inputData.map(element => {
-                            if (element.award == "oro") chartBackground.push('rgba(255, 206, 86, 1)')
-                            if (element.award == "plata") chartBackground.push('rgba(54, 162, 235, 1)')
-                            if (element.award == "bronce") chartBackground.push('rgba(255, 99, 132, 1)')
-                            return element.total
-                        })
-
-                        let chartLabels = inputData.map(element =>
-                            (element.award.toUpperCase())
-                        )
+                    function setPieChart(data, idElement, title) {
+                        let chartBackground = ['rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'];
+                        let chartData = [data.gold, data.silver, data.bronze];
+                        let chartLabels = ["ORO", "PLATA", "BRONCE"]
 
                         const ctx = document.getElementById(idElement).getContext('2d');
                         const forces = new Chart(ctx, {
@@ -186,12 +176,11 @@
                             },
                         ]
 
-                        /*
                         pieCharts.map((element) => {
-                            setForceChart(data[element.data], element.idElement, element.title)
+                            setPieChart(data.forces.find(element2 => element2.force == element.data), element.idElement,
+                                element
+                                .title)
                         })
-                        */
-
 
                     }
 
