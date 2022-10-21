@@ -12,7 +12,14 @@ use App\Models\DisciplineParticipant;
 class EditParticipant extends Component
 {
     use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
     public $search;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
