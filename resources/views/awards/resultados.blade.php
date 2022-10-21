@@ -25,35 +25,39 @@
                         max-width: 15vw;
                     }
                 </style>
-                <canvas id="forces" class="col-12"></canvas>
+                <div class="row">
+                    <canvas id="forces" class="col-12"></canvas>
+                    <canvas id="genders" class="col-12"></canvas>
+                </div>
 
-                <div class="container__pie d-flex flex-wrap col-12 justify-content-center">
-                    <canvas id="EJC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="ARC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="FAC" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
-                    <canvas id="PONAL" class="col-lg-3 col-sm-6 col-xs-12"></canvas>
+                <h4 class="text-center mt-2 mb-1"><strong>INSTITUCIONES</strong> </h4>
+                <div class="row">
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="EJC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="ARC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="FAC"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL"></canvas></div>
                 </div>
 
 
                 <script>
-                    function setForcesChart(data) {
-                        goldData = data.forces.map(element => ({
-                            x: element.force,
+                    function setLineChart(data, idElement, key, title) {
+                        goldData = data.map(element => ({
+                            x: element[key],
                             y: element.gold
                         }))
 
-                        silverData = data.forces.map(element => ({
-                            x: element.force,
+                        silverData = data.map(element => ({
+                            x: element[key],
                             y: element.silver
                         }))
 
-                        bronzeData = data.forces.map(element => ({
-                            x: element.force,
+                        bronzeData = data.map(element => ({
+                            x: element[key],
                             y: element.bronze
                         }))
 
 
-                        const ctx = document.getElementById('forces').getContext('2d');
+                        const ctx = document.getElementById(idElement).getContext('2d');
                         const forces = new Chart(ctx, {
                             type: 'bar',
                             data: {
@@ -84,29 +88,24 @@
                                     y: {
                                         beginAtZero: true
                                     }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: title
+                                    }
                                 }
                             }
                         });
                     }
 
-                    function setForceChart(data, idElement, title) {
-                        let chartBackground = [];
-
-
-
-                        let inputData = data;
-                        let chartData = inputData.map(element => {
-                            if (element.award == "oro") chartBackground.push('rgba(255, 206, 86, 1)')
-                            if (element.award == "plata") chartBackground.push('rgba(54, 162, 235, 1)')
-                            if (element.award == "bronce") chartBackground.push('rgba(255, 99, 132, 1)')
-                            return element.total
-                        })
-
-                        let chartLabels = inputData.map(element =>
-                            (element.award.toUpperCase())
-                        )
-
-
+                    function setPieChart(data, idElement, title) {
+                        let chartBackground = ['rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'];
+                        let chartData = [data.gold, data.silver, data.bronze];
+                        let chartLabels = ["ORO", "PLATA", "BRONCE"]
 
                         const ctx = document.getElementById(idElement).getContext('2d');
                         const forces = new Chart(ctx, {
@@ -135,7 +134,25 @@
                     }
 
                     function setChart(data) {
-                        setForcesChart(data)
+
+                        let lineCharts = [{
+                                idElement: 'forces',
+                                title: 'FUERZAS',
+                                data: "forces",
+                                key: "force",
+                            },
+                            {
+                                idElement: 'genders',
+                                title: 'GENEROS',
+                                data: "genders",
+                                key: "sexo",
+                            }
+                        ]
+
+                        lineCharts.map((element) => {
+                            setLineChart(data[element.data], element.idElement, element.key, element.title);
+                        })
+
 
                         let pieCharts = [{
                                 idElement: 'EJC',
@@ -159,12 +176,11 @@
                             },
                         ]
 
-                        /*
                         pieCharts.map((element) => {
-                            setForceChart(data[element.data], element.idElement, element.title)
+                            setPieChart(data.forces.find(element2 => element2.force == element.data), element.idElement,
+                                element
+                                .title)
                         })
-                        */
-
 
                     }
 
