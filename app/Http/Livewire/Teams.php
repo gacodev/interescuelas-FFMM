@@ -28,8 +28,11 @@ class Teams extends Component
             "disciplineParticipants",
             "disciplineParticipants.participant",
         ])->where('name', 'like', '%' . $this->search . '%')
-            ->orderBy('sport_id')
+            ->orderBy('force_id')
             ->paginate(2);
+
+
+        //dump($TeamParticipants);
         return view('livewire.teams', compact('TeamParticipants'));
     }
 }
