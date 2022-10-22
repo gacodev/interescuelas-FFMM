@@ -13,7 +13,9 @@
     <div class="d-flex flex-wrap justify-content-center">
         @foreach ($TeamParticipants as $team)
         <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-5 col-lg-6 col-xl-5 mx-1">
-            <div class="card-header text-center text-white" style="background-color:red">{{ $team->force->force }}
+            <div class="card-header text-center text-white" style="background-color:{{ $team->force->color }}">{{ $team->force->force }}
+                <img src="{{ $team->force->force_image }}" width="50" height="50"
+                                alt="" class="d-inline">
             </div>
             <div class="card-body text-dark">
                 <h5 class="card-title text-center text-uppercase">
@@ -25,20 +27,22 @@
                     <table class="table">
                         <tr>
 
-                            <th class="lh-1">Identificacion</th>
                             <th class="lh-1">Nombre</th>
                             @role('admin')
+                            <th class="lh-1">Identificacion</th>
                             <th class="lh-1">Desasociar</th>
                             @endrole
+
 
                         </tr>
 
                         @foreach ($team->disciplineParticipants as $disciplineParticipant)
                         <tr>
-                            <td>{{ $disciplineParticipant->participant->identification }}</td>
+
                             <td>{{ $disciplineParticipant->participant->name }}</td>
 
                             @role('admin')
+                            <td>{{ $disciplineParticipant->participant->identification }}</td>
                             <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button></td>
                             @endrole
 
