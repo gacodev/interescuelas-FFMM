@@ -45,8 +45,9 @@ class ScoreController extends Controller
     public function getParticipantsByDiscipline(Request $request, Discipline $discipline)
     {
         $participantsByDiscipline = DisciplineParticipant::with(["participant"])
-            ->where('discipline_id', '=', $discipline->id)->paginate(5);
+            ->where('discipline_id', '=', $discipline->id)->get();
 
+            //dd($participantsByDiscipline);
         return view('awards.participants', compact('participantsByDiscipline'));
     }
     /**

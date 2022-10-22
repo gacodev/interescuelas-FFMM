@@ -35,7 +35,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center justify-content-left text-center">
                                                     <div class="m-2 align-items-center">
-                                                        <img src="http://www.eltiempo.com/files/image_640_428/files/crop/uploads/2017/04/20/58f8da4442d5b.r_1492703844808.0-0-3000-1500.jpeg"
+                                                        <img src="https://st.depositphotos.com/1005563/3256/i/600/depositphotos_32564723-stock-photo-sports-balls-a-lot-of.jpg"
                                                             alt="" style="width: 45px; height: 45px"
                                                             class="rounded-circle" />
                                                     </div class="">
