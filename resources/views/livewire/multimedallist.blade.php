@@ -13,9 +13,9 @@
                 <div class="col-12 col-md-6 col-lg-4 p-2">
                     <div class="card border-dark">
                         <div class="card-header text-center text-white"
-                            style="background-color:{{ $participant->force->color }}">
-                            <strong>{{ $participant->force->force }}</strong>
-                            <img src="{{ $participant->force->force_image }}" width="50" height="50" alt=""
+                            style="background-color:{{ $participant->color }}">
+                            <strong>{{ $participant->force }}</strong>
+                            <img src="{{ $participant->force_image }}" width="50" height="50" alt=""
                                 class="d-inline">
                         </div>
                         <div class="card-body text-dark">
@@ -25,7 +25,7 @@
                                     <img class="img-card d-inline-block img-fluid img-thumbnail"
                                         src="/{{ $participant->photo }}" alt="">
 
-                                    <img src="{{ $participant->nationality->flag_image }}" width="80" height="80"
+                                    <img src="{{ $participant->flag_image }}" width="80" height="80"
                                         style="position: absolute; right: 1.5rem; " alt=""
                                         class="mt-2 d-inline-block">
 
@@ -34,10 +34,15 @@
                             <div class="">
                                 <div class="mb-2 text-left">
                                     <p class="card-text lh-1 mt-2"><strong>Nacionalidad: </strong>
-                                        {{ $participant->nationality->nationality }}</p>
+                                        {{ $participant->nationality }}</p>
                                     <p class="card-text lh-1"><strong>Nombre: </strong>{{ $participant->name }}
                                     </p>
                                     <p class="card-text lh-1"><strong>Medallas: </strong>
+                                        <ul style="list-style: none; padding:0;">
+                                            <li>ORO: {{ $participant->gold }} </li>
+                                            <li>PLATA: {{ $participant->silver }} </li>
+                                            <li>BRONCE: {{ $participant->bronze }} </li>
+                                        </ul>
                                     </p>
                                 </div>
                                 @role('admin')
@@ -68,8 +73,8 @@
                                             <tbody>
                                                 <tr><th scope="row"><td><strong class="d-flex align-item-left">NOMBRE: </strong><p class="d-flex d-inline align-items-right">{{ $participant->name }}</p><td></th>
                                                 <tr><th scope="row"><td><strong class="d-flex align-item-left">DOCUMENTO:</strong><p class="d-flex d-inline align-items-right">{{ $participant->identification}}</p><td></th>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NACIONALIDAD: </strong><p class="text-uppercase d-flex d-inline align-items-right">{{ $participant->nationality->nationality }}<td></th>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FUERZA: </strong><p class="d-flex d-inline align-items-right">{{ $participant->force->force}}</p><td></th></tr>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NACIONALIDAD: </strong><p class="text-uppercase d-flex d-inline align-items-right">{{ $participant->nationality }}<td></th>
+                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FUERZA: </strong><p class="d-flex d-inline align-items-right">{{ $participant->force}}</p><td></th></tr>
                                                 <tr><th scope="row"><td><strong class="d-flex align-item-left">TELEFONO: </strong><p class="d-flex d-inline align-items-right">{{ $participant->phone}}</p><td></th></tr>
 
                                                 <tr><th scope="row"><td><strong class="d-flex align-item-left">FECHA DE NACIMIENTO </strong><p class="d-flex d-inline align-items-right">{{ $participant->birthday}}</p><td></th></tr>
