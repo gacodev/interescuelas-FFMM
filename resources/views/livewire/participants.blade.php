@@ -78,7 +78,7 @@
 
                                     </div>
                                 </div>
-                                @role('admin')
+                                @can('/participantes/editar')
                                     <div class="d-flex mb-2 justify-content-center">
                                         <button type="button" class="m-1 btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#ver{{ $participant->id }}">Ver</button>
@@ -87,7 +87,7 @@
                                             class="m-1 btn btn-warning">Agregar
                                             Medallas</button>
                                     </div>
-                                @endrole
+                                @endcan
                             </div>
 
                         </div>

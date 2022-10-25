@@ -26,8 +26,10 @@
                             <th scope="col">Genero</th>
                             <th scope="col">Fecha de Nacimiento</th>
                             <th colspan="2" scope="col" class="justify-content-center">Disciplinas</th>
+                            @role('admin')
                             <th scope="col">Modificar</th>
                             <th colspan="2" scope="col">Disciplinas</th>
+                            @endrole
 
                         </tr>
                     </thead>
