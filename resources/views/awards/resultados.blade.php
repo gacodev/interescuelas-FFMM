@@ -65,20 +65,20 @@
                                         label: 'Oro',
                                         data: goldData,
                                         backgroundColor: [
-                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(255,215,0, 1)',
                                         ],
                                     }, {
                                         label: 'Plata',
                                         data: silverData,
                                         backgroundColor: [
-                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(190,190,190, 1)',
                                         ]
                                     },
                                     {
                                         label: 'Bronce',
                                         data: bronzeData,
                                         backgroundColor: [
-                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(205,127,50, 1)',
                                         ],
                                     }
                                 ]
@@ -103,7 +103,7 @@
                     }
 
                     function setPieChart(data, idElement, title) {
-                        let chartBackground = ['rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'];
+                        let chartBackground = ['rgba(255,215,0, 1)', 'rgba(190,190,190, 1)','rgba(205,127,50, 1)'];
                         let chartData = [data.gold, data.silver, data.bronze];
                         let chartLabels = ["ORO", "PLATA", "BRONCE"]
 
