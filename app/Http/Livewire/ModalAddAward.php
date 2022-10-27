@@ -46,7 +46,18 @@ class ModalAddAward extends Component
     {
         $participant = null;
         if ($this->participant_id) {
-            $participant = Participant::find($this->participant_id);
+            $participant = Participant::with([
+                "disciplineParticipants" => function ($query) {
+                    $query->whereNull('discipline_participants.team_id');
+                },
+                "disciplineParticipants.award",
+                "disciplineParticipants.discipline",
+                "disciplineParticipants.discipline.sport",
+                "force",
+                "nationality",
+            ])
+                ->where("participants.id", "=", $this->participant_id)
+                ->first();
         }
 
         return view('livewire.modal-add-award', compact('participant'));
