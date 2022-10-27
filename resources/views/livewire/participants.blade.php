@@ -39,42 +39,48 @@
 
                                 <div class="d-flex mb-2 d-block justify-content-center container">
                                     <div class="row d-flex">
-                                    <div class="mr-2">
-                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
-                                                class="mx-2 ">Nacionalidad: </strong>
-                                            {{ $participant->nationality->nationality }}</p>
-                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
-                                                    class="mx-2">Nombre: </strong>{{ $participant->name }}</p>
-                                            <p class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase"><strong
-                                                    class="mx-2">Edad: </strong>
-                                                {{ $carbon::parse($participant->birthday)->age }} años</p>
-                                    </div>
-                                            @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                                                <div class="card mb-2 border-dark">
-                                                    <div class="card-header">
-                                                        <strong>
-                                                            @if (isset($disciplineParticipant->discipline->sport->sport))
-                                                                {{ $disciplineParticipant->discipline->sport->sport }}
-                                                            @endif
-                                                        </strong>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <blockquote class="blockquote mb-0">
-                                                            Disciplina:
-                                                            @if (isset($disciplineParticipant->discipline->discipline))
-                                                                {{ $disciplineParticipant->discipline->discipline }}
-                                                            @endif
-                                                            <footer class="blockquote mb-0">Medalla:
-                                                                @if (isset($disciplineParticipant->award->award))
-                                                                    {{ $disciplineParticipant->award->award }}
-                                                                @else
-                                                                    N/A
-                                                                @endif
-                                                            </footer>
-                                                        </blockquote>
-                                                    </div>
+                                        <div class="mr-2">
+                                            <p
+                                                class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase">
+                                                <strong class="mx-2 ">Nacionalidad: </strong>
+                                                {{ $participant->nationality->nationality }}
+                                            </p>
+                                            <p
+                                                class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase">
+                                                <strong class="mx-2">Nombre: </strong>{{ $participant->name }}
+                                            </p>
+                                            <p
+                                                class="card-text m-2 col-12 d-flex justify-content-left lh-1 text-uppercase">
+                                                <strong class="mx-2">Edad: </strong>
+                                                {{ $carbon::parse($participant->birthday)->age }} años
+                                            </p>
+                                        </div>
+                                        @foreach ($participant->disciplineParticipants as $disciplineParticipant)
+                                            <div class="card mb-2 border-dark">
+                                                <div class="card-header">
+                                                    <strong>
+                                                        @if (isset($disciplineParticipant->discipline->sport->sport))
+                                                            {{ $disciplineParticipant->discipline->sport->sport }}
+                                                        @endif
+                                                    </strong>
                                                 </div>
-                                            @endforeach
+                                                <div class="card-body">
+                                                    <blockquote class="blockquote mb-0">
+                                                        Disciplina:
+                                                        @if (isset($disciplineParticipant->discipline->discipline))
+                                                            {{ $disciplineParticipant->discipline->discipline }}
+                                                        @endif
+                                                        <footer class="blockquote mb-0">Medalla:
+                                                            @if (isset($disciplineParticipant->award->award))
+                                                                {{ $disciplineParticipant->award->award }}
+                                                            @else
+                                                                N/A
+                                                            @endif
+                                                        </footer>
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        @endforeach
 
                                     </div>
                                 </div>
@@ -82,9 +88,8 @@
                                     <div class="d-flex mb-2 justify-content-center">
                                         <button type="button" class="m-1 btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#ver{{ $participant->id }}">Ver</button>
-                                        <button type="button" data-bs-toggle="modal"
-                                            data-bs-target="#asignar{{ $participant->id }}"
-                                            class="m-1 btn btn-warning">Agregar
+                                        <button type="button" class="m-1 btn btn-warning" type="button"
+                                            wire:click.prevent="$emit('showModal', {{ $participant->id }})">Agregar
                                             Medallas</button>
                                     </div>
                                 @endcan
@@ -106,14 +111,68 @@
                                     <div class="table-responsive">
                                         <table class="table">
                                             <tbody>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NOMBRE: </strong><p class="d-flex d-inline align-items-right">{{ $participant->name }}</p><td></th>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">DOCUMENTO:</strong><p class="d-flex d-inline align-items-right">{{ $participant->identification}}</p><td></th>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">NACIONALIDAD: </strong><p class="text-uppercase d-flex d-inline align-items-right">{{ $participant->nationality->nationality }}<td></th>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FUERZA: </strong><p class="d-flex d-inline align-items-right">{{ $participant->force->force}}</p><td></th></tr>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">TELEFONO: </strong><p class="d-flex d-inline align-items-right">{{ $participant->phone}}</p><td></th></tr>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">DEPORTE: </strong><p class="d-flex d-inline align-items-right">{{ $disciplineParticipant->discipline->sport->sport}}</p><td></th></tr>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">FECHA DE NACIMIENTO </strong><p class="d-flex d-inline align-items-right">{{ $participant->birthday}}</p><td></th></tr>
-                                                <tr><th scope="row"><td><strong class="d-flex align-item-left">GRADO </strong><p class="d-flex d-inline align-items-right">{{ $participant->range_id}}</p><td></th></tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">NOMBRE: </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->name }}</p>
+                                                    <td>
+                                                        </th>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">DOCUMENTO:</strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->identification }}</p>
+                                                    <td>
+                                                        </th>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">NACIONALIDAD: </strong>
+                                                        <p class="text-uppercase d-flex d-inline align-items-right">
+                                                            {{ $participant->nationality->nationality }}
+                                                    <td>
+                                                        </th>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">FUERZA: </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->force->force }}</p>
+                                                    <td>
+                                                        </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">TELEFONO: </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->phone }}</p>
+                                                    <td>
+                                                        </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">DEPORTE: </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $disciplineParticipant->discipline->sport->sport }}</p>
+                                                    <td>
+                                                        </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">FECHA DE NACIMIENTO
+                                                        </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->birthday }}</p>
+                                                    <td>
+                                                        </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <td><strong class="d-flex align-item-left">GRADO </strong>
+                                                        <p class="d-flex d-inline align-items-right">
+                                                            {{ $participant->range_id }}</p>
+                                                    <td>
+                                                        </th>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -126,68 +185,10 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="modal" tabindex="-1" id="asignar{{ $participant->id }}" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title"> Escoja la medalla a asignar</h5>
-                                    <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                        aria-label="close"></i>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div>
-                                        <div class="col-8 col-md-8 col-lg-6 p-4">
-                                            <img class="img-card d-inline-block img-fluid img-thumbnail"
-                                                src="{{ $participant->photo }}" alt="">
-                                            <img src="{{ $participant->nationality->flag_image }}" width="80"
-                                                height="80" style="position: absolute; right: 1.5rem; "
-                                                alt="" class="mt-2 d-inline-block">
-                                        </div>
-
-                                        <div class="d-inline-block w-40 mt-2">
-                                            <strong class="d-block">{{ $participant->name }}</strong>
-                                            <strong class="d-block">{{ $participant->sport }}</strong>
-                                            <strong class="d-block"></strong>
-                                        </div>
-                                        <div class="mt-2">
-                                            <form action="/scores" method="post">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $participant->id }}">
-                                                <select class="form-select" name="discipline" id="disciplines">
-                                                    @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                                                        @if (isset($disciplineParticipant->discipline->discipline))
-                                                            <option
-                                                                value="{{ $disciplineParticipant->discipline->id }}">
-                                                                {{ $disciplineParticipant->discipline->discipline }}
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                                <select class="form-select mt-4" name="award" id="awards">
-                                                    <option value="1">oro</option>
-                                                    <option value="2">Plata</option>
-                                                    <option value="3">Bronce</option>
-                                                </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="asignar"
-                                        onclick="return confirm('Esta seguro de asignar esta medalla?')"
-                                        class="btn btn-primary">Asignar</button>
-                                    <button type="button" id="cerrar" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Cerrar</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             @endforeach
         </div>
+        @livewire('modal-add-award')
     </div>
     <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
         <span class="p-2">{!! $participants->links() !!}</span>
