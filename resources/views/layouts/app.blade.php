@@ -30,9 +30,14 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div>
-                    <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
+                    <a class="navbar-brand mr-4" href="www.fac.mil.co">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Escudo_Fuerza_Aerea_Colombiana.svg/800px-Escudo_Fuerza_Aerea_Colombiana.svg.png"
-                            alt="" width="50px" height="50px">
+                            alt="" width="60px" height="60px">
+                    </a>
+
+                    <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
+                        <img src="assets/jetic.png"
+                            alt="" width="70px" height="70px">
                     </a>
                 </div>
 

@@ -36,25 +36,25 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'test',
-            'email' => 'test@test.com',
-            'password' => bcrypt(12345678),
-            'force_id' => 1,
-        ])->assignRole('viewer');
-
-        \App\Models\User::factory()->create([
-            'name' => 'admin',
+            'name' => 'JETIC',
             'email' => 'admin@admin.com',
-            'password' => bcrypt(12345678),
+            'password' => bcrypt('Jetic2022**'),
             'force_id' => 1,
         ])->assignRole('admin');
 
         \App\Models\User::factory()->create([
-            'name' => 'consumer',
-            'email' => 'consumer@consumer.com',
-            'password' => bcrypt(12345678),
+            'name' => 'administrador',
+            'email' => 'administrador@interescuelas.fac.mil.co',
+            'password' => bcrypt('Admin2022**'),
             'force_id' => 1,
-        ])->assignRole('consumer');
+        ])->assignRole('admin');
+
+        \App\Models\User::factory()->create([
+            'name' => 'operario',
+            'email' => 'operario@interescuelas.fac.mil.co',
+            'password' => bcrypt('operario2022'),
+            'force_id' => 1,
+        ])->assignRole('customer');
 
         \App\Models\User::factory(10)->create();
 
