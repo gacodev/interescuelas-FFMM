@@ -47,7 +47,7 @@ class ScoreController extends Controller
         $participantsByDiscipline = DisciplineParticipant::with(["participant"])
             ->where('discipline_id', '=', $discipline->id)->get();
 
-            //dd($participantsByDiscipline);
+        //dd($participantsByDiscipline);
         return view('awards.participants', compact('participantsByDiscipline'));
     }
     /**
@@ -71,6 +71,23 @@ class ScoreController extends Controller
         $competencia->update();
 
         return redirect('/participantes')->withSuccess('medalla agregada correctamente');
+    }
+
+    public function deleteScore(Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required|exists:participants,id',
+            'discipline' => 'required|exists:disciplines,id',
+        ]);
+
+        $competencia = DisciplineParticipant::where("participant_id", "=", $request->id)
+            ->where("discipline_id", "=", $request->discipline)->first();
+
+        $competencia["award_id"] = null;
+        $competencia->update();
+
+        return redirect('/participantes')->withSuccess('medalla eliminada correctamente');
     }
 
     public function findBySport(score $score, Sport $sport)

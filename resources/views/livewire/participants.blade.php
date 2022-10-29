@@ -91,6 +91,9 @@
                                         <button type="button" class="m-1 btn btn-warning" type="button"
                                             wire:click.prevent="$emit('showModal', {{ $participant->id }})">Agregar
                                             Medallas</button>
+                                        <button type="button" class="m-1 btn btn-danger" type="button"
+                                            wire:click.prevent="$emit('showModalRemoveAward', {{ $participant->id }})">Eliminar
+                                            Medallas</button>
                                     </div>
                                 @endcan
                             </div>
@@ -189,6 +192,7 @@
             @endforeach
         </div>
         @livewire('modal-add-award')
+        @livewire('modal-remove-award')
     </div>
     <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
         <span class="p-2">{!! $participants->links() !!}</span>
