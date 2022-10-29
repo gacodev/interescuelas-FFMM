@@ -17,6 +17,10 @@ class Team extends Model
         'award_id'
     ];
 
+    public function award()
+    {
+        return $this->belongsTo(Award::class);
+    }
 
     public function sport()
     {

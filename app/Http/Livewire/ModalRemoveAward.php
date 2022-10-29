@@ -5,47 +5,15 @@ namespace App\Http\Livewire;
 use App\Models\Participant;
 use Livewire\Component;
 
-class ModalRemoveAward extends Component
+class ModalRemoveAward extends Modal
 {
 
-    public $participant_id;
-    public $show;
-
-    protected $listeners = ['showModalRemoveAward'];
-
-    public function mount()
-    {
-        $this->show = false;
-    }
-
-    public function showModalRemoveAward($data)
-    {
-        $this->participant_id = $data;
-        $this->doShow();
-    }
-
-    public function doShow()
-    {
-        $this->show = true;
-    }
-
-    public function doClose()
-    {
-        $this->show = false;
-    }
-
-    public function doSomething()
-    {
-        // Do Something With Your Modal
-
-        // Close Modal After Logic
-        $this->doClose();
-    }
+    protected $listeners = ['showModalRemoveAward' => "showModal"];
 
     public function render()
     {
         $participant = null;
-        if ($this->participant_id) {
+        if ($this->data) {
             $participant = Participant::with([
                 "disciplineParticipants" => function ($query) {
                     $query->whereNull('discipline_participants.team_id')
@@ -57,7 +25,7 @@ class ModalRemoveAward extends Component
                 "force",
                 "nationality",
             ])
-                ->where("participants.id", "=", $this->participant_id)
+                ->where("participants.id", "=", $this->data)
                 ->first();
         }
 

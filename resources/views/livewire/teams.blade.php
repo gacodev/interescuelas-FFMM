@@ -5,170 +5,209 @@
     </div>
 
     @if (Session::has('success'))
-    <div class="alert alert-success text-center">
-        {{ Session::get('success') }}
-    </div>
+        <div class="alert alert-success text-center">
+            {{ Session::get('success') }}
+        </div>
     @endif
 
     <div class="d-flex flex-wrap justify-content-center">
         @foreach ($TeamParticipants as $team)
-        <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-5 col-lg-6 col-xl-5 mx-1">
-            <div class="card-header text-center text-white" style="background-color:{{ $team->force->color }}">{{ $team->force->force }}
-                <img src="{{ $team->force->force_image }}" width="50" height="50"
-                                alt="" class="d-inline">
-            </div>
-            <div class="card-body text-dark">
-                <h5 class="card-title text-center text-uppercase">
-                    <strong>{{ $team->name }}</strong> <br>{{ $team->sport->sport }}
-                </h5>
-                <img class="rounded" src="https://imgs.search.brave.com/eIMuOGJdc-UB8vOWiWFWTpt0dKbb1Ravfnj638DW-4w/rs:fit:770:420:1/g:ce/aHR0cHM6Ly9zMDMu/czNjLmVzL2ltYWcv/X3YwLzc3MHg0MjAv/ZS8wLzYvYmFsb24t/ZGUtZnV0Ym9sLmpw/Zw" width="200" height="120" alt="">
-                <div class="table-responsive">
-                    @if (isset($team->disciplineParticipants))
-                    <table class="table">
-                        <tr>
+            <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-5 col-lg-6 col-xl-5 mx-1">
+                <div class="card-header text-center text-white" style="background-color:{{ $team->force->color }}">
+                    {{ $team->force->force }}
+                    <img src="{{ $team->force->force_image }}" width="50" height="50" alt=""
+                        class="d-inline">
+                </div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center text-uppercase">
+                        <strong>{{ $team->name }}</strong> <br>{{ $team->sport->sport }}
+                    </h5>
+                    <img class="rounded"
+                        src="https://imgs.search.brave.com/eIMuOGJdc-UB8vOWiWFWTpt0dKbb1Ravfnj638DW-4w/rs:fit:770:420:1/g:ce/aHR0cHM6Ly9zMDMu/czNjLmVzL2ltYWcv/X3YwLzc3MHg0MjAv/ZS8wLzYvYmFsb24t/ZGUtZnV0Ym9sLmpw/Zw"
+                        width="200" height="120" alt="">
+                    <p>
+                        Medalla:
+                        @if (isset($team->award->award))
+                            {{ $team->award->award }}
+                        @else
+                            N/A
+                        @endif
+                    </p>
+                    <div class="table-responsive">
+                        @if (isset($team->disciplineParticipants))
+                            <table class="table">
+                                <tr>
 
-                            <th class="lh-1">Nombre</th>
-                            @role('admin')
-                            <th class="lh-1">Identificacion</th>
-                            <th class="lh-1">Desasociar</th>
-                            @endrole
+                                    <th class="lh-1">Nombre</th>
+                                    @role('admin')
+                                        <th class="lh-1">Identificacion</th>
+                                        <th class="lh-1">Desasociar</th>
+                                    @endrole
 
 
-                        </tr>
+                                </tr>
 
-                        @foreach ($team->disciplineParticipants as $disciplineParticipant)
-                        <tr>
+                                @foreach ($team->disciplineParticipants as $disciplineParticipant)
+                                    <tr>
 
-                            <td>{{ $disciplineParticipant->participant->name }}</td>
+                                        <td>{{ $disciplineParticipant->participant->name }}</td>
 
-                            @role('admin')
-                            <td>{{ $disciplineParticipant->participant->identification }}</td>
-                            <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal" data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button></td>
-                            @endrole
+                                        @role('admin')
+                                            <td>{{ $disciplineParticipant->participant->identification }}</td>
+                                            <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button>
+                                            </td>
+                                        @endrole
 
-                        </tr>
+                                    </tr>
 
-                        <div class="modal" tabindex="-1" id="ver{{ $disciplineParticipant->participant->id }}" role="dialog">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
-                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>
+                                    <div class="modal" tabindex="-1"
+                                        id="ver{{ $disciplineParticipant->participant->id }}" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"></h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="close">
+                                                        <i class="w-20 bi bi-x-square close" type="button"
+                                                            data-bs-dismiss="modal" aria-label="close"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
 
-                                            aqui ira el contenido del perfil del participante
+                                                        aqui ira el contenido del perfil del participante
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" id="cerrar" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
 
-                                        <button type="button" id="cerrar" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                    <div class="modal" tabindex="-1"
+                                        id="desasociar{{ $disciplineParticipant->participant->id }}" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"></h5>
+
+                                                    <i class="w-20 bi bi-x-square close" type="button"
+                                                        data-bs-dismiss="modal" aria-label="close"></i>
+
+                                                </div>
+
+
+                                                <div class="modal-body">
+                                                    <form action="/equipos/desasociar" method="POST">
+                                                        @csrf
+                                                        <p>va a eliminar a
+                                                            <strong>{{ $disciplineParticipant->participant->name }}</strong>
+                                                            del equipo
+                                                        </p>
+                                                        <p>va a eliminar a
+                                                            <strong>{{ $disciplineParticipant->participant_id }}</strong>
+                                                            del equipo
+                                                        </p>
+                                                        <input type="hidden" name="discipline"
+                                                            value="{{ $disciplineParticipant->discipline_id }}">
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $disciplineParticipant->participant->id }}">
+                                                        <input type="hidden" name="team"
+                                                            value="{{ $disciplineParticipant->team_id }}">
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" id="desasociar" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">desasociar</button>
+                                                    <button type="button" id="cerrar" class="btn btn-dark"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            </table>
+                        @endif
+                    </div>
+                    @role('admin')
+                        <div class="text-center">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#asociar{{ $team->id }}"
+                                class="btn btn-primary">Agregar Medallas</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#eliminar{{ $team->id }}"
+                                class="btn btn-danger">Eliminar Medallas</button>
                         </div>
-
-                        <div class="modal" tabindex="-1" id="desasociar{{ $disciplineParticipant->participant->id  }}" role="dialog">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"></h5>
-
-                                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
-
-                                    </div>
+                    @endrole
+                </div>
+            </div>
 
 
-                                    <div class="modal-body">
-                                        <form action="/equipos/desasociar" method="POST">
-                                            @csrf
-                                            <p>va a eliminar a <strong>{{ $disciplineParticipant->participant->name }}</strong> del equipo</p>
-                                            <p>va a eliminar a <strong>{{ $disciplineParticipant->participant_id}}</strong> del equipo</p>
-                                            <input type="hidden" name="discipline" value="{{ $disciplineParticipant->discipline_id}}">
-                                            <input type="hidden" name="id" value="{{ $disciplineParticipant->participant->id}}">
-                                            <input type="hidden" name="team" value="{{ $disciplineParticipant->team_id}}">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" id="desasociar" class="btn btn-danger" data-bs-dismiss="modal">desasociar</button>
-                                        <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal" tabindex="-1" id="asociar{{ $team->id }}" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
+                                aria-label="close"></i>
                         </div>
-                        @endforeach
-                    </table>
-                    @endif
-                </div>
-                @role('admin')
-                <div class="text-center">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#asociar{{ $team->id }}" class="btn btn-primary">Agregar Medallas</button>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#eliminar{{ $team->id }}" class="btn btn-danger">Eliminar Medallas</button>
-                </div>
-                @endrole
-            </div>
-        </div>
+                        <div class="modal-body">
+                            <form action="/equipos/asignar/{{ $team->id }}" method="POST">
+                                @csrf
 
-
-        <div class="modal" tabindex="-1" id="asociar{{ $team->id }}" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/equipos/asignar/{{$team->id}}" method="POST">
-                            @csrf
-
-                            <div>
-                                <input type="hidden" name="team_id" id="team_id" value="{{ $team->id }}">
-                                <label for="awars">Escoja la medalla a asignar</label>
-                                <select class="form-select" name="award_id" id="award_id">
-                                    <option value="1">oro</option>
-                                    <option value="2">Plata</option>
-                                    <option value="3">Bronce</option>
-                                </select>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="asignar" class="btn btn-primary">Asignar</button>
-                        <button type="button" id="cerrar" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        </form>
+                                <div>
+                                    <input type="hidden" name="team_id" id="team_id"
+                                        value="{{ $team->id }}">
+                                    <label for="awars">Escoja la medalla a asignar</label>
+                                    <select class="form-select" name="award_id" id="award_id">
+                                        <option value="1">oro</option>
+                                        <option value="2">Plata</option>
+                                        <option value="3">Bronce</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="asignar" class="btn btn-primary">Asignar</button>
+                            <button type="button" id="cerrar" class="btn btn-danger"
+                                data-bs-dismiss="modal">Cerrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="modal" tabindex="-1" id="eliminar{{ $team->id }}" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal" aria-label="close"></i>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/equipos/eliminar/{{$team->id}}" method="POST">
-                            @csrf
-                            <div>
-                                <input type="hidden" name="team_id" id="team_id" value="{{ $team->id }}">
-                                <p class="text-center">va a eliminar la medalla del equipo <strong>{{ $team->name }}</strong>  asegurese de que es el equipo correcto</p>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="eliminar" class="btn btn-danger">eliminar</button>
-                        <button type="button" id="cerrar" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
-                        </form>
+            <div class="modal" tabindex="-1" id="eliminar{{ $team->id }}" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
+                                aria-label="close"></i>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/equipos/eliminar/{{ $team->id }}" method="POST">
+                                @csrf
+                                <div>
+                                    <input type="hidden" name="team_id" id="team_id"
+                                        value="{{ $team->id }}">
+                                    <p class="text-center">va a eliminar la medalla del equipo
+                                        <strong>{{ $team->name }}</strong> asegurese de que es el equipo correcto
+                                    </p>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="eliminar" class="btn btn-danger">eliminar</button>
+                            <button type="button" id="cerrar" class="btn btn-dark"
+                                data-bs-dismiss="modal">Cerrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
         @endforeach
 
     </div>
