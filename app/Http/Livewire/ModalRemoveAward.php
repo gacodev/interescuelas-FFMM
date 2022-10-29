@@ -5,10 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\Participant;
 use Livewire\Component;
 
-class ModalAddAward extends Modal
+class ModalRemoveAward extends Modal
 {
 
-    protected $listeners = ['showModal' => "showModal"];
+    protected $listeners = ['showModalRemoveAward' => "showModal"];
 
     public function render()
     {
@@ -16,7 +16,8 @@ class ModalAddAward extends Modal
         if ($this->data) {
             $participant = Participant::with([
                 "disciplineParticipants" => function ($query) {
-                    $query->whereNull('discipline_participants.team_id');
+                    $query->whereNull('discipline_participants.team_id')
+                        ->whereNotNull('award_id');
                 },
                 "disciplineParticipants.award",
                 "disciplineParticipants.discipline",
@@ -28,6 +29,6 @@ class ModalAddAward extends Modal
                 ->first();
         }
 
-        return view('livewire.modal-add-award', compact('participant'));
+        return view('livewire.modal-remove-award', compact('participant'));
     }
 }
