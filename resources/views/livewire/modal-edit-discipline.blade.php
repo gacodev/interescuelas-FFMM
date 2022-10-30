@@ -19,12 +19,13 @@
                             <input type="text" name="discipline" id="discipline" class="form-control"
                                 value="{{ $discipline->discipline }}" required>
                             <strong class="d-inline-block">descripcion</strong>
-                            <textarea type="text" name="description" id="description" class="form-control" value="{{ $discipline->description }}"
-                                required></textarea>
+                            <textarea type="text" name="description" id="description" class="form-control">{{ $discipline->description }}</textarea>
                             <strong class="d-inline-block">Deporte al que pertenece</strong>
                             <select name="sport_id" id="sport_id" class="form-select" required>
                                 @foreach ($sports as $sport)
-                                    <option value="{{ $sport->id }}">{{ $sport->sport }}</option>
+                                    <option value="{{ $sport->id }}"
+                                        {{ $discipline->sport->id == $sport->id ? 'selected' : '' }}>{{ $sport->sport }}
+                                    </option>
                                 @endforeach
 
                             </select>
@@ -32,9 +33,12 @@
                             <input type="file" name="discipline_image" name="discipline_image" class="form-control">
                             <strong class="d-inline-block">Genero</strong>
                             <select name="gender_id" class="form-select" id="gender_id">
-                                <option value="1">Masculino</option>
-                                <option value="2">Femenino</option>
-                                <option value="3">No binario</option>
+                                @foreach ($genders as $gender)
+                                    <option value="{{ $gender->id }}"
+                                        {{ $discipline->gender->id == $gender->id ? 'selected' : '' }}>
+                                        {{ $gender->sexo }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="modal-footer">

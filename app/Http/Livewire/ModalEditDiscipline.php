@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Discipline;
+use App\Models\Gender;
 use App\Models\Sport;
 
 class ModalEditDiscipline extends Modal
@@ -14,6 +15,7 @@ class ModalEditDiscipline extends Modal
 
         $discipline = null;
         $sports = null;
+        $genders = null;
         if ($this->data) {
             $discipline =  Discipline::with([
                 "sport",
@@ -22,8 +24,9 @@ class ModalEditDiscipline extends Modal
                 ->first();
 
             $sports = Sport::all();
+            $genders = Gender::all();
         }
 
-        return view('livewire.modal-edit-discipline', compact('discipline', 'sports'));
+        return view('livewire.modal-edit-discipline', compact('discipline', 'sports', 'genders'));
     }
 }

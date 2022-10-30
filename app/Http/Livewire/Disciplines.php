@@ -26,11 +26,14 @@ class Disciplines extends Component
             "gender",
         ])
             ->where('discipline', 'like', '%' . $this->search . '%')
+            ->orWhereHas('sport', function ($query) {
+                $query->Where('sport', 'like', '%' . $this->search . '%');
+            })
             ->paginate(25);
 
         $sports = Sport::get();
 
         $total = DB::table('disciplines')->count();
-        return view('livewire.disciplines', compact('disciplines','sports','total'));
+        return view('livewire.disciplines', compact('disciplines', 'sports', 'total'));
     }
 }
