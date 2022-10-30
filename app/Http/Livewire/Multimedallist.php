@@ -19,20 +19,24 @@ class Multimedallist extends Component
             from participants p
             JOIN forces f on f.id = p.force_id
             JOIN nationalities n on n.id = p.nationality_id
+            JOIN discipline_participants dp on dp.participant_id = p.id 
             left JOIN discipline_participants dpg on
                 (
                     dpg.participant_id = p.id and
                     dpg.award_id in (select id from awards a WHERE a.award = 'oro')
+                    and dp.id = dpg.id
                 )
             left JOIN discipline_participants dps on
                 (
                     dps.participant_id = p.id and
                     dps.award_id in (select id from awards a WHERE a.award = 'plata')
+                    and dp.id = dps.id
                 )
             left JOIN discipline_participants dpb on
                 (
                     dpb.participant_id = p.id and
                     dpb.award_id in (select id from awards a WHERE a.award = 'bronce')
+                    and dp.id = dpb.id
                 )
             where p.id in (
                     select DISTINCT p.id  from participants p
@@ -51,20 +55,24 @@ class Multimedallist extends Component
             from participants p
             JOIN forces f on f.id = p.force_id
             JOIN nationalities n on n.id = p.nationality_id
+            JOIN discipline_participants dp on dp.participant_id = p.id 
             left JOIN discipline_participants dpg on
                 (
                     dpg.participant_id = p.id and
                     dpg.award_id in (select id from awards a WHERE a.award = 'oro')
+                    and dp.id = dpg.id
                 )
             left JOIN discipline_participants dps on
                 (
                     dps.participant_id = p.id and
                     dps.award_id in (select id from awards a WHERE a.award = 'plata')
+                    and dp.id = dps.id
                 )
             left JOIN discipline_participants dpb on
                 (
                     dpb.participant_id = p.id and
                     dpb.award_id in (select id from awards a WHERE a.award = 'bronce')
+                    and dp.id = dpb.id
                 )
             where p.id in (
                     select DISTINCT p.id  from participants p
@@ -80,9 +88,25 @@ class Multimedallist extends Component
             from participants p
             JOIN forces f on f.id = p.force_id
             JOIN nationalities n on n.id = p.nationality_id
-            left JOIN discipline_participants dpg on (dpg.participant_id = p.id and dpg.award_id in (select id from awards a WHERE a.award = 'oro'))
-            left JOIN discipline_participants dps on (dps.participant_id = p.id and dps.award_id in (select id from awards a WHERE a.award = 'plata'))
-            left JOIN discipline_participants dpb on (dpb.participant_id = p.id and dpb.award_id in (select id from awards a WHERE a.award = 'bronce'))
+            JOIN discipline_participants dp on dp.participant_id = p.id 
+            left JOIN discipline_participants dpg on 
+                (
+                    dpg.participant_id = p.id and 
+                    dpg.award_id in (select id from awards a WHERE a.award = 'oro')
+                    and dp.id = dpg.id
+                )
+            left JOIN discipline_participants dps on 
+                (
+                    dps.participant_id = p.id and 
+                    dps.award_id in (select id from awards a WHERE a.award = 'plata')
+                    and dp.id = dps.id
+                )
+            left JOIN discipline_participants dpb on 
+                (
+                    dpb.participant_id = p.id and 
+                    dpb.award_id in (select id from awards a WHERE a.award = 'bronce')
+                    and dp.id = dpb.id
+                )
             GROUP by p.id  ORDER BY gold DESC, silver desc, bronze desc
             limit 5");
         }
