@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Discipline;
 use App\Models\Sport;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class Disciplines extends Component
 {
@@ -28,6 +29,8 @@ class Disciplines extends Component
             ->paginate(25);
 
         $sports = Sport::get();
-        return view('livewire.disciplines', compact('disciplines','sports'));
+
+        $total = DB::table('disciplines')->count();
+        return view('livewire.disciplines', compact('disciplines','sports','total'));
     }
 }

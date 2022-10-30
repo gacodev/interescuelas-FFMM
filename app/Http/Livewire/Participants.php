@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Participant;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 use Livewire\Component;
 
@@ -41,8 +42,11 @@ class Participants extends Component
             })
             ->paginate(6);
 
+        $total = DB::table('participants')->count();
+
         return view('livewire.participants', [
-            'participants' => $participant
+            'participants' => $participant,
+            'total' => $total,
         ]);
     }
 }

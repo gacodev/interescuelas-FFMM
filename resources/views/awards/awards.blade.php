@@ -3,11 +3,18 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
+
+        <div class="col-sm-10 col-md-2 container text-center mb-3">
+            <h1 class="text-center">Medallas</h1>
+                            <div class="bg-warning card mt-2"><p class="mt-2 p-2">{{$gold}}</p></div>
+                            <div class="card mt-2" style="background-color:#BEBEBE;"><p class="mt-2 p-2">{{$silver}}</p></div>
+                            <div class="card mt-2" style="background-color:#CD7F32;"><p class="mt-2 p-2">{{$bronze}}</p></div>
+                            <div class="bg-success card mt-2"><p class="mt-2 mb-2 p-2">{{$total}}</p></div>
+        </div>
+            <div class="col-md-10 text-center">
                 <div class="card d-flex mb-4 border border-dark justify-content-center">
                     <div class="card-header text-center">
                         <h1> <strong> {{ __('Tabla de medalleria ') }} </strong></h1>
-
                     </div>
                     <div class="card-body">
 

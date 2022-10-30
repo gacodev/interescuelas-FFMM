@@ -11,6 +11,10 @@
                 {{ Session::get('success') }}
             </div>
         @endif
+
+        <div>
+        <p><strong>PARTICIPANTES: </strong>{{$total}}</p>
+        </div>
         <div class="row">
 
             @foreach ($participants as $participant)

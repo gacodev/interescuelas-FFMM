@@ -5,9 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\Team;
 use Livewire\Component;
 
-class ModalAddAwardTeam extends Modal
+class ModalRemoveAwardTeam extends Modal
 {
-    protected $listeners = ['showModalAddAwardTeam' => "showModal"];
+
+    protected $listeners = ['showModalRemoveAwardTeam' => "showModal"];
 
     public function render()
     {
@@ -22,6 +23,6 @@ class ModalAddAwardTeam extends Modal
                 ->first();
         }
 
-        return view('livewire.modal-add-award-team', compact('team'));
+        return view('livewire.modal-remove-award-team', compact('team'));
     }
 }

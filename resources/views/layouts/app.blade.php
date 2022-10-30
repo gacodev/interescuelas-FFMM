@@ -36,7 +36,7 @@
                     </a>
 
                     <a class="navbar-brand mr-4" href="{{ url('/participants') }}">
-                        <img src="assets/jetic.png"
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitwaCLW-20sQ-FLqzZjU9hnia1JlB0R7lshxBxCkkhTSVOQdWXPmNSEhp9orb8-p0U9-AQ_yTlOLu4xCv7SyNy_STbqQLJ7xADnv3g3T016mLIIf82CSle1ZHBE3m3fAImOaGkb0ksyHM1Y5lTZV3OaSrFDyt7wPnvx3F4MKf0JPGJK-JOfntC-mSb/s320/jetic.png"
                             alt="" width="70px" height="70px">
                     </a>
                 </div>
