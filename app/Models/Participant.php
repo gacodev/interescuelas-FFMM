@@ -38,6 +38,16 @@ class Participant extends Model
         return $this->belongsTo(Force::class);
     }
 
+    public function blood()
+    {
+        return $this->belongsTo(Blood::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
     public function disciplineParticipants()
     {
         return $this->hasMany(DisciplineParticipant::class);

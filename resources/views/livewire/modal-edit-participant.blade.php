@@ -26,16 +26,31 @@
                         <strong class="d-inline-block">Foto</strong>
                         <input type="file" name="photo" class="form-control" value="{{ $participant->photo }}">
                         <strong class="d-inline-block">RH</strong>
-                        <input type="text" name="blood_id" class="form-control" value="{{ $participant->blood_id }}">
+                        <select name="blood_id" class="form-control" id="blood_id">
+                            @foreach ($bloods as $blood)
+                                <option value="{{ $blood->id }}"
+                                    {{ $participant->blood_id == $blood->id ? 'selected' : '' }}>
+                                    {{ $blood->type }}
+                                </option>
+                            @endforeach
+                        </select>
+
                         <strong class="d-inline-block">Peso</strong>
                         <input type="text" name="weight" class="form-control" value="{{ $participant->weight }}">
                         <strong class="d-inline-block">Estatura</strong>
                         <input type="text" name="height" class="form-control" value="{{ $participant->height }}">
                         <strong class="d-inline-block">Genero</strong>
-                        <input type="text" name="gender_id" class="form-control"
-                            value="{{ $participant->gender_id }}">
+                        <select name="gender_id" class="form-control" id="gender_id">
+                            @foreach ($genders as $gender)
+                                <option value="{{ $gender->id }}"
+                                    {{ $participant->gender_id == $gender->id ? 'selected' : '' }}>
+                                    {{ $gender->sexo }}
+                                </option>
+                            @endforeach
+                        </select>
                         <strong class="d-inline-block">Fecha de Nacimiento</strong>
-                        <input type="text" name="birthday" class="form-control" value="{{ $participant->birthday }}">
+                        <input type="text" name="birthday" class="form-control"
+                            value="{{ $participant->birthday }}">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
