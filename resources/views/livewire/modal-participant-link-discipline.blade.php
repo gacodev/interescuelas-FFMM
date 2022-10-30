@@ -17,7 +17,7 @@
 
                         @csrf
                         <input type="hidden" name="participant_id" value="{{ $participant->id }}">
-                        <strong class="d-inline-block text-center">Lista de equipos</strong>
+                        <strong class="d-inline-block text-center">Lista de disciplinas</strong>
                         <select class="form-select" name="discipline_id" id="disciplines">
                             @foreach ($disciplines as $discipline)
                                 <option value="{{ $discipline->id }}">
