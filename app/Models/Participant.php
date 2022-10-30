@@ -20,7 +20,7 @@ class Participant extends Model
         'force_id',
         'grade_id',
         'name',
-        'blood_type',
+        'blood_id',
         'height',
         'weight',
         'photo',
@@ -79,5 +79,4 @@ class Participant extends Model
         $countAward = $this->disciplineParticipants->whereIn("award_id", $awards)->count();
         return $countAward;
     }
-
 }
