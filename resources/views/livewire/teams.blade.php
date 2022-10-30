@@ -136,45 +136,14 @@
                     </div>
                     @role('admin')
                         <div class="text-center">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#asociar{{ $team->id }}"
-                                class="btn btn-primary"
+                            <button type="button" data-bs-toggle="modal" class="btn btn-primary"
                                 wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
                                 Medallas</button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#eliminar{{ $team->id }}"
-                                class="btn btn-danger">Eliminar Medallas</button>
+                            <button type="button" data-bs-toggle="modal" class="btn btn-danger"
+                                wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
+                                Medallas</button>
                         </div>
                     @endrole
-                </div>
-            </div>
-
-
-
-            <div class="modal" tabindex="-1" id="eliminar{{ $team->id }}" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
-                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                aria-label="close"></i>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/equipos/eliminar/{{ $team->id }}" method="POST">
-                                @csrf
-                                <div>
-                                    <input type="hidden" name="team_id" id="team_id"
-                                        value="{{ $team->id }}">
-                                    <p class="text-center">va a eliminar la medalla del equipo
-                                        <strong>{{ $team->name }}</strong> asegurese de que es el equipo correcto
-                                    </p>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" id="eliminar" class="btn btn-danger">eliminar</button>
-                            <button type="button" id="cerrar" class="btn btn-dark"
-                                data-bs-dismiss="modal">Cerrar</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         @endforeach
@@ -182,9 +151,11 @@
     </div>
 
     @livewire('modal-add-award-team')
+    @livewire('modal-remove-award-team')
 
 
-    <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
+    <div class="col-md-12
+                                d-flex justify-content-center mt-2 p-3">
         <span class="p-2">{!! $TeamParticipants->links() !!}</span>
     </div>
 </div>
