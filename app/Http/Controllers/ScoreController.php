@@ -24,12 +24,19 @@ class ScoreController extends Controller
             "discipline",
             "discipline.disciplineParticipants",
         ])->get();
-        $gold = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 1');
-        $silver = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 2');
-        $bronze = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 3');
-        $total = DB::select('select COUNT(award_id)  FROM discipline_participants dp');
-        dd($sports);
-        return view('awards.awards', compact('sports','gold'));
+        //$gold = DB::select('select COUNT(award_id) as gold FROM discipline_participants dp WHERE award_id = 1');
+        $silver = DB::select('select COUNT(award_id) as silver  FROM discipline_participants dp WHERE award_id = 2');
+        $bronze = DB::select('select COUNT(award_id) as bronze  FROM discipline_participants dp WHERE award_id = 3');
+        $total = DB::select('select COUNT(award_id) as total FROM discipline_participants dp');
+        //dd($sports);
+
+        $gold = DB::table('discipline_participants')->where('award_id','=', 1)->count();
+        $silver= DB::table('discipline_participants')->where('award_id','=', 2)->count();
+        $bronze = DB::table('discipline_participants')->where('award_id','=', 3)->count();
+        $total = DB::table('discipline_participants')->where('award_id','=', 1 )->orWhere('award_id','=', 2 )->orWhere('award_id','=', 3 )->count();
+       // dd($gold);
+
+        return view('awards.awards', compact('sports','gold','silver','bronze','total'));
 
     }
 
