@@ -67,99 +67,16 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#asociar{{ $participant->id }}">Asociar</button>
+                                            data-bs-target="#asociar{{ $participant->id }}"
+                                            wire:click.prevent="$emit('showModalParticipantLinkDiscipline', {{ $participant->id }})">Asociar</button>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#desasociar{{ $participant->id }}">Desasociar</button>
+                                            data-bs-target="#desasociar{{ $participant->id }}"
+                                            wire:click.prevent="$emit('showModalParticipantUnlinkDiscipline', {{ $participant->id }})">Desasociar</button>
                                     </td>
                                 @endrole
                             </tr>
-
-
-
-                            <div class="modal" tabindex="-1" id="asociar{{ $participant->id }}" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center"><strong>Asociar disciplina</strong></h5>
-
-                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                                aria-label="close"></i>
-
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="/participantes/asociar" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="participant_id"
-                                                    value="{{ $participant->id }}">
-                                                <strong class="d-inline-block text-center">Lista de equipos</strong>
-                                                <select class="form-select" name="discipline_id" id="disciplines">
-                                                    @foreach ($disciplines as $discipline)
-                                                        <option value="{{ $discipline->id }}">
-                                                            {{ $discipline->discipline }}</option>
-                                                    @endforeach
-                                                </select>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="guardar"
-                                                class="btn btn-primary">Guardar</button>
-                                            <button type="button" id="cancelar" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Cancelar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                            <div class="modal" tabindex="-1" id="desasociar{{ $participant->id }}" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title"> Desasociar Disciplina</h5>
-                                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                                aria-label="close"></i>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div>
-
-                                                <div class="d-inline-block w-40 mt-2">
-                                                    <strong class="d-block">{{ $participant->name }}</strong>
-                                                    <strong class="d-block"></strong>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <form action="/participant/desasociar" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id"
-                                                            value="{{ $participant->id }}">
-                                                        <select class="form-select" name="discipline"
-                                                            id="disciplines">
-                                                            @foreach ($participant->disciplineParticipants as $disciplineParticipant)
-                                                                @if (isset($disciplineParticipant->discipline->discipline))
-                                                                    <option
-                                                                        value="{{ $disciplineParticipant->discipline->id }}">
-                                                                        {{ $disciplineParticipant->discipline->discipline }}
-                                                                    </option>
-                                                                @endif
-                                                            @endforeach
-                                                        </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="asignar"
-                                                onclick="return confirm('Esta seguro de desasociar esta disciplina?')"
-                                                class="btn btn-danger">Desasociar</button>
-                                            <button type="button" id="cerrar" class="btn btn-dark"
-                                                data-bs-dismiss="modal">Cerrar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -167,6 +84,8 @@
         </div>
 
         @livewire('modal-edit-participant')
+        @livewire('modal-participant-unlink-discipline')
+        @livewire('modal-participant-link-discipline')
 
         <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
             <span class="p-2">{!! $participants->links() !!}</span>
