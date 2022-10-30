@@ -9,6 +9,9 @@
         <input class="col-4 mr-2 form-control" type="text" name="busqueda" wire:model="search">
         <i class="bi bi-search p-2"></i>
     </div>
+        <div>
+            <p><strong>DISCIPLINAS: </strong>{{$total}}</p>
+        </div>
 
     <div class="table-responsive">
         <table class="table table-hover table-default border border-dark rounded-2">
@@ -17,7 +20,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Deporte</th>
                     <th scope="col">Disciplina</th>
-                    <th scope="col">descripcion</th>
                     <th scope="col">Genero</th>
                     @role('admin')
                         <th scope="col"></th>
@@ -30,7 +32,6 @@
                     <th>{{ $discipline->id }}</th>
                     <th>{{ $discipline->sport->sport }}</th>
                     <td>{{ $discipline->discipline }}</td>
-                    <td>{{ $discipline->description }}</td>
                     <td>{{ $discipline->gender->sexo }}</td>
 
                     @role('admin')

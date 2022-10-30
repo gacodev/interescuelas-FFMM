@@ -9,7 +9,9 @@
             {{ Session::get('success') }}
         </div>
     @endif
-
+         <div>
+            <p><strong>EQUIPOS: </strong>{{$total}}</p>
+        </div>
     <div class="d-flex flex-wrap justify-content-center">
         @foreach ($TeamParticipants as $team)
             <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-5 col-lg-6 col-xl-5 mx-1">

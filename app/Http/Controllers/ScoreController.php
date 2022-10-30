@@ -24,8 +24,13 @@ class ScoreController extends Controller
             "discipline",
             "discipline.disciplineParticipants",
         ])->get();
+        $gold = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 1');
+        $silver = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 2');
+        $bronze = DB::select('select COUNT(award_id)  FROM discipline_participants dp WHERE award_id = 3');
+        $total = DB::select('select COUNT(award_id)  FROM discipline_participants dp');
+        dd($sports);
+        return view('awards.awards', compact('sports','gold'));
 
-        return view('awards.awards', compact('sports'));
     }
 
     /**
