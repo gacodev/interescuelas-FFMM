@@ -137,7 +137,9 @@
                     @role('admin')
                         <div class="text-center">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#asociar{{ $team->id }}"
-                                class="btn btn-primary">Agregar Medallas</button>
+                                class="btn btn-primary"
+                                wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
+                                Medallas</button>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#eliminar{{ $team->id }}"
                                 class="btn btn-danger">Eliminar Medallas</button>
                         </div>
@@ -145,39 +147,6 @@
                 </div>
             </div>
 
-
-            <div class="modal" tabindex="-1" id="asociar{{ $team->id }}" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
-                            <i class="w-20 bi bi-x-square close" type="button" data-bs-dismiss="modal"
-                                aria-label="close"></i>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/equipos/asignar/{{ $team->id }}" method="POST">
-                                @csrf
-
-                                <div>
-                                    <input type="hidden" name="team_id" id="team_id"
-                                        value="{{ $team->id }}">
-                                    <label for="awars">Escoja la medalla a asignar</label>
-                                    <select class="form-select" name="award_id" id="award_id">
-                                        <option value="1">oro</option>
-                                        <option value="2">Plata</option>
-                                        <option value="3">Bronce</option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" id="asignar" class="btn btn-primary">Asignar</button>
-                            <button type="button" id="cerrar" class="btn btn-danger"
-                                data-bs-dismiss="modal">Cerrar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
             <div class="modal" tabindex="-1" id="eliminar{{ $team->id }}" role="dialog">
@@ -212,8 +181,10 @@
 
     </div>
 
+    @livewire('modal-add-award-team')
 
 
     <div class="col-md-12 d-flex justify-content-center mt-2 p-3">
         <span class="p-2">{!! $TeamParticipants->links() !!}</span>
     </div>
+</div>
