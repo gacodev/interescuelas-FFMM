@@ -13,6 +13,7 @@ class Teams extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $search;
+    public $teams;
 
     public function updatingSearch()
     {

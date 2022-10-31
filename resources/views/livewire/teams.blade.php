@@ -22,6 +22,7 @@
                 </div>
                 <div class="card-body text-dark">
                     <h5 class="card-title text-center text-uppercase">
+
                         <strong>{{ $team->name }}</strong> <br>{{ $team->sport->sport }}
                     </h5>
                     <img class="rounded"
@@ -138,6 +139,10 @@
                     </div>
                     @role('admin')
                         <div class="text-center">
+                            <button type="button" data-bs-toggle="modal" class="btn btn-warning"
+                                wire:click.prevent="$emit('showModalTeamAssign', {{ $team->id }})">Asociar
+                                participante
+                            </button>
                             <button type="button" data-bs-toggle="modal" class="btn btn-primary"
                                 wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
                                 Medallas</button>
@@ -154,6 +159,7 @@
 
     @livewire('modal-add-award-team')
     @livewire('modal-remove-award-team')
+    @livewire('assign-team-modal',['teams' => $teams])
 
 
     <div class="col-md-12
