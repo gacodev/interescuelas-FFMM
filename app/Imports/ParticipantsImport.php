@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Blood as ModelsBlood;
+use App\Models\Blood;
 use App\Models\Force;
 use App\Models\Gender;
 use App\Models\Nationality;
@@ -112,11 +112,10 @@ class ParticipantsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, W
         $gender = Gender::where("sexo", "like", "%{$row['sexo']}%")->first();
         $row['sexo'] =  $gender && $row['sexo'] ? $gender->id : null;
 
-        //$row['sangre'] = (string) $row['sangre'];
-        $row['sangre'] = 1;
-        /*trim($row['sangre']);
-        $blood = ModelsBlood::where("type", "like", "%{$row['sangre']}%")->first();
-        $row['sangre'] =  $blood  && $row['sangre'] ? $blood->id : null;*/
+        $row['sangre'] = (string) $row['sangre'];
+        $row['sangre'] = trim($row['sangre']);
+        $blood = Blood::where("type", "like", "%{$row['sangre']}%")->first();
+        $row['sangre'] =  $blood  && $row['sangre'] ? $blood->id : null;
 
         $row['documento'] = (string) trim($row['documento']);
 

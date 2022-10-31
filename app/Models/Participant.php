@@ -20,7 +20,7 @@ class Participant extends Model
         'force_id',
         'grade_id',
         'name',
-        'blood_type',
+        'blood_id',
         'height',
         'weight',
         'photo',
@@ -36,6 +36,16 @@ class Participant extends Model
     public function force()
     {
         return $this->belongsTo(Force::class);
+    }
+
+    public function blood()
+    {
+        return $this->belongsTo(Blood::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
     }
 
     public function disciplineParticipants()
@@ -79,5 +89,4 @@ class Participant extends Model
         $countAward = $this->disciplineParticipants->whereIn("award_id", $awards)->count();
         return $countAward;
     }
-
 }

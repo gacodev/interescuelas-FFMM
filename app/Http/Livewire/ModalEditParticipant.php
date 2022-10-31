@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Blood;
+use App\Models\Gender;
 use App\Models\Participant;
 use Livewire\Component;
 
@@ -13,6 +15,8 @@ class ModalEditParticipant extends Modal
     public function render()
     {
         $participant = null;
+        $genders = null;
+        $bloods  = null;
         if ($this->data) {
 
             $participant = Participant::with([
@@ -24,8 +28,11 @@ class ModalEditParticipant extends Modal
                 "nationality",
             ])->where("participants.id", "=", $this->data)
                 ->first();
+
+            $genders = Gender::all();
+            $bloods = Blood::all();
         }
 
-        return view('livewire.modal-edit-participant', compact('participant'));
+        return view('livewire.modal-edit-participant', compact('participant', 'genders', 'bloods'));
     }
 }

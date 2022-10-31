@@ -40,10 +40,10 @@
                                 <td>{{ $participant->name }}</td>
                                 <td>{{ $participant->phone }}</td>
                                 <td>{{ $participant->photo }}</td>
-                                <td>{{ $participant->blood_id }}</td>
+                                <td>{{ isset($participant->blood) ? $participant->blood->type : '' }}</td>
                                 <td>{{ $participant->weight }}</td>
                                 <td>{{ $participant->height }}</td>
-                                <td>{{ $participant->gender_id }}</td>
+                                <td>{{ isset($participant->gender) ? $participant->gender->sexo : '' }}</td>
                                 <td>{{ $participant->birthday }}</td>
                                 @foreach ($participant->disciplineParticipants as $disciplineParticipant)
                                     <td class="d-inline-flex">
