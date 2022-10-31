@@ -12,8 +12,8 @@
                         <div class="p-6">
                             <div class="ml-12 text-center justify-content-center">
                                 <div class="mt-2  text-sm ">
-                                    <h3><strong>Bienvenido a Interescuelas </strong></h3>
-                                    </br> Nos alegra tenerter con nosotros con esta aplicacion podras controlar la medalleria para los participantes
+                                    <h3><strong>BIENVENIDOS A LOS XXVIII Juegos Interescuelas de Cadetes 2022 </strong></h3>
+                                    </br> Consolidado de medallas deportistas Escuelas de Formación (ESMIC, ENAP, EMAVI, ECSAN)
                                 </div>
                             </div>
                        </div>
