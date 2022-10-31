@@ -38,9 +38,9 @@
                                             <td>
                                                 <div class="d-flex align-items-center justify-content-left text-center">
                                                     <div class="m-2 align-items-center">
-                                                        <img src="https://st.depositphotos.com/1005563/3256/i/600/depositphotos_32564723-stock-photo-sports-balls-a-lot-of.jpg"
-                                                            alt="" style="width: 45px; height: 45px"
-                                                            class="rounded-circle" />
+                                                        <img src="/{{$sport->sport_image}}"
+                                                            alt="" style="width: 80px; height: 80px"
+                                                            class="" />
                                                     </div class="">
                                                     <div>
                                                         <form action="/medalleria/{{ $sport->id }}" method="GET">

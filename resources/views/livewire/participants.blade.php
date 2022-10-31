@@ -95,9 +95,11 @@
                                         <button type="button" class="m-1 btn btn-warning" type="button"
                                             wire:click.prevent="$emit('showModal', {{ $participant->id }})">Agregar
                                             Medallas</button>
+                                            @role('admin')
                                         <button type="button" class="m-1 btn btn-danger" type="button"
                                             wire:click.prevent="$emit('showModalRemoveAward', {{ $participant->id }})">Eliminar
                                             Medallas</button>
+                                            @endrole
                                     </div>
                                 @endcan
                             </div>

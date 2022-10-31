@@ -37,7 +37,7 @@ class SportsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHea
         return new Sport([
             'sport' => $row['sport'],
             'description' => "",
-            'sport_image' => "",
+            'sport_image' => $row['sport_image'],
         ]);
     }
 
@@ -49,13 +49,17 @@ class SportsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHea
                 'string',
                 'unique:sports'
             ],
+            'sport_image' => [
+                'string',
+            ],
         ];
     }
 
     public function prepareForValidation($row, $index)
     {
         $row['sport'] = strtoupper(trim($row['deportes']));
-
+        $sport = explode(" ",strtolower(trim($row['deportes'])));
+        $row['sport_image'] = "deportes/{$sport[0]}.jpg";
         return $row;
     }
 
