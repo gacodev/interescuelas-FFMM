@@ -37,8 +37,8 @@
                                             <td>
                                                 <div class="d-flex align-items-center justify-content-left text-center">
                                                     <div class="m-2 align-items-center">
-                                                        <img src="https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png"
-                                                            alt="" style="width: 45px; height: 45px"
+                                                        <img src="/{{$participantByDiscipline->participant->photo}}"
+                                                            alt="" style="width: 70px; height: 70px"
                                                             class="rounded-circle" />
                                                     </div class="">
                                                     <div>
