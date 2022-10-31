@@ -59,7 +59,6 @@ class ScoreController extends Controller
         $participantsByDiscipline = DisciplineParticipant::with(["participant"])
             ->where('discipline_id', '=', $discipline->id)->get();
 
-        //dd($participantsByDiscipline);
         return view('awards.participants', compact('participantsByDiscipline'));
     }
     /**
@@ -180,18 +179,18 @@ class ScoreController extends Controller
         ];
         */
 
-        $ForcesScores = DB::select("select f.`force`, 
+        $ForcesScores = DB::select("select f.`force`,
         SUM(dp.award_id  = 1) as gold, SUM(dp.award_id = 2) as silver, SUM(dp.award_id = 3) as bronze
         from forces f
         join participants p on p.force_id = f.id
-        JOIN discipline_participants dp on dp.participant_id = p.id 
+        JOIN discipline_participants dp on dp.participant_id = p.id
         GROUP by f.`force`");
 
-        $GendersScores = DB::select("select g.sexo , 
+        $GendersScores = DB::select("select g.sexo ,
         SUM(dp.award_id  = 1) as gold, SUM(dp.award_id = 2) as silver, SUM(dp.award_id = 3) as bronze
         from genders g
         join participants p on p.gender_id  = g.id
-        JOIN discipline_participants dp on dp.participant_id = p.id 
+        JOIN discipline_participants dp on dp.participant_id = p.id
         GROUP by g.sexo");
 
         return [
