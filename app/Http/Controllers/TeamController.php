@@ -79,7 +79,7 @@ class TeamController extends Controller
 
     public function asociarparticipante(Request $request)
     {
-        //dd($request);
+        dd($request);
         /*$validated = $request->validate([
             'participant_id' => 'number',
             'team_id' => 'number',
