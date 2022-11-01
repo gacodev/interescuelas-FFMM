@@ -47,9 +47,8 @@ class ParticipantController extends Controller
             'identification' => 'required|unique:participants',
             'type_doc_id' => 'required|exists:type_docs,id',
             'force_id' => 'required|exists:forces,id',
-            'grade_id' => 'required|exists:grades,id',
             'name' => 'required',
-            'blood_type' => 'required',
+            'blood_id' => 'required',
             'height' => 'required',
             'weight' => 'required',
             'photo' => 'required',
@@ -61,9 +60,7 @@ class ParticipantController extends Controller
         $data = new Participant($request->all());
         $data->save();
 
-        $request->session()->flash('status', 'Se creo satisfactoriamente!');
-
-        return redirect()->route('participants.registro', []);
+        return redirect()->back()->withSuccess('Se resgistro correctamente');
     }
 
     public function participantsregister()

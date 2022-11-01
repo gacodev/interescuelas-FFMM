@@ -19,11 +19,10 @@
             </div>
             <div class="card">
                 <div class="m-3">
-                    <h2 required class="text-center"><strong>Interescuelas</strong></h2>
-                    <h2 required class="text-center"><strong>Registro de Participantes</strong></h2>
+                    <h2 required class="text-center"><strong><h1>Registro de Participantes</h1></strong></h2>
                     <div required class="form-group mt-4">
                         <label>Documento de identidad</label>
-                        <input type="number" name="#identification" required class="form-control">
+                        <input type="number" name="identification" required class="form-control">
                     </div>
 
                     <div required class="form-group mt-2">
@@ -74,7 +73,7 @@
 
                     <div required class="form-group mt-2">
                         <label>Grupo Sanguineo</label>
-                        <select required class="form-control" name="blood_type">
+                        <select required class="form-control" name="blood_id">
                             <option> seleccione un grupo sanguineo</option>
                             <option value="A+"> A+</option>
                             <option value="A-"> A-</option>

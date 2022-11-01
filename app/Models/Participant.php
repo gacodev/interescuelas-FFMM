@@ -16,9 +16,9 @@ class Participant extends Model
 
     protected $fillable = [
         'identification',
+        'nationality_id',
         'type_doc_id',
         'force_id',
-        'grade_id',
         'name',
         'blood_id',
         'height',
@@ -26,11 +26,8 @@ class Participant extends Model
         'photo',
         'email',
         'birthday',
-        'gender_id',
-        'discipline_id',
-        'nationality_id',
         'phone',
-        'team_id'
+        'gender_id',
     ];
 
     public function force()
