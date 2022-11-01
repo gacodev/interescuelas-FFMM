@@ -4,8 +4,9 @@
                  none @endif;" role="dialog">
 
 @if($team)
-        <form action="/equipos/asociarparticipante/" method="POST">
+        <form action="/equipos/asociardeportistas/{{ $team->id }}" method="POST">
             @csrf
+            @method('POST')
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
