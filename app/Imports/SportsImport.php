@@ -58,6 +58,7 @@ class SportsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHea
     public function prepareForValidation($row, $index)
     {
         $row['sport'] = strtoupper(trim($row['deportes']));
+
         $sport = explode(" ",strtolower(trim($row['deportes'])));
         $row['sport_image'] = "deportes/{$sport[0]}.jpg";
         return $row;

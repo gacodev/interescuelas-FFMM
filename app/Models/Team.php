@@ -14,7 +14,8 @@ class Team extends Model
         'force_id',
         'sport_id',
         'discipline_id',
-        'award_id'
+        'award_id',
+        'image'
     ];
 
     public function award()
