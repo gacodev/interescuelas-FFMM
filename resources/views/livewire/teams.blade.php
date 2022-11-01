@@ -155,7 +155,7 @@
                                 wire:click.prevent="$emit('showModalTeamAssign', {{ $team->id }})">Asociar
                                 participante
                         </button>
-                        <form action="/equipos/{{ $team->id}}" method="POST">
+                        <form action="/equipos/delete/{{ $team->id}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
