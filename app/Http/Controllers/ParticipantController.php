@@ -181,7 +181,10 @@ class ParticipantController extends Controller
      */
     public function destroy(Participant $participant)
     {
-        //
+        //dd($participant);
+        $participant->delete();
+        return redirect()->back()->withSuccess('Se elimino el participante correctamente');
+
     }
 
 

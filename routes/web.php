@@ -55,6 +55,7 @@ Route::controller(ParticipantController::class)
         Route::post('/participantes/crear',  'create')->name('participants.create');
         Route::get('/participantes/editar',  'edit')->name('participants.edit');
         Route::put('/participantes/{participant}',  'update')->name('participants.update');
+        Route::delete('/participantes/{participant}',  'destroy')->name('participants.destroy');
         Route::get('/participantes/registro',  'participantsregister')->name('participants.registro');
         Route::post('/importparticipants', 'importExcel')->name('import.excel');
         Route::get('/importeExcel', 'import')->name('excel.imports');

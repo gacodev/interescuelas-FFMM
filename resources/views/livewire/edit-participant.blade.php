@@ -13,12 +13,11 @@
             @endif
 
             <div class="table-responsive">
-                <table class="table table-hover table-default border border-dark rounded-2">
+                <table class="table table-hover table-default border border-dark rounded-2 ">
                     <thead class="table-dark">
                         <tr class="text-right">
                             <th scope="col">Documento</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Telefono</th>
                             <th scope="col">Fotografia</th>
                             <th scope="col">RH</th>
                             <th scope="col">Peso</th>
@@ -27,8 +26,8 @@
                             <th scope="col">Fecha de Nacimiento</th>
                             <th colspan="2" scope="col" class="justify-content-center">Disciplinas</th>
                             @role('admin')
-                                <th scope="col">Modificar</th>
-                                <th colspan="2" scope="col">Disciplinas</th>
+                                <th colspan="2" scope="col">Modificar</th>
+                                <th colspan="2" scope="col">Participante</th>
                             @endrole
 
                         </tr>
@@ -38,7 +37,6 @@
                             <tr class="text-center">
                                 <th>{{ $participant->identification }}</th>
                                 <td>{{ $participant->name }}</td>
-                                <td>{{ $participant->phone }}</td>
                                 <td>{{ $participant->photo }}</td>
                                 <td>{{ isset($participant->blood) ? $participant->blood->type : '' }}</td>
                                 <td>{{ $participant->weight }}</td>
@@ -60,11 +58,7 @@
                                     </td>
                                 @endforeach
                                 @role('admin')
-                                    <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#editar{{ $participant->id }}"
-                                            wire:click.prevent="$emit('showModalEditParticipant', {{ $participant->id }})">Editar</button>
-                                    </td>
+
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#asociar{{ $participant->id }}"
@@ -74,6 +68,18 @@
                                         <button class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#desasociar{{ $participant->id }}"
                                             wire:click.prevent="$emit('showModalParticipantUnlinkDiscipline', {{ $participant->id }})">Desasociar</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#editar{{ $participant->id }}"
+                                            wire:click.prevent="$emit('showModalEditParticipant', {{ $participant->id }})">Editar</button>
+                                    </td>
+                                    <td>
+                                        <form action="/participantes/{{ $participant->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Eliminar</button>
+                                        </form>
                                     </td>
                                 @endrole
                             </tr>
