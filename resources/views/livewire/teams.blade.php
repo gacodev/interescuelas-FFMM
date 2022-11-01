@@ -159,7 +159,7 @@
 
     @livewire('modal-add-award-team')
     @livewire('modal-remove-award-team')
-    @livewire('assign-team-modal',['teams' => $teams])
+    @livewire('assign-team-modal')
 
 
     <div class="col-md-12
