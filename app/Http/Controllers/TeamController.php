@@ -77,9 +77,9 @@ class TeamController extends Controller
         return redirect()->back()->withSuccess('Se desasocio del equipo correctamente');
     }
 
-    public function asociarparticipante(Request $request)
+    public function asociar(Request $request)
     {
-        dd($request);
+       // dd($request);
         /*$validated = $request->validate([
             'participant_id' => 'number',
             'team_id' => 'number',
