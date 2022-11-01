@@ -39,6 +39,7 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
             'force_id' => $row['fuerza'],
             'sport_id' => $row['deporte'],
             'discipline_id' => $row['disciplina'],
+            'imagen' => $row['imagen'],
         ]);
     }
 
@@ -57,6 +58,9 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
                 'required',
                 'integer',
             ],
+            'imagen' => [
+                'string',
+            ],
         ];
     }
 
@@ -68,6 +72,9 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
         $fuerza = Force::where("force", "like", "%{$row['fuerza']}%")->first();
         $row['fuerza'] =  $fuerza && $row['fuerza'] ? $fuerza->id : null;
 
+        $sport = explode(" ",strtolower(trim($row['deporte'])));
+        $row['imagen'] = "deportes/{$sport[0]}.jpg";
+
         $row['deporte'] = strtoupper(trim($row['deporte']));
         $deporte = Sport::where("sport", "like", "%{$row['deporte']}%")->first();
         $row['deporte'] =  $deporte && $row['deporte'] ? $deporte->id : null;
@@ -76,6 +83,7 @@ class TeamsImport implements ToModel, SkipsEmptyRows, WithBatchInserts, WithHead
         $disciplina = Discipline::where("discipline", "like", "%{$row['disciplina']}%")
             ->where("sport_id", "=", $deporte->id)->first();
         $row['disciplina'] =  $disciplina && $row['disciplina'] ? $disciplina->id : null;
+
 
         return $row;
     }

@@ -26,8 +26,8 @@
                         <strong>{{ $team->name }}</strong> <br>{{ $team->sport->sport }}
                     </h5>
                     <img class="rounded"
-                        src="https://imgs.search.brave.com/eIMuOGJdc-UB8vOWiWFWTpt0dKbb1Ravfnj638DW-4w/rs:fit:770:420:1/g:ce/aHR0cHM6Ly9zMDMu/czNjLmVzL2ltYWcv/X3YwLzc3MHg0MjAv/ZS8wLzYvYmFsb24t/ZGUtZnV0Ym9sLmpw/Zw"
-                        width="200" height="120" alt="">
+                        src="/{{$team->sport->sport_image}}"
+                        width="160" height="160" alt="">
                     <p>
                         Medalla:
                         @if (isset($team->award->award))

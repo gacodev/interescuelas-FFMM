@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('discipline_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->unsignedBigInteger('award_id')->nullable();
             $table->foreign('award_id')->references("id")->on("awards");
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
