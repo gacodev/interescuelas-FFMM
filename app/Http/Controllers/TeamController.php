@@ -156,4 +156,12 @@ class TeamController extends Controller
         $request->session()->flash('success', 'La medalla se elimino correctamente');
         return redirect()->back();
     }
+
+    public function destroy(Team $team)
+    {
+        //dd($team);
+        $team->delete();
+        return redirect()->back()->withSuccess('Se elimino el equipo correctamente');
+
+    }
 }

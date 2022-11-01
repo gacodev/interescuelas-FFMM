@@ -138,17 +138,30 @@
                         @endif
                     </div>
                     @role('admin')
-                        <div class="text-center">
+                        <div class="text-center d-flex flex-nowrap">
+
+
+                            <button type="button" data-bs-toggle="modal" class="btn btn-primary"
+                                wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
+                                Medallas
+                            </button>
+
+
+                            <button type="button" data-bs-toggle="modal" class="btn btn-danger"
+                                wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
+                                Medallas
+                            </button>
                             <button type="button" data-bs-toggle="modal" class="btn btn-warning"
                                 wire:click.prevent="$emit('showModalTeamAssign', {{ $team->id }})">Asociar
                                 participante
+                        </button>
+                        <form action="/equipos/{{ $team->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                               Eliminar equipo
                             </button>
-                            <button type="button" data-bs-toggle="modal" class="btn btn-primary"
-                                wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
-                                Medallas</button>
-                            <button type="button" data-bs-toggle="modal" class="btn btn-danger"
-                                wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
-                                Medallas</button>
+                        </form>
                         </div>
                     @endrole
                 </div>
