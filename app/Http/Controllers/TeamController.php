@@ -89,7 +89,7 @@ class TeamController extends Controller
         $data = new DisciplineParticipant($request->all());
         $data->save();
 
-        return redirect()->back()->withSuccess('Se desasocio del equipo correctamente');
+        return redirect('equipos')->withSuccess('Se desasocio del equipo correctamente');
     }
 
     /**
