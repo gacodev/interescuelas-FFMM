@@ -34,7 +34,7 @@ Route::controller(TeamController::class)
         Route::post('/equipos/asignar/{data}', 'update')->name('teams.asignar');
         Route::post('/equipos/eliminar/{data}', 'quitar')->name('teams.quitar');
         Route::post('/equipos/asociar/{data}', 'asociar')->name('teams.asociar');
-        Route::post('/equipos/asociardeportistas/{data}', 'asociarparticipante')->name('teams.asociarparticipante');
+        Route::post('/equipos/asociardeportistas', 'asociarparticipante')->name('teams.asociarparticipante');
     });
 Route::controller(ScoreController::class)
     ->group(function () {
