@@ -76,7 +76,7 @@
                                                         @endif
                                                         <footer class="blockquote mb-0">Medalla:
                                                             @if (isset($disciplineParticipant->award->award))
-                                                                {{ $disciplineParticipant->award->award }}
+                                                                <img src="{{ $disciplineParticipant->award->image }}" witdth ="80px" height="80px" alt="">
                                                             @else
                                                                 N/A
                                                             @endif
