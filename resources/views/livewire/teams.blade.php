@@ -9,9 +9,9 @@
             {{ Session::get('success') }}
         </div>
     @endif
-         <div>
-            <p><strong>EQUIPOS: </strong>{{$total}}</p>
-        </div>
+    <div>
+        <p><strong>EQUIPOS: </strong>{{ $total }}</p>
+    </div>
     <div class="d-flex flex-wrap justify-content-center">
         @foreach ($TeamParticipants as $team)
             <div class="card border-dark mt-4 col-xs-8 col-sm-10 col-md-5 col-lg-6 col-xl-5 mx-1">
@@ -25,9 +25,8 @@
 
                         <strong>{{ $team->name }}</strong> <br>{{ $team->sport->sport }}
                     </h5>
-                    <img class="rounded"
-                        src="/{{$team->sport->sport_image}}"
-                        width="160" height="160" alt="">
+                    <img class="rounded" src="/{{ $team->sport->sport_image }}" width="160" height="160"
+                        alt="">
                     <p>
                         Medalla:
                         @if (isset($team->award->award))
@@ -58,7 +57,8 @@
                                         @role('admin')
                                             <td>{{ $disciplineParticipant->participant->identification }}</td>
                                             <td><button type="button" class="m-1 btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}">Desasociar</button>
+                                                    data-bs-target="#desasociar{{ $disciplineParticipant->participant->id }}"
+                                                    wire:click.prevent="$emit('showModalUnlikParticipantToTeam', {{ $disciplineParticipant->id }})">Desasociar</button>
                                             </td>
                                         @endrole
 
@@ -90,49 +90,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="modal" tabindex="-1"
-                                        id="desasociar{{ $disciplineParticipant->participant->id }}" role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title"></h5>
-
-                                                    <i class="w-20 bi bi-x-square close" type="button"
-                                                        data-bs-dismiss="modal" aria-label="close"></i>
-
-                                                </div>
-
-
-                                                <div class="modal-body">
-                                                    <form action="/equipos/desasociar" method="POST">
-                                                        @csrf
-                                                        <p>va a eliminar a
-                                                            <strong>{{ $disciplineParticipant->participant->name }}</strong>
-                                                            del equipo
-                                                        </p>
-                                                        <p>va a eliminar a
-                                                            <strong>{{ $disciplineParticipant->participant_id }}</strong>
-                                                            del equipo
-                                                        </p>
-                                                        <input type="hidden" name="discipline"
-                                                            value="{{ $disciplineParticipant->discipline_id }}">
-                                                        <input type="hidden" name="id"
-                                                            value="{{ $disciplineParticipant->participant->id }}">
-                                                        <input type="hidden" name="team"
-                                                            value="{{ $disciplineParticipant->team_id }}">
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" id="desasociar" class="btn btn-danger"
-                                                        data-bs-dismiss="modal">desasociar</button>
-                                                    <button type="button" id="cerrar" class="btn btn-dark"
-                                                        data-bs-dismiss="modal">Cerrar</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endforeach
                             </table>
                         @endif
@@ -154,14 +111,14 @@
                             <button type="button" data-bs-toggle="modal" class="btn btn-warning"
                                 wire:click.prevent="$emit('showModalTeamAssign', {{ $team->id }})">Asociar
                                 participante
-                        </button>
-                        <form action="/equipos/delete/{{ $team->id}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                               Eliminar equipo
                             </button>
-                        </form>
+                            <form action="/equipos/delete/{{ $team->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    Eliminar equipo
+                                </button>
+                            </form>
                         </div>
                     @endrole
                 </div>
@@ -173,6 +130,7 @@
     @livewire('modal-add-award-team')
     @livewire('modal-remove-award-team')
     @livewire('assign-team-modal')
+    @livewire('modal-unlink-participant-to-team')
 
 
     <div class="col-md-12
