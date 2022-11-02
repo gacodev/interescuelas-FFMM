@@ -30,7 +30,7 @@
                     <p>
                         Medalla:
                         @if (isset($team->award->award))
-                            {{ $team->award->award }}
+                            <img class="mt-4" src="{{ $team->award->image }}" width="70" height="70" alt="">
                         @else
                             N/A
                         @endif
@@ -94,7 +94,7 @@
                             </table>
                         @endif
                     </div>
-                    @role('admin')
+
                         <div class="text-center d-flex flex-nowrap">
 
 
@@ -103,7 +103,7 @@
                                 Medallas
                             </button>
 
-
+                            @role('admin')
                             <button type="button" data-bs-toggle="modal" class="btn btn-danger"
                                 wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
                                 Medallas
@@ -119,8 +119,9 @@
                                     Eliminar equipo
                                 </button>
                             </form>
+                            @endrole
                         </div>
-                    @endrole
+
                 </div>
             </div>
         @endforeach
