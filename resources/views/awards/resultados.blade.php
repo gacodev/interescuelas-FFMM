@@ -33,7 +33,7 @@
                     <canvas id="genders" class="col-12"></canvas>
                 </div>
 
-                <h4 class="text-center mt-2 mb-1"><strong>MEDALLERIA GENERAL</strong> </h4>
+            <!-- <h4 class="text-center mt-2 mb-1"><strong>MEDALLERIA GENERAL</strong> </h4>
                  <div class="row">
                     <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="EJC_total"></canvas></div>
                     <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="ARC_total"></canvas></div>
@@ -56,6 +56,7 @@
                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="FAC_team"></canvas></div>
                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL_team"></canvas></div>
                </div>
+               -->
 
                 <script>
                     function setLineChart(data, idElement, key, title) {
