@@ -195,7 +195,8 @@ class ScoreController extends Controller
         from forces f
         join participants p on p.force_id = f.id
         JOIN discipline_participants dp on dp.participant_id = p.id
-        GROUP by f.`force`");
+        GROUP by f.`force`
+        ORDER by f.`force`");
 
         $GendersScores = DB::select("select g.sexo ,
         SUM(dp.award_id  = 1) as gold, SUM(dp.award_id = 2) as silver, SUM(dp.award_id = 3) as bronze
@@ -204,9 +205,44 @@ class ScoreController extends Controller
         JOIN discipline_participants dp on dp.participant_id = p.id
         GROUP by g.sexo");
 
+        $ForcesTeamScores = DB::select("select f.`force`,
+        SUM(t.award_id  = 1) as gold, SUM(t.award_id = 2) as silver, SUM(t.award_id = 3) as bronze
+        from forces f
+        join teams t on t.force_id = f.id
+        GROUP by f.`force`
+        ORDER by f.`force`");
+
+        $ForcesTotalScores = DB::select("SELECT
+        total.`force`,
+        SUM(gold) as gold, SUM(silver) as silver, SUM(bronze) as bronze
+        FROM
+        (
+            (
+                select f.`force`,
+                SUM(dp.award_id  = 1) as gold, SUM(dp.award_id = 2) as silver, SUM(dp.award_id = 3) as bronze
+                from forces f
+                join participants p on p.force_id = f.id
+                JOIN discipline_participants dp on dp.participant_id = p.id
+                GROUP by f.`force`
+            )
+            UNION ALL
+            (
+                select f.`force`,
+                SUM(t.award_id  = 1) as gold, SUM(t.award_id = 2) as silver, SUM(t.award_id = 3) as bronze
+                from forces f
+                join teams t on t.force_id = f.id
+                GROUP by f.`force`
+                ORDER by f.id
+            )
+        ) as total
+        GROUP by total.`force`
+        ORDER by total.`force`");
+
         return [
             "forces" => $ForcesScores,
             "genders" => $GendersScores,
+            "forcesTeam" => $ForcesTeamScores,
+            "totalForces" => $ForcesTotalScores,
         ];
     }
 

@@ -25,9 +25,20 @@
                         max-width: 15vw;
                     }
                 </style>
+
                 <div class="row">
+                    <canvas id="totalForces" class="col-12"></canvas>
                     <canvas id="forces" class="col-12"></canvas>
+                    <canvas id="forcesTeam" class="col-12"></canvas>
                     <canvas id="genders" class="col-12"></canvas>
+                </div>
+
+                <h4 class="text-center mt-2 mb-1"><strong>MEDALLERIA GENERAL</strong> </h4>
+                 <div class="row">
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="EJC_total"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="ARC_total"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="FAC_total"></canvas></div>
+                    <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL_total"></canvas></div>
                 </div>
 
                 <h4 class="text-center mt-2 mb-1"><strong>INSTITUCIONES</strong> </h4>
@@ -38,6 +49,13 @@
                     <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL"></canvas></div>
                 </div>
 
+                <h4 class="text-center mt-2 mb-1"><strong>EQUIPOS</strong> </h4>
+                <div class="row">
+                   <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="EJC_team"></canvas></div>
+                   <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="ARC_team"></canvas></div>
+                   <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="FAC_team"></canvas></div>
+                   <div class="d-flex justify-content-center col-12 col-xl-3 col-sm-6"><canvas id="PONAL_team"></canvas></div>
+               </div>
 
                 <script>
                     function setLineChart(data, idElement, key, title) {
@@ -146,6 +164,19 @@
                                 title: 'GENEROS',
                                 data: "genders",
                                 key: "sexo",
+                            },
+                            {
+                                idElement: 'forcesTeam',
+                                title: 'EQUIPOS',
+                                data: "forcesTeam",
+                                key: "force",
+                            },
+                            ,
+                            {
+                                idElement: 'totalForces',
+                                title: 'MEDALLERIA GENERAL',
+                                data: "totalForces",
+                                key: "force",
                             }
                         ]
 
@@ -157,27 +188,79 @@
                         let pieCharts = [{
                                 idElement: 'EJC',
                                 title: 'Ejercito Nacional',
-                                data: "EJC"
+                                data: "forces",
+                                key: "EJC"
                             },
                             {
                                 idElement: 'ARC',
                                 title: 'Armada Nacional',
-                                data: "ARC"
+                                data: "forces",
+                                key: "ARC"
                             },
                             {
                                 idElement: 'FAC',
                                 title: 'Fuerza Aerea Colombiana',
-                                data: "FAC"
+                                data: "forces",
+                                key: "FAC"
                             },
                             {
                                 idElement: 'PONAL',
                                 title: 'Policia Nacional',
-                                data: "PONAL"
+                                data: "forces",
+                                key: "PONAL"
+                            },
+                            {
+                                idElement: 'EJC_team',
+                                title: 'Ejercito Nacional',
+                                data: "forcesTeam",
+                                key: "EJC"
+                            },
+                            {
+                                idElement: 'ARC_team',
+                                title: 'Armada Nacional',
+                                data: "forcesTeam",
+                                key: "ARC"
+                            },
+                            {
+                                idElement: 'FAC_team',
+                                title: 'Fuerza Aerea Colombiana',
+                                data: "forcesTeam",
+                                key: "FAC"
+                            },
+                            {
+                                idElement: 'PONAL_team',
+                                title: 'Policia Nacional',
+                                data: "forcesTeam",
+                                key: "PONAL"
+                            },
+                            {
+                                idElement: 'EJC_total',
+                                title: 'Ejercito Nacional',
+                                data: "totalForces",
+                                key: "EJC"
+                            },
+                            {
+                                idElement: 'ARC_total',
+                                title: 'Armada Nacional',
+                                data: "totalForces",
+                                key: "ARC"
+                            },
+                            {
+                                idElement: 'FAC_total',
+                                title: 'Fuerza Aerea Colombiana',
+                                data: "totalForces",
+                                key: "FAC"
+                            },
+                            {
+                                idElement: 'PONAL_total',
+                                title: 'Policia Nacional',
+                                data: "totalForces",
+                                key: "PONAL"
                             },
                         ]
 
                         pieCharts.map((element) => {
-                            setPieChart(data.forces.find(element2 => element2.force == element.data), element.idElement,
+                            setPieChart(data[element.data].find(element2 => element2.force == element.key), element.idElement,
                                 element
                                 .title)
                         })
