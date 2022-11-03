@@ -97,21 +97,30 @@
 
                         <div class="text-center d-flex flex-nowrap">
 
-
+                            @can('/participantes/editar')
                             <button type="button" data-bs-toggle="modal" class="btn btn-primary"
                                 wire:click.prevent="$emit('showModalAddAwardTeam', {{ $team->id }})">Agregar
                                 Medallas
                             </button>
 
+
+                            @endcan
+
+
+
+
                             @role('admin')
-                            <button type="button" data-bs-toggle="modal" class="btn btn-danger"
-                                wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
-                                Medallas
-                            </button>
+
                             <button type="button" data-bs-toggle="modal" class="btn btn-warning"
                                 wire:click.prevent="$emit('showModalTeamAssign', {{ $team->id }})">Asociar
                                 participante
                             </button>
+
+                            <button type="button" data-bs-toggle="modal" class="btn btn-danger"
+                            wire:click.prevent="$emit('showModalRemoveAwardTeam', {{ $team->id }})">Eliminar
+                            Medallas
+                            </button>
+
                             <form action="/equipos/delete/{{ $team->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')

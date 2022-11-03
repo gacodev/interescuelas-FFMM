@@ -17,4 +17,10 @@ class Award extends Model
         "description",
         "image",
     ];
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+
+    }
 }

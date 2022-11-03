@@ -65,9 +65,10 @@
                         </div>
                     </div>
                 </div>
-
+                @livewire('teamsawards')
                 @livewire('multimedallist')
             </div>
+
         </div>
 
 
