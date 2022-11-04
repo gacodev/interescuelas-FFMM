@@ -37,7 +37,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center justify-content-left text-center">
                                                     <div class="m-2 align-items-center">
-                                                        <img src="/{{$participantByDiscipline->participant->photo}}"
+                                                        <img src="/{{ $participantByDiscipline->participant->photo }}"
                                                             alt="" style="width: 70px; height: 70px"
                                                             class="rounded-circle" />
                                                     </div class="">
@@ -51,12 +51,12 @@
                                             <div class="ms-3">
                                                 <td>{{ $participantByDiscipline->participant->force->force }}</td>
                                                 <td>{{ $participantByDiscipline->discipline->discipline }}</td>
-                                                <td>{{ $participantByDiscipline->participant->gold_award }}</td>
-                                                <td>{{ $participantByDiscipline->participant->silver_award }}</td>
-                                                <td>{{ $participantByDiscipline->participant->bronze_award }}</td>
-                                                <td>{{ $participantByDiscipline->participant->total_award }}</td>
+                                                <td>{{ $participantByDiscipline->award_id == 1 ? 1 : 0 }}</td>
+                                                <td>{{ $participantByDiscipline->award_id == 2 ? 1 : 0 }}</td>
+                                                <td>{{ $participantByDiscipline->award_id == 3 ? 1 : 0 }}</td>
+                                                <td>{{ in_array($participantByDiscipline->award_id, [1, 2, 3]) ? 1 : 0 }}
+                                                </td>
                                         </tr>
-
                                     @endforeach
 
                                 </tbody>
@@ -77,6 +77,4 @@
 
     </div>
 @endsection
-<script>
-
-</script>
+<script></script>
